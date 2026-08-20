@@ -21,7 +21,7 @@
         "@myriaddreamin/typst-ts-node-compiler": "0.8.0-rc3",
         "@myriaddreamin/typst-ts-renderer": "0.8.0-rc3",
         "@myriaddreamin/typst.ts": "0.8.0-rc3",
-        "astro": "^7.2.3",
+        "astro": "^7.2.4",
         "astro-typst": "github:Hobr/astro-typst"
     },
     "devDependencies": {
