@@ -67,19 +67,17 @@ const themeBootstrapScript = `
         <link rel="icon" href="/favicon.ico" />
         <link rel="sitemap" href="/sitemap-index.xml" />
         <link rel="canonical" href={canonical} />
-        {
-            alternateLinks.map((link) => (
-                <link
-                    rel="alternate"
-                    hreflang={link.lang}
-                    href={new URL(link.href, siteBase).href}
-                />
-            ))
-        }
+        {alternateLinks.map((link) => (
+            <link
+                rel="alternate"
+                hreflang={link.lang}
+                href={new URL(link.href, siteBase).href}
+            />
+        ))}
         <meta name="generator" content={Astro.generator} />
         <meta name="description" content={siteDescription} />
         <style is:inline set:html={themeStyles}></style>
-        <script is:inline set:html={themeBootstrapScript} />
+        <script is:inline set:html={themeBootstrapScript}></script>
         <ClientRouter />
         <title>{title}</title>
     </head>
@@ -97,11 +95,7 @@ const themeBootstrapScript = `
             >
                 <p class="site-footer__copyright">
                     <span aria-hidden="true">$</span>
-                    <span
-                        >{
-                            `printf "© ${currentYear} ${dictionary.brand.name}"`
-                        }</span
-                    >
+                    <span>{`printf "© ${currentYear} ${dictionary.brand.name}"`}</span>
                 </p>
                 <div class="site-footer__controls">
                     <ThemeSwitcher label={dictionary.brand.themeLabel} />

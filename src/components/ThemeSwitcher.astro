@@ -21,13 +21,11 @@ const { label } = Astro.props;
         aria-label={label}
         data-theme-select
     >
-        {
-            themes.map((theme) => (
-                <option value={theme.id} selected={theme.id === defaultThemeId}>
-                    {theme.label}
-                </option>
-            ))
-        }
+        {themes.map((theme) => (
+            <option value={theme.id} selected={theme.id === defaultThemeId}>
+                {theme.label}
+            </option>
+        ))}
     </select>
 </label>
 

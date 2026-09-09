@@ -34,9 +34,9 @@ const { locale, dictionary, post, previous, next, Content, alternateLinks } =
         <article class="article-shell">
             <header class="article-meta" lang={locale}>
                 <p class="article-meta__path">~/blog/{post.slug}.typ</p>
-                <time datetime={post.publishedAt.toISOString()}
-                    >{post.dateLabel}</time
-                >
+                <time datetime={post.publishedAt.toISOString()}>
+                    {post.dateLabel}
+                </time>
                 <TagList
                     tags={post.tags}
                     locale={locale}

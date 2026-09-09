@@ -28,23 +28,21 @@ const { locale, dictionary, archiveGroups, alternateLinks } = Astro.props;
                 {dictionary.archive.panelSubtitle}
             </p>
             <div class="archive-groups">
-                {
-                    archiveGroups.map(([period, posts]) => {
-                        const [year, month] = period.split("-");
+                {archiveGroups.map(([period, posts]) => {
+                    const [year, month] = period.split("-");
 
-                        return (
-                            <section class="archive-group" aria-label={period}>
-                                <div class="archive-group__period">
-                                    <h2>
-                                        <span>{year}</span>
-                                        <strong>{month}</strong>
-                                    </h2>
-                                </div>
-                                <PostList posts={posts} locale={locale} />
-                            </section>
-                        );
-                    })
-                }
+                    return (
+                        <section class="archive-group" aria-label={period}>
+                            <div class="archive-group__period">
+                                <h2>
+                                    <span>{year}</span>
+                                    <strong>{month}</strong>
+                                </h2>
+                            </div>
+                            <PostList posts={posts} locale={locale} />
+                        </section>
+                    );
+                })}
             </div>
         </section>
     </main>

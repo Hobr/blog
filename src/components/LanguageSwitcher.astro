@@ -13,22 +13,20 @@ const { currentLocale, shortLabel, alternateLinks } = Astro.props;
 <nav class="language-switcher" aria-label={shortLabel}>
     <span class="language-switcher__label">{shortLabel}</span>
     <ul>
-        {
-            alternateLinks.map((link) => (
-                <li>
-                    <a
-                        class:list={[{ active: link.locale === currentLocale }]}
-                        href={link.href}
-                        hreflang={link.lang}
-                        lang={link.lang}
-                        aria-current={
-                            link.locale === currentLocale ? "page" : undefined
-                        }
-                    >
-                        {link.label}
-                    </a>
-                </li>
-            ))
-        }
+        {alternateLinks.map((link) => (
+            <li>
+                <a
+                    class:list={[{ active: link.locale === currentLocale }]}
+                    href={link.href}
+                    hreflang={link.lang}
+                    lang={link.lang}
+                    aria-current={
+                        link.locale === currentLocale ? "page" : undefined
+                    }
+                >
+                    {link.label}
+                </a>
+            </li>
+        ))}
     </ul>
 </nav>

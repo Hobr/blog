@@ -58,26 +58,22 @@ const activeSection =
         </a>
         <nav class="site-nav">
             <ul>
-                {
-                    links.map((link) => (
-                        <li>
-                            <a
-                                class:list={[
-                                    { active: activeSection === link.key },
-                                ]}
-                                href={link.href}
-                                aria-current={
-                                    activeSection === link.key
-                                        ? "page"
-                                        : undefined
-                                }
-                            >
-                                <span aria-hidden="true">~/</span>
-                                {link.label}
-                            </a>
-                        </li>
-                    ))
-                }
+                {links.map((link) => (
+                    <li>
+                        <a
+                            class:list={[
+                                { active: activeSection === link.key },
+                            ]}
+                            href={link.href}
+                            aria-current={
+                                activeSection === link.key ? "page" : undefined
+                            }
+                        >
+                            <span aria-hidden="true">~/</span>
+                            {link.label}
+                        </a>
+                    </li>
+                ))}
             </ul>
         </nav>
     </div>
