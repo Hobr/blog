@@ -1,5 +1,4 @@
 import { defaultLocale, toLocalePath, type Locale } from "../i18n/config.ts";
-import { sharedSiteTargets } from "./contact.ts";
 
 export type LocalizedSiteCommand = {
     command: string;
@@ -10,16 +9,9 @@ export type LocalizedSiteCommand = {
 const siteSets: Record<Locale, LocalizedSiteCommand[]> = {
     "zh-CN": [
         {
-            ...sharedSiteTargets.email,
-            name: "邮箱",
-        },
-        {
-            ...sharedSiteTargets.telegram,
-            name: "电报",
-        },
-        {
-            ...sharedSiteTargets.github,
-            name: "GitHub",
+            command: "./contact",
+            name: "联系",
+            href: toLocalePath("zh-CN", "/contact"),
         },
         {
             command: "./blog",
@@ -39,16 +31,9 @@ const siteSets: Record<Locale, LocalizedSiteCommand[]> = {
     ],
     en: [
         {
-            ...sharedSiteTargets.email,
-            name: "Email",
-        },
-        {
-            ...sharedSiteTargets.telegram,
-            name: "Telegram",
-        },
-        {
-            ...sharedSiteTargets.github,
-            name: "GitHub",
+            command: "./contact",
+            name: "Contact",
+            href: toLocalePath("en", "/contact"),
         },
         {
             command: "./blog",
@@ -68,16 +53,9 @@ const siteSets: Record<Locale, LocalizedSiteCommand[]> = {
     ],
     ja: [
         {
-            ...sharedSiteTargets.email,
-            name: "メール",
-        },
-        {
-            ...sharedSiteTargets.telegram,
-            name: "Telegram",
-        },
-        {
-            ...sharedSiteTargets.github,
-            name: "GitHub",
+            command: "./contact",
+            name: "連絡先",
+            href: toLocalePath("ja", "/contact"),
         },
         {
             command: "./blog",
