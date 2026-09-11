@@ -7,6 +7,7 @@ import { shouldIncludeSitemapPage } from "./src/i18n/sitemap.ts";
 // https://astro.build/config
 export default defineConfig({
     site: "https://hobr.site",
+    prefetch: true,
     vite: {
         cacheDir: ".astro/vite-cache",
         server: {
