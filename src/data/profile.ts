@@ -13,20 +13,20 @@ const profiles: Record<Locale, ProfileData> = {
     "zh-CN": {
         name: "Hobr",
         email: profileEmail,
-        role: "计算机狂热爱好者 / 全栈 / 二次元 / 学生",
-        bio: `自小对计算机充满热情, 喜欢折腾各种技术, 接触过各类计算机语言及工具, 长期关注前沿技术及开源项目, 非科班出身`,
+        role: "计算机民科 / 全栈 / 二次元",
+        bio: ``,
     },
     en: {
         name: "Hobr",
         email: profileEmail,
-        role: "Computer enthusiast / Full-Stack Developer / Anime Fan / Student",
-        bio: `I have been passionate about computers since childhood, enjoy exploring and experimenting with various technologies, have worked with a wide range of programming languages and tools, and consistently follow cutting-edge technologies and open-source projects. I do not come from a formal computer science background.`,
+        role: "Computer Science Crank / Full-Stack Developer / Anime Fan",
+        bio: ``,
     },
     ja: {
         name: "Hobr",
         email: profileEmail,
-        role: "コンピューター愛好家 / フルスタック開発者 / 二次元 / 学生",
-        bio: `子供の頃からコンピュータに強い情熱を持ち、さまざまな技術を試したり研究したりすることが好きで、多様なプログラミング言語やツールに触れてきました。長期にわたり最先端技術やオープンソースプロジェクトに注目しており、専門的な情報系の教育を受けたバックグラウンドはありません。コンピュータに強い情熱を持ち、さまざまな技術を試した`,
+        role: "コンピュータ科学のトンデモ研究者 / フルスタック開発者 / 二次元",
+        bio: ``,
     },
 };
 

@@ -15,9 +15,45 @@ const sharedSiteTargets = {
         command: "./Telegram",
         href: "https://t.me/Hobrd",
     },
+    qq: {
+        command: "./QQ",
+        href: "https://qm.qq.com/q/VJ01PuCduS",
+    },
+    matrix: {
+        command: "./Matrix",
+        href: "https://matrix.to/#/@hobrd:matrix.org",
+    },
+    discord: {
+        command: "./Discord",
+        href: "https://discord.gg/rgAZKrmC",
+    },
     github: {
         command: "./GitHub",
         href: "https://github.com/Hobr",
+    },
+    x: {
+        command: "./X",
+        href: "https://x.com/Hobrimttxx",
+    },
+    bilibili: {
+        command: "./Bilibili",
+        href: "https://space.bilibili.com/35583361",
+    },
+    rednote: {
+        command: "./RedNote",
+        href: "https://xhslink.cn/o/5w0Gq6fbyel",
+    },
+    zhihu: {
+        command: "./Zhihu",
+        href: "https://www.zhihu.com/people/hobr",
+    },
+    linuxdo: {
+        command: "./Linuxdo",
+        href: "https://linux.do/u/hobr",
+    },
+    weibo: {
+        command: "./Weibo",
+        href: "https://weibo.com/u/2235490514",
     },
 } as const;
 
