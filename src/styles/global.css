@@ -890,47 +890,6 @@ select {
     background: var(--backgroundSubtle);
 }
 
-::view-transition-old(root),
-::view-transition-new(root) {
-    mix-blend-mode: normal;
-}
-
-::view-transition-old(root) {
-    animation: pageContentFadeOut 120ms ease-in both;
-}
-
-::view-transition-new(root) {
-    animation: pageContentFadeIn 180ms var(--ease-out) both;
-}
-
-[data-astro-transition-fallback="old"] .page-transition-shell {
-    animation: pageContentFadeOut 120ms ease-in both;
-}
-
-[data-astro-transition-fallback="new"] .page-transition-shell {
-    animation: pageContentFadeIn 180ms var(--ease-out) both;
-}
-
-@keyframes pageContentFadeOut {
-    from {
-        opacity: 1;
-    }
-
-    to {
-        opacity: 0;
-    }
-}
-
-@keyframes pageContentFadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
 @media (max-width: 900px) {
     .home-grid,
     .index-page,
