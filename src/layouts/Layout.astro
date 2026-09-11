@@ -42,7 +42,7 @@ const themeBootstrapScript = `
     const fallbackTheme = ${JSON.stringify(defaultThemeId)};
     const knownThemes = new Set(${JSON.stringify(themeIds)});
     let nextTheme = window.matchMedia?.("(prefers-color-scheme: light)").matches
-        ? "base16-sakura"
+        ? "base16-cupcake"
         : fallbackTheme;
 
     try {
