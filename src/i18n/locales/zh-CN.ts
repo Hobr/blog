@@ -7,6 +7,7 @@ export const zhCN = {
     nav: {
         home: "首页",
         blog: "博客",
+        tags: "标签",
         archive: "归档",
         contact: "联系",
     },
@@ -34,6 +35,11 @@ export const zhCN = {
         navSubtitle: "ls ~/导航 && open ~/导航/<目标>",
         openArchive: "./archive",
         openTag: (tag: string) => `./tags/${tag}`,
+    },
+    tagsPage: {
+        metaTitle: "Hobr.Site | 标签",
+        title: "所有标签",
+        panelSubtitle: "find ~/博客 -type f | xargs grep '^tags:' | sort -u",
     },
     archive: {
         metaTitle: "Hobr.Site | 归档",

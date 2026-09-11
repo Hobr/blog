@@ -7,6 +7,7 @@ export const ja = {
     nav: {
         home: "ホーム",
         blog: "ブログ",
+        tags: "タグ",
         archive: "アーカイブ",
         contact: "連絡先",
     },
@@ -34,6 +35,11 @@ export const ja = {
         navSubtitle: "ls ~/移動先 && open ~/移動先/<ページ>",
         openArchive: "./archive",
         openTag: (tag: string) => `./tags/${tag}`,
+    },
+    tagsPage: {
+        metaTitle: "Hobr.Site | タグ",
+        title: "すべてのタグ",
+        panelSubtitle: "find ~/記事 -type f | xargs grep '^tags:' | sort -u",
     },
     archive: {
         metaTitle: "Hobr.Site | アーカイブ",

@@ -24,9 +24,9 @@ const siteSets: Record<Locale, LocalizedSiteCommand[]> = {
             href: toLocalePath("zh-CN", "/archive"),
         },
         {
-            command: "./tags/site",
+            command: "./tags",
             name: "标签",
-            href: toLocalePath("zh-CN", "/tags/site"),
+            href: toLocalePath("zh-CN", "/tags"),
         },
     ],
     en: [
@@ -46,9 +46,9 @@ const siteSets: Record<Locale, LocalizedSiteCommand[]> = {
             href: toLocalePath("en", "/archive"),
         },
         {
-            command: "./tags/site",
+            command: "./tags",
             name: "Tag View",
-            href: toLocalePath("en", "/tags/site"),
+            href: toLocalePath("en", "/tags"),
         },
     ],
     ja: [
@@ -68,9 +68,9 @@ const siteSets: Record<Locale, LocalizedSiteCommand[]> = {
             href: toLocalePath("ja", "/archive"),
         },
         {
-            command: "./tags/site",
+            command: "./tags",
             name: "タグ",
-            href: toLocalePath("ja", "/tags/site"),
+            href: toLocalePath("ja", "/tags"),
         },
     ],
 };

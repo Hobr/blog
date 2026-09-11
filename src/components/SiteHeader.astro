@@ -32,23 +32,29 @@ const links = [
         label: dictionary.nav.archive,
         key: "archive",
     },
+    {
+        href: toLocalePath(locale, "/tags"),
+        label: dictionary.nav.tags,
+        key: "tags",
+    },
 ];
 
 const activeSection =
     pathnameWithoutLocale === "/"
         ? "home"
         : pathnameWithoutLocale === "/blog" ||
-            pathnameWithoutLocale.startsWith("/blog/") ||
-            pathnameWithoutLocale === "/tags" ||
-            pathnameWithoutLocale.startsWith("/tags/")
+            pathnameWithoutLocale.startsWith("/blog/")
           ? "blog"
-          : pathnameWithoutLocale === "/archive" ||
-              pathnameWithoutLocale.startsWith("/archive/")
-            ? "archive"
-            : pathnameWithoutLocale === "/contact" ||
-                pathnameWithoutLocale.startsWith("/contact/")
-              ? "contact"
-              : null;
+          : pathnameWithoutLocale === "/tags" ||
+              pathnameWithoutLocale.startsWith("/tags/")
+            ? "tags"
+            : pathnameWithoutLocale === "/archive" ||
+                pathnameWithoutLocale.startsWith("/archive/")
+              ? "archive"
+              : pathnameWithoutLocale === "/contact" ||
+                  pathnameWithoutLocale.startsWith("/contact/")
+                ? "contact"
+                : null;
 ---
 
 <header

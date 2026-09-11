@@ -14,6 +14,7 @@ export type SiteDictionary = {
     nav: {
         home: string;
         blog: string;
+        tags: string;
         archive: string;
         contact: string;
     };
@@ -41,6 +42,11 @@ export type SiteDictionary = {
         navSubtitle: string;
         openArchive: string;
         openTag: StringFormatter;
+    };
+    tagsPage: {
+        metaTitle: string;
+        title: string;
+        panelSubtitle: string;
     };
     archive: {
         metaTitle: string;

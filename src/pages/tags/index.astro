@@ -1,0 +1,18 @@
+---
+import TagsPage from "../../views/TagsPage.astro";
+import { buildAlternateLinks, defaultLocale } from "../../i18n/config";
+import { getDictionary } from "../../i18n/dictionary";
+import { getAllTags } from "../../lib/posts";
+
+const locale = defaultLocale;
+const dictionary = getDictionary(locale);
+const tags = await getAllTags();
+const alternateLinks = buildAlternateLinks(Astro.url.pathname);
+---
+
+<TagsPage
+    locale={locale}
+    dictionary={dictionary}
+    tags={tags}
+    alternateLinks={alternateLinks}
+/>

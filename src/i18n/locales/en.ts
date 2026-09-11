@@ -7,6 +7,7 @@ export const en = {
     nav: {
         home: "Home",
         blog: "Blog",
+        tags: "Tags",
         archive: "Archive",
         contact: "Contact",
     },
@@ -34,6 +35,11 @@ export const en = {
         navSubtitle: "ls ~/browse && open ~/browse/<target>",
         openArchive: "./archive",
         openTag: (tag: string) => `./tags/${tag}`,
+    },
+    tagsPage: {
+        metaTitle: "Hobr.Site | Tags",
+        title: "All tags",
+        panelSubtitle: "find ~/posts -type f | xargs grep '^tags:' | sort -u",
     },
     archive: {
         metaTitle: "Hobr.Site | Archive",
