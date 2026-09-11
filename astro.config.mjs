@@ -2,11 +2,15 @@
 import { defineConfig, fontProviders } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 import { shouldIncludeSitemapPage } from "./src/i18n/sitemap.ts";
+import imgAttr from "satteri-imgattr";
+import { satteri } from "@astrojs/markdown-satteri";
+import { mermaidMdast, mermaidHast } from "@xingwangzhe/satteri-mermaid";
 
 // https://astro.build/config
 export default defineConfig({
     site: "https://hobr.site",
     prefetch: true,
+    compressHTML: true,
     fonts: [
         {
             name: "JetBrains Mono",
@@ -40,4 +44,24 @@ export default defineConfig({
             filter: shouldIncludeSitemapPage,
         }),
     ],
+    markdown: {
+        processor: satteri({
+            mdastPlugins: [
+                mermaidMdast({
+                    langs: ["mermaid", "mmd"],
+                }),
+            ],
+
+            hastPlugins: [
+                imgAttr({
+                    defaults: { loading: "lazy", decoding: "async" },
+                }),
+
+                mermaidHast({
+                    theme: "modern",
+                    font: "JetBrains Mono, monospace",
+                }),
+            ],
+        }),
+    },
 });

@@ -19,8 +19,11 @@
     },
     "dependencies": {
         "@astrojs/check": "^0.9.10",
+        "@astrojs/markdown-satteri": "^0.4.1",
         "@astrojs/sitemap": "^3.7.4",
+        "@xingwangzhe/satteri-mermaid": "^0.7.8",
         "astro": "^7.3.2",
+        "satteri-imgattr": "^0.1.1",
         "sharp": "^0.35.4"
     },
     "devDependencies": {
