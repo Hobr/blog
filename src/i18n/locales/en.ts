@@ -14,6 +14,13 @@ export const en = {
         noPosts: "No posts published yet",
         tagsLabel: "Tags",
     },
+    error: {
+        metaTitle: "Hobr.Site | Page Not Found",
+        command: "cd /requested/path && ls",
+        title: "Page not found",
+        message: "What happened???",
+        homeAction: "Return home",
+    },
     home: {
         metaTitle: "Hobr.Site | Homepage",
         profileSubtitle: "whoami && cat ~/profile.txt",

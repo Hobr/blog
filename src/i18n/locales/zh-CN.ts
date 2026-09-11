@@ -14,6 +14,13 @@ export const zhCN = {
         noPosts: "暂无文章",
         tagsLabel: "标签",
     },
+    error: {
+        metaTitle: "Hobr.Site | 页面未找到",
+        command: "cd /requested/path && ls",
+        title: "页面未找到",
+        message: "啊嘞, 怎么回事呢",
+        homeAction: "返回首页",
+    },
     home: {
         metaTitle: "Hobr.Site | 首页",
         profileSubtitle: "whoami && cat ~/个人资料.txt",

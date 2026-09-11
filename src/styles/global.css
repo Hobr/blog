@@ -202,6 +202,54 @@ select {
     padding: clamp(1.5rem, 4vw, 3rem) 0 clamp(3rem, 7vw, 6rem);
 }
 
+.error-page {
+    min-height: calc(100dvh - 12rem);
+    align-items: center;
+}
+
+.error-panel__body {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: clamp(1.5rem, 6vw, 5rem);
+    align-items: center;
+    padding: clamp(2rem, 7vw, 5rem);
+}
+
+.error-panel__code {
+    margin: 0;
+    color: var(--accent);
+    font-size: clamp(5rem, 17vw, 12rem);
+    font-weight: 650;
+    line-height: 0.8;
+    letter-spacing: 0;
+}
+
+.error-panel__copy {
+    max-width: 38rem;
+}
+
+.error-panel h1 {
+    margin: 0 0 0.75rem;
+    color: var(--textStrong);
+    font-size: clamp(1.75rem, 4vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: 0;
+}
+
+.error-panel__copy > p {
+    max-width: 42ch;
+    margin: 0;
+    color: var(--textMain);
+    font-family: var(--font-reading);
+    line-height: 1.8;
+}
+
+.error-panel .text-action {
+    width: fit-content;
+    margin-top: 1.5rem;
+    border: 1px solid var(--surfaceBorder);
+}
+
 .terminal-panel {
     min-width: 0;
     border: 1px solid var(--surfaceBorder);
@@ -952,6 +1000,20 @@ select {
         grid-template-columns: 1fr;
         align-items: start;
         padding: 1.25rem;
+    }
+
+    .error-panel__body {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 1.25rem;
+    }
+
+    .error-panel__code {
+        font-size: clamp(4.5rem, 28vw, 8rem);
+    }
+
+    .error-panel .text-action {
+        width: 100%;
     }
 
     .profile-panel__portrait {

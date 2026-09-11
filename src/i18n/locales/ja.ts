@@ -14,6 +14,13 @@ export const ja = {
         noPosts: "まだ記事はありません",
         tagsLabel: "タグ",
     },
+    error: {
+        metaTitle: "Hobr.Site | ページが見つかりません",
+        command: "cd /requested/path && ls",
+        title: "ページが見つかりません",
+        message: "お探しのページは存在しないか、移動しました。",
+        homeAction: "ホームへ戻る",
+    },
     home: {
         metaTitle: "Hobr.Site | ポータル",
         profileSubtitle: "whoami && cat ~/個人情報.txt",

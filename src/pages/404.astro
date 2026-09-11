@@ -1,0 +1,45 @@
+---
+import Layout from "../layouts/Layout.astro";
+import {
+    buildAlternateLinks,
+    defaultLocale,
+    toLocalePath,
+} from "../i18n/config";
+import { getDictionary } from "../i18n/dictionary";
+
+const locale = defaultLocale;
+const dictionary = getDictionary(locale);
+const alternateLinks = buildAlternateLinks("/");
+---
+
+<Layout
+    title={dictionary.error.metaTitle}
+    locale={locale}
+    dictionary={dictionary}
+    alternateLinks={alternateLinks}
+>
+    <main class="page-shell error-page" id="main-content">
+        <section
+            class="terminal-panel error-panel"
+            aria-labelledby="error-title"
+        >
+            <p class="terminal-prompt">
+                <span aria-hidden="true">$</span>
+                {dictionary.error.command}
+            </p>
+            <div class="error-panel__body">
+                <p class="error-panel__code" aria-hidden="true">
+                    404
+                </p>
+                <div class="error-panel__copy">
+                    <h1 id="error-title">{dictionary.error.title}</h1>
+                    <p>{dictionary.error.message}</p>
+                    <a class="text-action" href={toLocalePath(locale, "/")}>
+                        {dictionary.error.homeAction}
+                        <span aria-hidden="true">-&gt;</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+</Layout>

@@ -21,6 +21,13 @@ export type SiteDictionary = {
         noPosts: string;
         tagsLabel: string;
     };
+    error: {
+        metaTitle: string;
+        command: string;
+        title: string;
+        message: string;
+        homeAction: string;
+    };
     home: {
         metaTitle: string;
         profileSubtitle: string;
