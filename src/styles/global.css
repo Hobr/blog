@@ -84,7 +84,6 @@ svg {
     max-width: 100%;
 }
 
-button,
 select {
     font: inherit;
 }
@@ -451,18 +450,15 @@ select {
     align-items: center;
     justify-content: center;
     gap: 0.55rem;
+    padding: 0.75rem 1rem;
     color: var(--textStrong);
+    border-left: 1px solid var(--surfaceBorder);
     text-decoration: none;
     white-space: nowrap;
     transition:
         color 180ms var(--ease-out),
         background-color 180ms var(--ease-out),
         transform 180ms var(--ease-out);
-}
-
-.text-action {
-    padding: 0.75rem 1rem;
-    border-left: 1px solid var(--surfaceBorder);
 }
 
 .text-action:hover {
