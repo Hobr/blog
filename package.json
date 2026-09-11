@@ -9,6 +9,7 @@
     "scripts": {
         "dev": "astro dev",
         "build": "astro build",
+        "check": "astro check",
         "preview": "astro preview",
         "astro": "astro",
         "test": "node --test --experimental-strip-types tests/*.test.ts",
@@ -17,6 +18,7 @@
         "format": "prettier --write ."
     },
     "dependencies": {
+        "@astrojs/check": "^0.9.10",
         "@astrojs/sitemap": "^3.7.4",
         "@myriaddreamin/typst-ts-node-compiler": "0.8.0-rc3",
         "@myriaddreamin/typst-ts-renderer": "0.8.0-rc3",
