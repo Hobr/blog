@@ -9,6 +9,11 @@ export default defineConfig({
     site: "https://hobr.site",
     vite: {
         cacheDir: ".astro/vite-cache",
+        server: {
+            watch: {
+                ignored: ["**/.direnv/**"],
+            },
+        },
     },
     integrations: [
         sitemap({
