@@ -1,6 +1,4 @@
 ---
-title: "这是软件工程的新时代吗?"
-slug: "new-se-era"
 date: "2026-08-27"
 tags:
     - AI

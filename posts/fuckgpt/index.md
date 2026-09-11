@@ -1,6 +1,4 @@
 ---
-title: "Fuck GPT"
-slug: "fuckgpt"
 date: "2026-06-01"
 tags:
     - AI

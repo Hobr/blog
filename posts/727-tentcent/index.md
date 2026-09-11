@@ -1,6 +1,4 @@
 ---
-title: "狗日的腾讯"
-slug: "727-tentcent"
 date: "2026-07-27"
 tags:
     - 个人

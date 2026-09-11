@@ -1,6 +1,4 @@
 ---
-title: "锐评DeepSeek Harness"
-slug: "dsh"
 date: "2026-08-14"
 tags:
     - AI

@@ -1,6 +1,4 @@
 ---
-title: "我对人工智能的看法"
-slug: "ai-to-me"
 date: "2026-04-10"
 tags:
     - AI

@@ -1,6 +1,4 @@
 ---
-title: "追忆外婆"
-slug: "pray-grandma"
 date: "2026-08-13"
 tags:
     - 个人

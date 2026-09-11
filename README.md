@@ -86,8 +86,6 @@ pnpm preview
 
 ```md
 ---
-title: "My New Post"
-slug: "my-new-post"
 date: "2026-04-07"
 tags:
     - markdown
@@ -101,12 +99,12 @@ tags:
 
 当前文章的必填 frontmatter 字段:
 
-- `title`
-- `slug`
 - `date`
 - `tags`
 
-构建时会基于这些字段自动生成:
+文章目录名会自动作为 `slug`, 正文中的第一个一级标题会自动作为 `title`。因此文件必须放在 `posts/<slug>/index.md` 下，并包含一个一级标题。
+
+构建时会基于这些字段和目录结构自动生成:
 
 - `/blog`
 - `/blog/<slug>`
@@ -133,6 +131,7 @@ posts/hello-terminal/diagram.png
 约定:
 
 - 一个 slug 对应一个文章目录, 方便迁移和清理
+- 文章目录名决定 slug, 正文第一个一级标题决定 title
 - 图片文件名保持英文小写加连字符
 - 文章图片不要散落在根级 `public/`
 

@@ -1,6 +1,4 @@
 ---
-title: "Hello Again"
-slug: "hello-again"
 date: "2026-04-09"
 tags:
     - web

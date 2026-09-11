@@ -1,6 +1,4 @@
 ---
-title: '"榫卯"框架的构想'
-slug: "sunmao-introduce"
 date: "2026-07-24"
 tags:
     - Agent

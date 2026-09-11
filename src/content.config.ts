@@ -8,8 +8,6 @@ const posts = defineCollection({
         base: "./posts",
     }),
     schema: z.object({
-        title: z.string().trim().min(1),
-        slug: z.string().trim().min(1),
         date: z.string().trim().min(1),
         tags: z.array(z.string().trim().min(1)).min(1),
     }),
