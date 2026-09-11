@@ -8,6 +8,7 @@ export const ja = {
         home: "ホーム",
         blog: "ブログ",
         archive: "アーカイブ",
+        contact: "連絡先",
     },
     common: {
         noPosts: "まだ記事はありません",
@@ -31,6 +32,13 @@ export const ja = {
         metaTitle: "Hobr.Site | アーカイブ",
         panelSubtitle:
             "find ~/記事 -type f | xargs stat -c %y | cut -d- -f1,2 | sort -ur",
+    },
+    contact: {
+        metaTitle: "Hobr.Site | 連絡先",
+        imSubtitle:
+            "ls ~/連絡先/インスタントメッセージ && open ~/連絡先/インスタントメッセージ/<方法>",
+        socialSubtitle:
+            "ls ~/連絡先/ソーシャルメディア && open ~/連絡先/ソーシャルメディア/<サービス>",
     },
     tagPage: {
         metaTitle: (tag: string) => `Hobr.Site | #${tag}`,

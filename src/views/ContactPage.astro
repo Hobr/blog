@@ -1,0 +1,49 @@
+---
+import SitesCommandPanel from "../components/SitesCommandPanel.astro";
+import type { ContactSiteGroups } from "../data/contact";
+import type { AlternateLink, Locale } from "../i18n/config";
+import type { SiteDictionary } from "../i18n/dictionary";
+import Layout from "../layouts/Layout.astro";
+
+interface Props {
+    locale: Locale;
+    dictionary: SiteDictionary;
+    contactGroups: ContactSiteGroups;
+    alternateLinks: AlternateLink[];
+}
+
+const { locale, dictionary, contactGroups, alternateLinks } = Astro.props;
+---
+
+<Layout
+    title={dictionary.contact.metaTitle}
+    locale={locale}
+    dictionary={dictionary}
+    alternateLinks={alternateLinks}
+>
+    <main class="page-shell" id="main-content">
+        <div class="contact-grid">
+            <section class="terminal-panel contact-panel">
+                <p class="terminal-prompt">
+                    <span aria-hidden="true">$</span>
+                    {dictionary.contact.imSubtitle}
+                </p>
+                <SitesCommandPanel
+                    sites={contactGroups.im}
+                    label={dictionary.contact.imSubtitle}
+                />
+            </section>
+
+            <section class="terminal-panel contact-panel">
+                <p class="terminal-prompt">
+                    <span aria-hidden="true">$</span>
+                    {dictionary.contact.socialSubtitle}
+                </p>
+                <SitesCommandPanel
+                    sites={contactGroups.social}
+                    label={dictionary.contact.socialSubtitle}
+                />
+            </section>
+        </div>
+    </main>
+</Layout>

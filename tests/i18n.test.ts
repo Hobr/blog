@@ -18,6 +18,11 @@ import {
 import { shouldIncludeSitemapPage } from "../src/i18n/sitemap.ts";
 import { getProfile, profile } from "../src/data/profile.ts";
 import { getSites, sites } from "../src/data/sites.ts";
+import {
+    getContactSiteGroups,
+    getContactSites,
+    sharedSiteTargets,
+} from "../src/data/contact.ts";
 import { getDictionary } from "../src/i18n/dictionary.ts";
 import { getThemeStyles, themes } from "../src/data/themes.ts";
 
@@ -170,6 +175,19 @@ test("site data localizes labels and preserves shared external targets", () => {
         assert.equal(localizedSites[1].href, "https://t.me/Hobrd");
         assert.equal(localizedSites[2].href, "https://github.com/Hobr");
     }
+});
+
+test("contact sites expose every shared target", () => {
+    const contactSites = getContactSites("zh-CN");
+    const contactGroups = getContactSiteGroups("zh-CN");
+
+    assert.equal(contactSites.length, Object.keys(sharedSiteTargets).length);
+    assert.equal(contactSites[0].href, sharedSiteTargets.email.href);
+    assert.equal(contactSites.at(-1)?.href, sharedSiteTargets.weibo.href);
+    assert.equal(contactGroups.im.length, 5);
+    assert.equal(contactGroups.social.length, 7);
+    assert.equal(contactGroups.im[0].href, sharedSiteTargets.email.href);
+    assert.equal(contactGroups.social[0].href, sharedSiteTargets.github.href);
 });
 
 test("profile and sites keep default-locale compatibility exports", () => {

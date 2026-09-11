@@ -18,6 +18,11 @@ const links = [
         key: "home",
     },
     {
+        href: toLocalePath(locale, "/contact"),
+        label: dictionary.nav.contact,
+        key: "contact",
+    },
+    {
         href: toLocalePath(locale, "/blog"),
         label: dictionary.nav.blog,
         key: "blog",
@@ -40,7 +45,10 @@ const activeSection =
           : pathnameWithoutLocale === "/archive" ||
               pathnameWithoutLocale.startsWith("/archive/")
             ? "archive"
-            : null;
+            : pathnameWithoutLocale === "/contact" ||
+                pathnameWithoutLocale.startsWith("/contact/")
+              ? "contact"
+              : null;
 ---
 
 <header

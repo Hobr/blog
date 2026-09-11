@@ -8,6 +8,7 @@ export const zhCN = {
         home: "首页",
         blog: "博客",
         archive: "归档",
+        contact: "联系",
     },
     common: {
         noPosts: "暂无文章",
@@ -31,6 +32,11 @@ export const zhCN = {
         metaTitle: "Hobr.Site | 归档",
         panelSubtitle:
             "find ~/博客 -type f | xargs stat -c %y | cut -d- -f1,2 | sort -ur",
+    },
+    contact: {
+        metaTitle: "Hobr.Site | 联系",
+        imSubtitle: "ls ~/联系/即时通讯 && open ~/联系/即时通讯/<方式>",
+        socialSubtitle: "ls ~/联系/社交媒体 && open ~/联系/社交媒体/<平台>",
     },
     tagPage: {
         metaTitle: (tag: string) => `Hobr.Site | #${tag}`,

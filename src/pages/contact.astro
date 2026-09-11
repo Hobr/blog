@@ -1,0 +1,18 @@
+---
+import ContactPage from "../views/ContactPage.astro";
+import { getContactSiteGroups } from "../data/contact";
+import { buildAlternateLinks, defaultLocale } from "../i18n/config";
+import { getDictionary } from "../i18n/dictionary";
+
+const locale = defaultLocale;
+const dictionary = getDictionary(locale);
+const contactGroups = getContactSiteGroups(locale);
+const alternateLinks = buildAlternateLinks(Astro.url.pathname);
+---
+
+<ContactPage
+    locale={locale}
+    dictionary={dictionary}
+    contactGroups={contactGroups}
+    alternateLinks={alternateLinks}
+/>

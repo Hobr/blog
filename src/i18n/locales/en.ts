@@ -8,6 +8,7 @@ export const en = {
         home: "Home",
         blog: "Blog",
         archive: "Archive",
+        contact: "Contact",
     },
     common: {
         noPosts: "No posts published yet",
@@ -31,6 +32,12 @@ export const en = {
         metaTitle: "Hobr.Site | Archive",
         panelSubtitle:
             "find ~/posts -type f | xargs stat -c %y | cut -d- -f1,2 | sort -ur",
+    },
+    contact: {
+        metaTitle: "Hobr.Site | Contact",
+        imSubtitle: "ls ~/contact/im && open ~/contact/im/<target>",
+        socialSubtitle:
+            "ls ~/contact/social-media && open ~/contact/social-media/<target>",
     },
     tagPage: {
         metaTitle: (tag: string) => `Hobr.Site | #${tag}`,

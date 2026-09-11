@@ -238,6 +238,13 @@ select {
     align-items: stretch;
 }
 
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    align-items: start;
+}
+
 .terminal-panel--profile,
 .terminal-panel--commands {
     min-height: 25rem;
@@ -879,6 +886,7 @@ select {
 @media (max-width: 900px) {
     .home-grid,
     .index-page,
+    .contact-grid,
     .archive-group {
         grid-template-columns: 1fr;
     }

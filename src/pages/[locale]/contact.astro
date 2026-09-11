@@ -1,0 +1,27 @@
+---
+import ContactPage from "../../views/ContactPage.astro";
+import { getContactSiteGroups } from "../../data/contact";
+import { buildAlternateLinks } from "../../i18n/config";
+import { getDictionary } from "../../i18n/dictionary";
+import {
+    assertSecondaryLocale,
+    getSecondaryLocaleStaticPaths,
+} from "../../i18n/static-paths";
+
+export function getStaticPaths() {
+    return getSecondaryLocaleStaticPaths();
+}
+
+const { locale } = Astro.props as { locale: string };
+const secondaryLocale = assertSecondaryLocale(locale);
+const dictionary = getDictionary(secondaryLocale);
+const contactGroups = getContactSiteGroups(secondaryLocale);
+const alternateLinks = buildAlternateLinks(Astro.url.pathname);
+---
+
+<ContactPage
+    locale={secondaryLocale}
+    dictionary={dictionary}
+    contactGroups={contactGroups}
+    alternateLinks={alternateLinks}
+/>
