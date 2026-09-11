@@ -51,28 +51,6 @@ const siteSets: Record<Locale, LocalizedSiteCommand[]> = {
             href: toLocalePath("en", "/tags"),
         },
     ],
-    ja: [
-        {
-            command: "./contact",
-            name: "連絡先",
-            href: toLocalePath("ja", "/contact"),
-        },
-        {
-            command: "./blog",
-            name: "ブログ",
-            href: toLocalePath("ja", "/blog"),
-        },
-        {
-            command: "./archive",
-            name: "アーカイブ",
-            href: toLocalePath("ja", "/archive"),
-        },
-        {
-            command: "./tags",
-            name: "タグ",
-            href: toLocalePath("ja", "/tags"),
-        },
-    ],
 };
 
 export function getSites(locale: Locale): LocalizedSiteCommand[] {

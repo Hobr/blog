@@ -1,6 +1,5 @@
 import type { Locale } from "./config.ts";
 import { en } from "./locales/en.ts";
-import { ja } from "./locales/ja.ts";
 import { zhCN } from "./locales/zh-CN.ts";
 
 type StringFormatter = typeof zhCN.blogIndex.openTag;
@@ -74,7 +73,6 @@ export type SiteDictionary = {
 const dictionaries = {
     "zh-CN": zhCN,
     en,
-    ja,
 } satisfies Record<Locale, SiteDictionary>;
 
 export function getDictionary(locale: Locale): SiteDictionary {

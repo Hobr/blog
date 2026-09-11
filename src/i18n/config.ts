@@ -1,20 +1,18 @@
-export const locales = ["zh-CN", "en", "ja"] as const;
+export const locales = ["zh-CN", "en"] as const;
 export type Locale = (typeof locales)[number];
 export type SecondaryLocale = Exclude<Locale, "zh-CN">;
 
 export const defaultLocale: Locale = "zh-CN";
-export const secondaryLocales: SecondaryLocale[] = ["en", "ja"];
+export const secondaryLocales: SecondaryLocale[] = ["en"];
 
 export const localeDisplayNames: Record<Locale, string> = {
     "zh-CN": "中文",
     en: "English",
-    ja: "日本語",
 };
 
 const localePrefixes: Record<Locale, string> = {
     "zh-CN": "",
     en: "/en",
-    ja: "/ja",
 };
 
 export type AlternateLink = {

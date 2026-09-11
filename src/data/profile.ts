@@ -22,12 +22,6 @@ const profiles: Record<Locale, ProfileData> = {
         role: "Computer Science Crank / Full-Stack Developer / Anime Fan",
         bio: ``,
     },
-    ja: {
-        name: "Hobr",
-        email: profileEmail,
-        role: "コンピュータ科学のトンデモ研究者 / フルスタック開発者 / 二次元",
-        bio: ``,
-    },
 };
 
 export function getProfile(locale: Locale): ProfileData {

@@ -83,20 +83,6 @@ const contactSiteNames: Record<Locale, Record<SharedSiteTargetKey, string>> = {
         linuxdo: "Linux.do",
         weibo: "Weibo",
     },
-    ja: {
-        email: "メール",
-        telegram: "Telegram",
-        qq: "QQ",
-        matrix: "Matrix",
-        discord: "Discord",
-        github: "GitHub",
-        x: "X",
-        bilibili: "Bilibili",
-        rednote: "RedNote",
-        zhihu: "知乎",
-        linuxdo: "Linux.do",
-        weibo: "微博",
-    },
 };
 
 const contactGroupKeys = {
