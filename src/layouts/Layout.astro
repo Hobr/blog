@@ -1,4 +1,5 @@
 ---
+import { Font } from "astro:assets";
 import { ClientRouter } from "astro:transitions";
 import LanguageSwitcher from "../components/LanguageSwitcher.astro";
 import SiteHeader from "../components/SiteHeader.astro";
@@ -77,6 +78,8 @@ const themeBootstrapScript = `
         <meta name="generator" content={Astro.generator} />
         <meta name="description" content={siteDescription} />
         <style is:inline set:html={themeStyles}></style>
+        <Font cssVariable="--font-terminal" />
+        <Font cssVariable="--font-body" />
         <script is:inline set:html={themeBootstrapScript}></script>
         <ClientRouter />
         <title>{title}</title>

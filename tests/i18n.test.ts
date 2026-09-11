@@ -130,7 +130,7 @@ test("dictionaries resolve translated shell copy", () => {
 test("site data localizes labels and builds locale links", () => {
     assert.equal(getSites("zh-CN")[0].name, "联系");
     assert.equal(getSites("zh-CN")[3].command, "./tags");
-    assert.equal(getSites("en")[4].name, "Projects");
+    assert.equal(getSites("en")[3].name, "Tag View");
     assert.equal(getSites("en")[2].href, "/en/archive");
 
     assert.deepEqual(
