@@ -127,7 +127,15 @@ export function groupPostsByMonth<T extends NormalizedPost>(
     return [...grouped.entries()];
 }
 
-export function createAdjacentPostMap<T extends NormalizedPost>(posts: T[]) {
+export function createAdjacentPostMap<T extends NormalizedPost>(
+    posts: T[],
+): Map<
+    string,
+    {
+        previous: T | undefined;
+        next: T | undefined;
+    }
+> {
     return new Map(
         posts.map((post, index) => [
             post.slug,

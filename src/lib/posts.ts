@@ -53,5 +53,10 @@ export async function getArchiveGroups() {
 }
 
 export async function getAdjacentPosts(slug: string) {
-    return createAdjacentPostMap(await collectPosts()).get(slug) ?? {};
+    return (
+        createAdjacentPostMap(await collectPosts()).get(slug) ?? {
+            previous: undefined,
+            next: undefined,
+        }
+    );
 }

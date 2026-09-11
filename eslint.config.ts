@@ -3,9 +3,8 @@ import path from "node:path";
 import globals from "globals";
 import tseslint from "typescript-eslint";
 import json from "@eslint/json";
-import { includeIgnoreFile } from "@eslint/compat";
 import css from "@eslint/css";
-import { defineConfig } from "eslint/config";
+import { defineConfig, includeIgnoreFile } from "eslint/config";
 import eslintConfigPrettier from "eslint-config-prettier/flat";
 
 const gitignorePath = path.resolve(import.meta.dirname, ".gitignore");
