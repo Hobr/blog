@@ -25,7 +25,7 @@ importers:
         version: 7.3.2(@emnapi/core@2.0.0-alpha.3)(@emnapi/runtime@2.0.0-alpha.3)(@types/node@26.5.1)(jiti@2.7.0)(yaml@2.9.0)
       astro-typst:
         specifier: github:Hobr/astro-typst
-        version: https://codeload.github.com/Hobr/astro-typst/tar.gz/62aaebb89da5553181f45b3f1aded8349f98bfc8(@myriaddreamin/typst-ts-node-compiler@0.8.0-rc3)(@myriaddreamin/typst-ts-renderer@0.8.0-rc3)(@myriaddreamin/typst.ts@0.8.0-rc3(@myriaddreamin/typst-ts-renderer@0.8.0-rc3))(astro@7.3.2(@emnapi/core@2.0.0-alpha.3)(@emnapi/runtime@2.0.0-alpha.3)(@types/node@26.5.1)(jiti@2.7.0)(yaml@2.9.0))(cheerio@1.2.0)
+        version: https://codeload.github.com/Hobr/astro-typst/tar.gz/12101450d7b1750dd44b050ce1166f78d758fae0(@myriaddreamin/typst-ts-node-compiler@0.8.0-rc3)(@myriaddreamin/typst-ts-renderer@0.8.0-rc3)(@myriaddreamin/typst.ts@0.8.0-rc3(@myriaddreamin/typst-ts-renderer@0.8.0-rc3))(astro@7.3.2(@emnapi/core@2.0.0-alpha.3)(@emnapi/runtime@2.0.0-alpha.3)(@types/node@26.5.1)(jiti@2.7.0)(yaml@2.9.0))(cheerio@1.2.0)
     devDependencies:
       '@eslint/compat':
         specifier: ^2.1.1
@@ -1179,9 +1179,9 @@ packages:
     resolution: {integrity: sha512-LElXdjswlqjWrPpJFg1Fx4wpkOCxj1TDHlSV4PlaRxHGWko024xICaa97ZkMfs6DRKlCguiAI+rbXv5GWwXIkg==}
     hasBin: true
 
-  astro-typst@https://codeload.github.com/Hobr/astro-typst/tar.gz/62aaebb89da5553181f45b3f1aded8349f98bfc8:
-    resolution: {tarball: https://codeload.github.com/Hobr/astro-typst/tar.gz/62aaebb89da5553181f45b3f1aded8349f98bfc8}
-    version: 0.12.3
+  astro-typst@https://codeload.github.com/Hobr/astro-typst/tar.gz/12101450d7b1750dd44b050ce1166f78d758fae0:
+    resolution: {tarball: https://codeload.github.com/Hobr/astro-typst/tar.gz/12101450d7b1750dd44b050ce1166f78d758fae0}
+    version: 0.12.4
     peerDependencies:
       '@myriaddreamin/typst-ts-node-compiler': '>=0.6.1-rc2'
       '@myriaddreamin/typst-ts-renderer': '>=0.6.1-rc2'
@@ -3319,7 +3319,7 @@ snapshots:
 
   astring@1.9.0: {}
 
-  astro-typst@https://codeload.github.com/Hobr/astro-typst/tar.gz/62aaebb89da5553181f45b3f1aded8349f98bfc8(@myriaddreamin/typst-ts-node-compiler@0.8.0-rc3)(@myriaddreamin/typst-ts-renderer@0.8.0-rc3)(@myriaddreamin/typst.ts@0.8.0-rc3(@myriaddreamin/typst-ts-renderer@0.8.0-rc3))(astro@7.3.2(@emnapi/core@2.0.0-alpha.3)(@emnapi/runtime@2.0.0-alpha.3)(@types/node@26.5.1)(jiti@2.7.0)(yaml@2.9.0))(cheerio@1.2.0):
+  astro-typst@https://codeload.github.com/Hobr/astro-typst/tar.gz/12101450d7b1750dd44b050ce1166f78d758fae0(@myriaddreamin/typst-ts-node-compiler@0.8.0-rc3)(@myriaddreamin/typst-ts-renderer@0.8.0-rc3)(@myriaddreamin/typst.ts@0.8.0-rc3(@myriaddreamin/typst-ts-renderer@0.8.0-rc3))(astro@7.3.2(@emnapi/core@2.0.0-alpha.3)(@emnapi/runtime@2.0.0-alpha.3)(@types/node@26.5.1)(jiti@2.7.0)(yaml@2.9.0))(cheerio@1.2.0):
     dependencies:
       '@myriaddreamin/typst-ts-node-compiler': 0.8.0-rc3
       '@myriaddreamin/typst-ts-renderer': 0.8.0-rc3

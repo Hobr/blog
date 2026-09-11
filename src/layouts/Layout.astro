@@ -42,7 +42,7 @@ const themeBootstrapScript = `
     const fallbackTheme = ${JSON.stringify(defaultThemeId)};
     const knownThemes = new Set(${JSON.stringify(themeIds)});
     let nextTheme = window.matchMedia?.("(prefers-color-scheme: light)").matches
-        ? "paper-light"
+        ? "base16-sakura"
         : fallbackTheme;
 
     try {
@@ -62,7 +62,7 @@ const themeBootstrapScript = `
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
-        <meta name="theme-color" content="#0b0f0c" />
+        <meta name="theme-color" content="#191724" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="sitemap" href="/sitemap-index.xml" />

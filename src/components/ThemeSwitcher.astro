@@ -52,7 +52,7 @@ const { label } = Astro.props;
             return stored && knownThemes.includes(stored)
                 ? stored
                 : window.matchMedia?.("(prefers-color-scheme: light)").matches
-                  ? "paper-light"
+                  ? "base16-sakura"
                   : fallbackTheme;
         } catch {
             return fallbackTheme;
