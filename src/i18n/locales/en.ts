@@ -22,6 +22,12 @@ export const en = {
         message: "What happened???",
         homeAction: "Return home",
     },
+    serverError: {
+        metaTitle: "Hobr.Site | Internal Server Error",
+        title: "Internal server error",
+        message:
+            "The server encountered an unexpected error. Please try again later.",
+    },
     home: {
         metaTitle: "Hobr.Site | Homepage",
         profileSubtitle: "whoami && cat ~/profile.txt",

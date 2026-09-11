@@ -28,6 +28,11 @@ export type SiteDictionary = {
         message: string;
         homeAction: string;
     };
+    serverError: {
+        metaTitle: string;
+        title: string;
+        message: string;
+    };
     home: {
         metaTitle: string;
         profileSubtitle: string;

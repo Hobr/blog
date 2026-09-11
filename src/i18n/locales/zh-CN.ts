@@ -22,6 +22,11 @@ export const zhCN = {
         message: "啊嘞, 怎么回事呢",
         homeAction: "返回首页",
     },
+    serverError: {
+        metaTitle: "Hobr.Site | 服务器错误",
+        title: "服务器内部错误",
+        message: "服务器遇到了意外错误, 请稍后再试。",
+    },
     home: {
         metaTitle: "Hobr.Site | 首页",
         profileSubtitle: "whoami && cat ~/个人资料.txt",
