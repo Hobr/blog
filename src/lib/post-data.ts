@@ -17,11 +17,13 @@ export type NormalizedPost = {
     dateLabel: string;
 };
 
-export function parseTypstDate(input: string): Date {
-    const year = Number(input.match(/year:\s*(\d{4})/)?.[1]);
-    const month = Number(input.match(/month:\s*(\d{1,2})/)?.[1]);
-    const day = Number(input.match(/day:\s*(\d{1,2})/)?.[1]);
-    const invalidDateMessage = `Invalid Typst date: ${input}`;
+export function parsePostDate(input: string): Date {
+    const normalized = input.trim();
+    const match = /^(\d{4})-(\d{1,2})-(\d{1,2})$/.exec(normalized);
+    const invalidDateMessage = `Invalid post date: ${input}`;
+    const year = Number(match?.[1]);
+    const month = Number(match?.[2]);
+    const day = Number(match?.[3]);
 
     if (
         !Number.isInteger(year) ||
@@ -68,7 +70,7 @@ export function normalizePostRecord(record: RawPostRecord): NormalizedPost {
         throw new Error("Post tags are required");
     }
 
-    const publishedAt = parseTypstDate(record.data.date);
+    const publishedAt = parsePostDate(record.data.date);
 
     return {
         id: record.id,

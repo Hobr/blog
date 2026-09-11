@@ -1,13 +1,12 @@
-#import "../presets/post.typ": post
+---
+title: "生病"
+slug: "415-ill"
+date: "2026-04-10"
+tags:
+    - 个人
+---
 
-#show: post.with(
-  title: "生病",
-  slug: "415-ill",
-  date: datetime(year: 2026, month: 4, day: 10),
-  tags: ("个人",),
-)
-
-= 生病
+# 生病
 
 哎, 刚有了点动力打算干点什么就生病了, 从周一躺倒现在, 浑身没劲
 

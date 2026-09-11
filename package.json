@@ -20,11 +20,8 @@
     "dependencies": {
         "@astrojs/check": "^0.9.10",
         "@astrojs/sitemap": "^3.7.4",
-        "@myriaddreamin/typst-ts-node-compiler": "0.8.0-rc3",
-        "@myriaddreamin/typst-ts-renderer": "0.8.0-rc3",
-        "@myriaddreamin/typst.ts": "0.8.0-rc3",
         "astro": "^7.3.2",
-        "astro-typst": "github:Hobr/astro-typst"
+        "sharp": "^0.35.4"
     },
     "devDependencies": {
         "@eslint/compat": "^2.1.1",

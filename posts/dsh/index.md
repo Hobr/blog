@@ -1,19 +1,19 @@
-#import "../presets/post.typ": post
+---
+title: "锐评DeepSeek Harness"
+slug: "dsh"
+date: "2026-08-14"
+tags:
+    - AI
+    - Agent
+---
 
-#show: post.with(
-  title: "锐评DeepSeek Harness",
-  slug: "dsh",
-  date: datetime(year: 2026, month: 8, day: 14),
-  tags: ("AI", "Agent"),
-)
-
-= 锐评DeepSeek Harness
+# 锐评DeepSeek Harness
 
 昨晚DSH发布了, 我也是第一时间体验了一下, 感觉一言难尽...... 鉴定为嘉豪Harness.
 
 这帮人很想证明自己有极高的品位和技术taste, 但端出来的东西在用户侧却成了一场灾难. 更抽象的是, 其实他们的东西也没啥taste.
 
-他们甚至为他们的底层框架#link("https://github.com/cordiverse/cordis")[Cordis]写了一篇80+页的论文, 通过形式的语言证明自己的可插拔框架的灵活与可靠. 客观上他们实现的东西确实值得肯定, 但在AI的大背景下, 你们的论文并没有解决什么实际的问题, 有很多人喜欢提"自进化", 可是你的技术栈似乎也没有什么高灵活性.
+他们甚至为他们的底层框架[Cordis](https://github.com/cordiverse/cordis)写了一篇80+页的论文, 通过形式的语言证明自己的可插拔框架的灵活与可靠. 客观上他们实现的东西确实值得肯定, 但在AI的大背景下, 你们的论文并没有解决什么实际的问题, 有很多人喜欢提"自进化", 可是你的技术栈似乎也没有什么高灵活性.
 
 对于一个Harness/Agent框架来说, 更应该解决的难道不是AI直接相关的问题吗, 一套灵活的插件系统并不能成为其的核心卖点, DeepSeek团队与其浪费时间去证明插件系统的灵活, 还不如把工作重心放到Agent执行路径的形式化等更现实和实际的问题, 真正的提升Agent的可靠性.
 

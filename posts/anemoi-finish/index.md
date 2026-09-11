@@ -1,21 +1,20 @@
-#import "../presets/post.typ": post
+---
+title: "anemoi通关撒花"
+slug: "anemoi-finish"
+date: "2026-04-21"
+tags:
+    - Galgame
+---
 
-#show: post.with(
-  title: "anemoi通关撒花",
-  slug: "anemoi-finish",
-  date: datetime(year: 2026, month: 4, day: 21),
-  tags: ("Galgame",),
-)
+# anemoi通关撒花
 
-= anemoi通关撒花
-
-#image("../../../public/posts/anemoi-finish/ed.png")
+![游戏片尾画面](./ed.png)
 
 很难想象Key的最新作anemoi居然被人提前n天泄露, 虽然这种行为很恶劣, 但我还是口嫌体直的下载并且熬夜两个晚上打完了......
 
 本文含剧透, 谨慎浏览
 
-== 整体评价
+## 整体评价
 
 7.5/10, 不及前作Summer Pockets, 有SP和Rewrite的影子, 但主题并不是一回事
 
@@ -27,7 +26,7 @@
 
 说完缺点, 作品本身立意还是值得肯定的, 可以感到其是想向观众传达一些积极的想法, 珍惜当下珍惜生命, 奈何太过压抑, 玩家玩完后大多都在难受而不是回味
 
-== 线路评价
+## 线路评价
 
 - 朱比华: 7/10 经典Key社女主线, 甜但短, 没想到男女主居然还是姐弟恋
 - 爱乃: 5/10 最cjb的一条线, 结局强行BE, 和SP的紬一个套路但却远不及紬线, 可爱的人设在通关后只能让我想到科比
@@ -38,4 +37,4 @@
 - eternicle: 8/10 开头以女主视角回顾了女主线, 然后大幅讲述了男女主的生活, 但是结局强行生孩子导致女主去往底层世界太抽象了, 意义不明
 - anemoi: 8.5/10 女儿的形象塑造的很可爱, 前半部分也能让人想到CL的父亲, 但是后面的剧情就很难理解了, 所有和男主亲近的人都一一被他送走了, 最后结局的相遇也不明所以, 很难令人释怀
 
-#image("../../../public/posts/anemoi-finish/arrive.png")
+![通关画面](./arrive.png)

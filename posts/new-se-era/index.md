@@ -1,13 +1,13 @@
-#import "../presets/post.typ": post
+---
+title: "这是软件工程的新时代吗?"
+slug: "new-se-era"
+date: "2026-08-27"
+tags:
+    - AI
+    - 软件工程
+---
 
-#show: post.with(
-  title: "这是软件工程的新时代吗?",
-  slug: "new-se-era",
-  date: datetime(year: 2026, month: 8, day: 27),
-  tags: ("AI","软件工程",),
-)
-
-= 这是软件工程的新时代吗?
+# 这是软件工程的新时代吗?
 
 过去我们的一切, 出于时间和人力的原因, 是建立在一套并不绝对科学的体系上的, 这套体系在过去几十年中, 也确实是非常有效的, 但是随着人工智能的出现, 其不稳定性反而成了绊脚石
 

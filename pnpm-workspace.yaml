@@ -3,4 +3,3 @@ allowBuilds:
     sharp: true
 onlyBuiltDependencies:
     - esbuild
-    - astro-typst

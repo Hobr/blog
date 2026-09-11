@@ -6,12 +6,13 @@
 
 ```text
 .
-├── public/
-│   └── posts/              # Typst 文章图片等静态资源
+├── posts/                 # Markdown 博文及其图片资源
+│   └── <slug>/
+│       ├── index.md
+│       └── image.png
+├── public/                # 其他静态资源
 ├── src/
-│   ├── components/         # 终端窗口、文章列表、标签、分页等组件
-│   ├── content/
-│   │   └── posts/          # Typst 博文
+│   ├── components/        # 终端窗口、文章列表、标签、分页等组件
 │   ├── data/
 │   │   ├── themes.ts       # 硬编码主题配置
 │   │   ├── profile.ts      # 首页个人信息
@@ -79,22 +80,21 @@ pnpm preview
 
 这个项目当前不再依赖 Svelte 组件, 首页站点列表也使用 Astro 组件渲染。
 
-### 2. 新增 Typst 博文
+### 2. 新增 Markdown 博文
 
-在 `src/content/posts/` 下新建一个 `.typ` 文件, 例如:
+在 `posts/<slug>/index.md` 下新建一个 Markdown 文件, 例如:
 
-```typ
-#metadata((
-  title: "My New Post",
-  slug: "my-new-post",
-  date: datetime(year: 2026, month: 4, day: 7),
-  tags: ("typst", "astro"),
-))<frontmatter>
+```md
+---
+title: "My New Post"
+slug: "my-new-post"
+date: "2026-04-07"
+tags:
+    - markdown
+    - astro
+---
 
-#set page(width: auto, height: auto, margin: 0pt)
-#set par(justify: true, leading: 0.85em)
-
-= My New Post
+# My New Post
 
 这里开始写正文
 ```
@@ -114,26 +114,27 @@ pnpm preview
 - `/archive`
 - 上一篇 / 下一篇导航
 
-### 3. Typst 图片资源约定
+### 3. Markdown 图片资源约定
 
-Typst 博文里的图片统一放在 `public/posts/<slug>/` 下, 例如:
+Markdown 博文的图片和文章放在同一个目录下, 例如:
 
 ```text
-public/posts/hello-terminal/cover.png
-public/posts/hello-terminal/diagram.png
+posts/hello-terminal/index.md
+posts/hello-terminal/cover.png
+posts/hello-terminal/diagram.png
 ```
 
-在 `.typ` 里用项目根目录下的 `public/` 绝对路径引用:
+在 Markdown 中使用相对路径引用:
 
-```typ
-#image("/public/posts/hello-terminal/cover.png")
+```md
+![封面](./cover.png)
 ```
 
 约定:
 
-- 一个 slug 对应一个资源目录, 方便迁移和清理
+- 一个 slug 对应一个文章目录, 方便迁移和清理
 - 图片文件名保持英文小写加连字符
-- 优先把文章图片放进 `public/posts/<slug>/`, 不要散落在根级 `public/`
+- 文章图片不要散落在根级 `public/`
 
 ### 4. 调整主题
 

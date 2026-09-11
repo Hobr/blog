@@ -8,7 +8,7 @@ import {
     groupPostsByTag,
     groupPostsByYear,
     normalizePostRecord,
-    parseTypstDate,
+    parsePostDate,
     sortPostsByDateDesc,
     type RawPostRecord,
 } from "../src/lib/post-data.ts";
@@ -19,7 +19,7 @@ const rawPosts = [
         data: {
             title: "Older",
             slug: "older",
-            date: "datetime(year: 2025, month: 12, day: 30)",
+            date: "2025-12-30",
             tags: ["astro", "notes"],
         },
     },
@@ -28,8 +28,8 @@ const rawPosts = [
         data: {
             title: "Newest",
             slug: "newest",
-            date: "datetime(year: 2026, month: 4, day: 6)",
-            tags: ["typst"],
+            date: "2026-04-06",
+            tags: ["markdown"],
         },
     },
 ] satisfies RawPostRecord[];
@@ -44,20 +44,16 @@ function createRawPost(data: Partial<RawPostRecord["data"]>): RawPostRecord {
     };
 }
 
-test("parseTypstDate converts typst datetime text into a UTC date", () => {
-    const parsed = parseTypstDate("datetime(year: 2026, month: 4, day: 6)");
+test("parsePostDate converts an ISO date into a UTC date", () => {
+    const parsed = parsePostDate("2026-04-06");
     assert.equal(parsed.toISOString(), "2026-04-06T00:00:00.000Z");
 });
 
-test("parseTypstDate rejects missing and impossible calendar dates", () => {
-    const invalidDates = [
-        "datetime(year: 2026, month: 2)",
-        "datetime(year: 2026, month: 13, day: 1)",
-        "datetime(year: 2026, month: 2, day: 29)",
-    ];
+test("parsePostDate rejects missing and impossible calendar dates", () => {
+    const invalidDates = ["2026-02", "2026-13-01", "2026-02-29"];
 
     for (const input of invalidDates) {
-        assert.throws(() => parseTypstDate(input), /Invalid Typst date/);
+        assert.throws(() => parsePostDate(input), /Invalid post date/);
     }
 });
 
@@ -145,7 +141,7 @@ test("assertUniqueSlugs rejects duplicate slugs", () => {
                     data: {
                         title: "Duplicate",
                         slug: "older",
-                        date: "datetime(year: 2026, month: 4, day: 1)",
+                        date: "2026-04-01",
                         tags: ["astro"],
                     },
                 }),

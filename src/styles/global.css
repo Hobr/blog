@@ -664,16 +664,7 @@ select {
     line-height: 1.9;
 }
 
-/* Typst emits inline dimensions; these overrides keep generated documents responsive. */
-/* eslint-disable css/no-important */
-.article-body .typst-doc {
-    width: 100% !important;
-    max-width: 100% !important;
-}
-/* eslint-enable css/no-important */
-
-.article-body > :first-child,
-.article-body .typst-doc > :first-child {
+.article-body > :first-child {
     margin-top: 0;
 }
 
@@ -688,8 +679,7 @@ select {
 }
 
 .article-body h1,
-.article-body > h2:first-child,
-.article-body .typst-doc h2:first-child {
+.article-body > h2:first-child {
     margin: 0 0 clamp(2rem, 5vw, 3.5rem);
     font-size: clamp(1.75rem, 4vw, 3rem);
     font-weight: 620;
@@ -1029,8 +1019,7 @@ select {
     }
 
     .article-body h1,
-    .article-body > h2:first-child,
-    .article-body .typst-doc h2:first-child {
+    .article-body > h2:first-child {
         font-size: clamp(1.75rem, 8vw, 2.25rem);
     }
 

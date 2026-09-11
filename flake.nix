@@ -13,9 +13,6 @@
           corepack
           typescript
           typescript-language-server
-          typst
-          tinymist
-          typstyle
         ];
     };
 }

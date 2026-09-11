@@ -4,8 +4,8 @@ import { z } from "astro/zod";
 
 const posts = defineCollection({
     loader: glob({
-        pattern: "**/*.typ",
-        base: "./src/content/posts",
+        pattern: "**/*.md",
+        base: "./posts",
     }),
     schema: z.object({
         title: z.string().trim().min(1),
