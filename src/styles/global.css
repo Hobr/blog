@@ -654,93 +654,31 @@ select {
 .article-body {
     min-width: 0;
     padding: clamp(1.5rem, 5vw, 4rem);
-    overflow: hidden;
     border: 1px solid var(--surfaceBorder);
     background: var(--backgroundElevated);
     box-shadow: 0 1.5rem 5rem var(--shadow);
-    color: var(--textMain);
-    font-family: var(--font-reading), sans-serif;
-    font-size: clamp(0.98rem, 0.35vw + 0.9rem, 1.08rem);
-    line-height: 1.9;
-}
-
-.article-body > :first-child {
-    margin-top: 0;
-}
-
-.article-body h1,
-.article-body h2,
-.article-body h3,
-.article-body h4 {
-    color: var(--textStrong);
-    font-family: var(--font-mono), monospace;
-    line-height: 1.22;
-    letter-spacing: -0.04em;
-}
-
-.article-body h1,
-.article-body > h2:first-child {
-    margin: 0 0 clamp(2rem, 5vw, 3.5rem);
-    font-size: clamp(1.75rem, 4vw, 3rem);
-    font-weight: 620;
-    line-height: 1;
-    text-wrap: balance;
-}
-
-.article-body h2:not(:first-child),
-.article-body h3 {
-    margin: clamp(2.5rem, 7vw, 4.5rem) 0 1rem;
-    font-size: clamp(1.35rem, 3vw, 2rem);
-    font-weight: 600;
-}
-
-.article-body p {
-    margin: 0 0 1.2em;
-    overflow-wrap: anywhere;
-}
-
-.article-body a {
-    color: var(--accent);
 }
 
 .article-body img {
-    width: 100%;
+    width: auto;
+    max-width: 100%;
     height: auto;
-    margin: clamp(1.75rem, 5vw, 3.5rem) 0;
-    border: 1px solid var(--surfaceBorderStrong);
-    background: var(--backgroundSubtle);
-}
-
-.article-body ul,
-.article-body ol {
-    padding-left: 1.4rem;
-}
-
-.article-body li {
-    margin: 0.55rem 0;
 }
 
 .article-body pre {
     max-width: 100%;
-    margin: 1.75rem 0;
-    padding: 1rem;
-    overflow: auto;
-    color: var(--textMain);
-    border: 1px solid var(--surfaceBorder);
-    background: var(--codeBackground);
-    font-family: var(--font-mono), monospace;
-    font-size: 0.86rem;
-    line-height: 1.7;
+    overflow-x: auto;
 }
 
-.article-body code {
+.article-body a {
+    transition:
+        color 180ms var(--ease-out),
+        background-color 180ms var(--ease-out);
+}
+
+.article-body a:hover {
     color: var(--textStrong);
-    background: var(--codeBackground);
-    font-family: var(--font-mono), monospace;
-}
-
-.article-body :not(pre) > code {
-    padding: 0.12em 0.32em;
+    background: var(--backgroundSubtle);
 }
 
 .article-footer {
@@ -1016,11 +954,6 @@ select {
 
     .article-body {
         padding: 1.25rem;
-    }
-
-    .article-body h1,
-    .article-body > h2:first-child {
-        font-size: clamp(1.75rem, 8vw, 2.25rem);
     }
 
     .post-pagination {
