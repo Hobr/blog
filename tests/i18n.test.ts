@@ -19,6 +19,7 @@ import { shouldIncludeSitemapPage } from "../src/i18n/sitemap.ts";
 import { getProfile, profile } from "../src/data/profile.ts";
 import { getSites, sites } from "../src/data/sites.ts";
 import { getDictionary } from "../src/i18n/dictionary.ts";
+import { getThemeStyles, themes } from "../src/data/themes.ts";
 
 test("default locale stays on the root path", () => {
     assert.equal(defaultLocale, "zh-CN");
@@ -174,6 +175,17 @@ test("site data localizes labels and preserves shared external targets", () => {
 test("profile and sites keep default-locale compatibility exports", () => {
     assert.deepEqual(profile, getProfile(defaultLocale));
     assert.equal(sites[0].href, getSites(defaultLocale)[0].href);
+});
+
+test("theme styles include every configured theme palette", () => {
+    const styles = getThemeStyles();
+
+    for (const theme of themes) {
+        assert.ok(styles.includes(`data-theme="${theme.id}"`));
+        for (const [key, value] of Object.entries(theme.palette)) {
+            assert.ok(styles.includes(`--${key}: ${value};`));
+        }
+    }
 });
 
 test("secondary locale route helpers only expose en and ja", () => {
