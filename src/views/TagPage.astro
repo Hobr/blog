@@ -24,12 +24,10 @@ const { locale, dictionary, tag, posts, alternateLinks } = Astro.props;
 >
     <main class="page-shell" id="main-content">
         <section class="terminal-panel tag-results-panel">
-            <div class="tag-results-panel__heading">
-                <p class="terminal-prompt">
-                    <span aria-hidden="true">$</span>
-                    {dictionary.tagPage.panelSubtitle(tag)}
-                </p>
-            </div>
+            <p class="terminal-prompt">
+                <span aria-hidden="true">$</span>
+                {dictionary.tagPage.panelSubtitle(tag)}
+            </p>
             <PostList
                 posts={posts}
                 locale={locale}

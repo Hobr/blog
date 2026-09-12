@@ -32,12 +32,10 @@ const tagCommands: LocalizedSiteCommand[] = tags.map((tag) => ({
             class="terminal-panel tag-results-panel"
             aria-label={dictionary.tagsPage.title}
         >
-            <div class="section-heading">
-                <p class="terminal-prompt">
-                    <span aria-hidden="true">$</span>
-                    {dictionary.tagsPage.panelSubtitle}
-                </p>
-            </div>
+            <p class="terminal-prompt">
+                <span aria-hidden="true">$</span>
+                {dictionary.tagsPage.panelSubtitle}
+            </p>
             <SitesCommandPanel
                 sites={tagCommands}
                 label={dictionary.common.tagsLabel}

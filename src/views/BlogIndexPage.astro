@@ -39,12 +39,10 @@ const browseCommands: LocalizedSiteCommand[] = [
 >
     <main class="page-shell index-page" id="main-content">
         <section class="terminal-panel post-index-panel">
-            <div class="section-heading">
-                <p class="terminal-prompt">
-                    <span aria-hidden="true">$</span>
-                    {dictionary.blogIndex.listSubtitle}
-                </p>
-            </div>
+            <p class="terminal-prompt">
+                <span aria-hidden="true">$</span>
+                {dictionary.blogIndex.listSubtitle}
+            </p>
             <PostList
                 posts={posts}
                 locale={locale}
