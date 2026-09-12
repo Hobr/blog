@@ -14,19 +14,16 @@ const avatarUrl = `https://gravatar.com/avatar/${gravatarHash}?s=320&d=404&r=g`;
 ---
 
 <div class="profile-panel">
-    <div class="profile-panel__portrait">
-        <img
-            src={avatarUrl}
-            alt={profile.name}
-            width="160"
-            height="160"
-            decoding="async"
-            referrerpolicy="no-referrer"
-        />
-    </div>
-    <div class="profile-panel__copy">
-        <h1>{profile.name}</h1>
-        <p class="profile-panel__role">{profile.role}</p>
-        <p class="profile-panel__bio">{profile.bio}</p>
-    </div>
+    <img
+        class="profile-panel__portrait"
+        src={avatarUrl}
+        alt={profile.name}
+        width="160"
+        height="160"
+        decoding="async"
+        referrerpolicy="no-referrer"
+    />
+    <h1>{profile.name}</h1>
+    <p class="profile-panel__role">{profile.role}</p>
+    <p class="profile-panel__bio">{profile.bio}</p>
 </div>
