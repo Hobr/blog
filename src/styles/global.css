@@ -805,17 +805,16 @@ select {
 }
 
 .article-body pre.astro-code .line {
-    position: relative;
     display: block;
     min-height: 1.25em;
-    padding-inline-start: 2.5rem;
+    padding-inline-start: 0.25rem;
     counter-increment: code-line;
 }
 
 .article-body pre.astro-code .line::before {
-    position: absolute;
-    left: 0.25rem;
+    display: inline-block;
     width: 1.65rem;
+    margin-inline-end: 0.6rem;
     color: var(--textSoft);
     content: counter(code-line);
     font-variant-numeric: tabular-nums;
