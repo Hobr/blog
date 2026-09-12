@@ -1,7 +1,7 @@
 ---
 import HomePage from "../views/HomePage.astro";
+import { getContactSiteGroups } from "../data/contact";
 import { getProfile } from "../data/profile";
-import { getSites } from "../data/sites";
 import { defaultLocale, buildAlternateLinks } from "../i18n/config";
 import { getDictionary } from "../i18n/dictionary";
 import { getLatestPosts } from "../lib/posts";
@@ -10,7 +10,7 @@ const locale = defaultLocale;
 const dictionary = getDictionary(locale);
 const latestPosts = await getLatestPosts(5);
 const profile = getProfile(locale);
-const sites = getSites(locale);
+const contactGroups = getContactSiteGroups(locale);
 const alternateLinks = buildAlternateLinks(Astro.url.pathname);
 ---
 
@@ -19,6 +19,6 @@ const alternateLinks = buildAlternateLinks(Astro.url.pathname);
     dictionary={dictionary}
     latestPosts={latestPosts}
     profile={profile}
-    sites={sites}
+    contactGroups={contactGroups}
     alternateLinks={alternateLinks}
 />

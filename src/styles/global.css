@@ -280,13 +280,6 @@ select {
     font-weight: 700;
 }
 
-.home-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 7fr) minmax(19rem, 5fr);
-    gap: 1rem;
-    align-items: stretch;
-}
-
 .contact-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -294,8 +287,7 @@ select {
     align-items: start;
 }
 
-.terminal-panel--profile,
-.terminal-panel--commands {
+.terminal-panel--profile {
     min-height: 25rem;
 }
 
@@ -817,15 +809,13 @@ select {
 }
 
 @media (max-width: 900px) {
-    .home-grid,
     .index-page,
     .contact-grid,
     .archive-group {
         grid-template-columns: 1fr;
     }
 
-    .terminal-panel--profile,
-    .terminal-panel--commands {
+    .terminal-panel--profile {
         min-height: auto;
     }
 
