@@ -15,7 +15,6 @@ export type SiteDictionary = {
         blog: string;
         tags: string;
         archive: string;
-        contact: string;
     };
     common: {
         noPosts: string;
@@ -36,7 +35,6 @@ export type SiteDictionary = {
     home: {
         metaTitle: string;
         profileSubtitle: string;
-        sitesSubtitle: string;
         latestSubtitle: string;
         viewAll: string;
     };
@@ -57,7 +55,6 @@ export type SiteDictionary = {
         panelSubtitle: string;
     };
     contact: {
-        metaTitle: string;
         imSubtitle: string;
         socialSubtitle: string;
     };

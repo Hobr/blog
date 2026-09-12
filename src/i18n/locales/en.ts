@@ -9,7 +9,6 @@ export const en = {
         blog: "Blog",
         tags: "Tags",
         archive: "Archive",
-        contact: "Contact",
     },
     common: {
         noPosts: "No posts published yet",
@@ -31,7 +30,6 @@ export const en = {
     home: {
         metaTitle: "Hobr.Site | Homepage",
         profileSubtitle: "whoami && cat ~/profile.txt",
-        sitesSubtitle: "ls ~/sites && open ~/sites/<target>",
         latestSubtitle: "tail -n 5 ~/posts.log",
         viewAll: "ls ~/posts",
     },
@@ -53,7 +51,6 @@ export const en = {
             "find ~/posts -type f | xargs stat -c %y | cut -d- -f1,2 | sort -ur",
     },
     contact: {
-        metaTitle: "Hobr.Site | Contact",
         imSubtitle: "ls ~/contact/im && open ~/contact/im/<target>",
         socialSubtitle:
             "ls ~/contact/social-media && open ~/contact/social-media/<target>",

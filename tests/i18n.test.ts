@@ -17,7 +17,6 @@ import {
 } from "../src/i18n/static-paths.ts";
 import { shouldIncludeSitemapPage } from "../src/i18n/sitemap.ts";
 import { getProfile, profile } from "../src/data/profile.ts";
-import { getSites, sites } from "../src/data/sites.ts";
 import {
     getContactSiteGroups,
     getContactSites,
@@ -127,26 +126,6 @@ test("dictionaries resolve translated shell copy", () => {
     assert.equal(getDictionary("en").nav.blog, "Blog");
 });
 
-test("site data localizes labels and builds locale links", () => {
-    assert.equal(getSites("zh-CN")[0].name, "联系");
-    assert.equal(getSites("zh-CN")[3].command, "./tags");
-    assert.equal(getSites("en")[3].name, "Tag View");
-    assert.equal(getSites("en")[2].href, "/en/archive");
-
-    assert.deepEqual(
-        getSites("zh-CN")
-            .slice(0, 3)
-            .map((site) => site.href),
-        ["/contact", "/blog", "/archive"],
-    );
-    assert.deepEqual(
-        getSites("en")
-            .slice(0, 3)
-            .map((site) => site.href),
-        ["/en/contact", "/en/blog", "/en/archive"],
-    );
-});
-
 test("contact sites expose every shared target", () => {
     const contactSites = getContactSites("zh-CN");
     const contactGroups = getContactSiteGroups("zh-CN");
@@ -160,9 +139,8 @@ test("contact sites expose every shared target", () => {
     assert.equal(contactGroups.social[0].href, sharedSiteTargets.github.href);
 });
 
-test("profile and sites keep default-locale compatibility exports", () => {
+test("profile keeps its default-locale compatibility export", () => {
     assert.deepEqual(profile, getProfile(defaultLocale));
-    assert.equal(sites[0].href, getSites(defaultLocale)[0].href);
 });
 
 test("theme styles include every configured theme palette", () => {

@@ -9,7 +9,6 @@ export const zhCN = {
         blog: "博客",
         tags: "标签",
         archive: "归档",
-        contact: "联系",
     },
     common: {
         noPosts: "暂无文章",
@@ -30,7 +29,6 @@ export const zhCN = {
     home: {
         metaTitle: "Hobr.Site | 首页",
         profileSubtitle: "whoami && cat ~/个人资料.txt",
-        sitesSubtitle: "ls ~/页面 && open ~/页面/<目标>",
         latestSubtitle: "tail -n 5 ~/博客.log",
         viewAll: "ls ~/博客",
     },
@@ -52,7 +50,6 @@ export const zhCN = {
             "find ~/博客 -type f | xargs stat -c %y | cut -d- -f1,2 | sort -ur",
     },
     contact: {
-        metaTitle: "Hobr.Site | 联系",
         imSubtitle: "ls ~/联系/即时通讯 && open ~/联系/即时通讯/<方式>",
         socialSubtitle: "ls ~/联系/社交媒体 && open ~/联系/社交媒体/<平台>",
     },
