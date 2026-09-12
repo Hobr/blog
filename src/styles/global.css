@@ -187,7 +187,9 @@ select {
 }
 
 .site-nav a:hover,
-.site-nav a.active {
+.site-nav a.active,
+.language-switcher a:hover,
+.language-switcher a.active {
     color: var(--textStrong);
     border-color: var(--surfaceBorderStrong);
     background: var(--backgroundSubtle);
@@ -287,10 +289,6 @@ select {
     align-items: start;
 }
 
-.terminal-panel--profile {
-    min-height: 0;
-}
-
 .profile-panel {
     display: grid;
     grid-template-columns: minmax(8rem, 12rem) minmax(0, 1fr);
@@ -383,13 +381,10 @@ select {
     border-top: 1px solid var(--surfaceBorder);
 }
 
-.command-list a {
+.command-list a,
+.post-list a {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto auto;
-    gap: 0.75rem;
     align-items: center;
-    min-height: 3.25rem;
-    padding: 0.55rem 0.35rem;
     color: var(--textMain);
     text-decoration: none;
     transition:
@@ -398,14 +393,26 @@ select {
         padding 180ms var(--ease-out);
 }
 
-.command-list a:hover {
-    padding-right: 0.55rem;
-    padding-left: 0.55rem;
+.command-list a {
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    gap: 0.75rem;
+    min-height: 3.25rem;
+    padding: 0.55rem 0.35rem;
+}
+
+.command-list a:hover,
+.post-list a:hover {
     color: var(--textStrong);
     background: var(--backgroundElevated);
 }
 
-.command-list a:active {
+.command-list a:hover {
+    padding-right: 0.55rem;
+    padding-left: 0.55rem;
+}
+
+.command-list a:active,
+.post-list a:active {
     transform: translateY(1px);
 }
 
@@ -477,29 +484,15 @@ select {
 }
 
 .post-list a {
-    display: grid;
     grid-template-columns: minmax(0, 1fr) auto auto;
     gap: clamp(0.75rem, 3vw, 2rem);
-    align-items: center;
     min-height: 4rem;
     padding: 0.85rem 0.35rem;
-    color: var(--textMain);
-    text-decoration: none;
-    transition:
-        color 180ms var(--ease-out),
-        background-color 180ms var(--ease-out),
-        padding 180ms var(--ease-out);
 }
 
 .post-list a:hover {
     padding-right: 0.6rem;
     padding-left: 0.6rem;
-    color: var(--textStrong);
-    background: var(--backgroundElevated);
-}
-
-.post-list a:active {
-    transform: translateY(1px);
 }
 
 .post-list__title {
@@ -813,26 +806,11 @@ select {
     white-space: nowrap;
 }
 
-.language-switcher a:hover,
-.language-switcher a.active {
-    color: var(--textStrong);
-    border-color: var(--surfaceBorderStrong);
-    background: var(--backgroundSubtle);
-}
-
 @media (max-width: 900px) {
     .index-page,
     .contact-grid,
     .archive-group {
         grid-template-columns: 1fr;
-    }
-
-    .terminal-panel--profile {
-        min-height: auto;
-    }
-
-    .profile-panel {
-        min-height: 0;
     }
 
     .browse-panel {
