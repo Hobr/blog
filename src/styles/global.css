@@ -652,7 +652,7 @@ select {
     min-width: 0;
     padding: clamp(1.5rem, 5vw, 4rem);
     border: 1px solid var(--surfaceBorder);
-    background: var(--backgroundElevated);
+    background: color-mix(in srgb, var(--backgroundSubtle) 88%, transparent);
     box-shadow: 0 1.5rem 5rem var(--shadow);
 }
 
@@ -691,8 +691,8 @@ select {
 .post-pagination__item {
     display: grid;
     align-content: center;
-    min-height: 7.5rem;
-    padding: 1rem;
+    min-height: 4.5rem;
+    padding: 0.65rem 0.75rem;
     color: var(--textMain);
     border: 1px solid var(--surfaceBorder);
     background: var(--backgroundSubtle);
@@ -722,7 +722,7 @@ select {
 
 .post-pagination__item strong {
     color: inherit;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     overflow-wrap: anywhere;
 }
 
@@ -979,17 +979,17 @@ select {
         scroll-behavior: auto;
     }
 
-    /* Reduced motion must override component-level animation declarations. */
-    /* eslint-disable css/no-important */
-    *,
-    *::before,
-    *::after {
-        scroll-behavior: auto !important;
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
+    .site-nav a,
+    .command-list a,
+    .post-list a,
+    .post-list__arrow,
+    .tag-list a,
+    .text-action,
+    .article-body a,
+    .post-pagination__item {
+        transition: none;
+        animation: none;
     }
-    /* eslint-enable css/no-important */
 }
 
 @media (prefers-reduced-transparency: reduce) {
