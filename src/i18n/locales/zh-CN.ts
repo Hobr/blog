@@ -60,6 +60,7 @@ export const zhCN = {
     },
     articlePage: {
         metaTitle: (title: string) => `Hobr.Site | ${title}`,
+        tableOfContents: "目录",
         previous: "上一篇",
         next: "下一篇",
         startOfLog: "这是最早的一篇",

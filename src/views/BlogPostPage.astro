@@ -18,8 +18,23 @@ interface Props {
     alternateLinks: AlternateLink[];
 }
 
+type ArticleHeading = {
+    depth: number;
+    slug: string;
+    text: string;
+};
+
 const { locale, dictionary, post, previous, next, Content, alternateLinks } =
     Astro.props;
+const tocHeadings = (
+    (post.entry.rendered?.metadata?.headings ?? []) as ArticleHeading[]
+).filter(
+    (heading) =>
+        heading.depth >= 2 &&
+        heading.depth < 4 &&
+        Boolean(heading.slug) &&
+        Boolean(heading.text.trim()),
+);
 ---
 
 <Layout
@@ -31,32 +46,61 @@ const { locale, dictionary, post, previous, next, Content, alternateLinks } =
     canonicalPath={toLocalePath(defaultLocale, `/blog/${post.slug}/`)}
 >
     <main class="page-shell article-page" id="main-content">
-        <article class="article-shell">
-            <header class="article-meta" lang={locale}>
-                <p class="article-meta__path">~/blog/{post.slug}.md</p>
-                <time datetime={post.publishedAt.toISOString()}>
-                    {post.dateLabel}
-                </time>
-                <TagList
-                    tags={post.tags}
-                    locale={locale}
-                    label={dictionary.common.tagsLabel}
-                />
-            </header>
-            <div class="article-body">
-                <Content />
-            </div>
-            <footer class="article-footer" lang={locale}>
-                <PostPagination
-                    locale={locale}
-                    previous={previous}
-                    next={next}
-                    previousLabel={dictionary.articlePage.previous}
-                    nextLabel={dictionary.articlePage.next}
-                    emptyPreviousLabel={dictionary.articlePage.startOfLog}
-                    emptyNextLabel={dictionary.articlePage.latestEntry}
-                />
-            </footer>
-        </article>
+        <div
+            class:list={[
+                "article-layout",
+                tocHeadings.length > 0 && "article-layout--with-toc",
+            ]}
+        >
+            {tocHeadings.length > 0 && (
+                <aside class="article-toc">
+                    <nav aria-labelledby="article-toc-title">
+                        <h2 id="article-toc-title">
+                            {dictionary.articlePage.tableOfContents}
+                        </h2>
+                        <ol>
+                            {tocHeadings.map((heading) => (
+                                <li
+                                    class:list={[
+                                        `article-toc__item--depth-${heading.depth}`,
+                                    ]}
+                                >
+                                    <a href={`#${heading.slug}`}>
+                                        {heading.text}
+                                    </a>
+                                </li>
+                            ))}
+                        </ol>
+                    </nav>
+                </aside>
+            )}
+            <article class="article-shell">
+                <header class="article-meta" lang={locale}>
+                    <p class="article-meta__path">~/blog/{post.slug}.md</p>
+                    <time datetime={post.publishedAt.toISOString()}>
+                        {post.dateLabel}
+                    </time>
+                    <TagList
+                        tags={post.tags}
+                        locale={locale}
+                        label={dictionary.common.tagsLabel}
+                    />
+                </header>
+                <div class="article-body">
+                    <Content />
+                </div>
+                <footer class="article-footer" lang={locale}>
+                    <PostPagination
+                        locale={locale}
+                        previous={previous}
+                        next={next}
+                        previousLabel={dictionary.articlePage.previous}
+                        nextLabel={dictionary.articlePage.next}
+                        emptyPreviousLabel={dictionary.articlePage.startOfLog}
+                        emptyNextLabel={dictionary.articlePage.latestEntry}
+                    />
+                </footer>
+            </article>
+        </div>
     </main>
 </Layout>

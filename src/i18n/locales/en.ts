@@ -62,6 +62,7 @@ export const en = {
     },
     articlePage: {
         metaTitle: (title: string) => `Hobr.Site | ${title}`,
+        tableOfContents: "TOC",
         previous: "Previous",
         next: "Next",
         startOfLog: "Start of the log",
