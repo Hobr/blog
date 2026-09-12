@@ -4,17 +4,19 @@ export type SiteTheme = {
     id: string;
     label: string;
     variant: ThemeVariant;
+    markdownTheme: string;
     palette: Record<string, string>;
 };
 
 export const THEME_STORAGE_KEY = "hobr.theme";
 export const defaultThemeId = "base16-rose-pine";
 
-export const themes: SiteTheme[] = [
+export const themes = [
     {
         id: "base16-cupcake",
         label: "Cupcake",
         variant: "light",
+        markdownTheme: "ayu-light",
         palette: {
             background: "#fbf1f2",
             backgroundSubtle: "#f2f1f4",
@@ -38,6 +40,7 @@ export const themes: SiteTheme[] = [
         id: "base16-sakura",
         label: "Sakura",
         variant: "light",
+        markdownTheme: "horizon-bright",
         palette: {
             background: "#feedf3",
             backgroundSubtle: "#f8e2e7",
@@ -61,6 +64,7 @@ export const themes: SiteTheme[] = [
         id: "base16-rose-pine",
         label: "Rose Pine",
         variant: "dark",
+        markdownTheme: "rose-pine",
         palette: {
             background: "#191724",
             backgroundSubtle: "#1f1d2e",
@@ -84,6 +88,7 @@ export const themes: SiteTheme[] = [
         id: "base16-material",
         label: "Material",
         variant: "dark",
+        markdownTheme: "material-theme",
         palette: {
             background: "#263238",
             backgroundSubtle: "#2e3c43",
@@ -107,6 +112,7 @@ export const themes: SiteTheme[] = [
         id: "base16-dracula",
         label: "Dracula",
         variant: "dark",
+        markdownTheme: "dracula",
         palette: {
             background: "#282a36",
             backgroundSubtle: "#21222c",
@@ -130,6 +136,7 @@ export const themes: SiteTheme[] = [
         id: "base16-gruvbox-light",
         label: "Gruvbox Light",
         variant: "light",
+        markdownTheme: "gruvbox-light-medium",
         palette: {
             background: "#fbf1c7",
             backgroundSubtle: "#ebdbb2",
@@ -153,6 +160,7 @@ export const themes: SiteTheme[] = [
         id: "base16-catppuccin-latte",
         label: "Catppuccin Latte",
         variant: "light",
+        markdownTheme: "catppuccin-latte",
         palette: {
             background: "#eff1f5",
             backgroundSubtle: "#e6e9ef",
@@ -176,6 +184,7 @@ export const themes: SiteTheme[] = [
         id: "base16-catppuccin-frappe",
         label: "Catppuccin Frappe",
         variant: "dark",
+        markdownTheme: "catppuccin-frappe",
         palette: {
             background: "#303446",
             backgroundSubtle: "#292c3c",
@@ -199,6 +208,7 @@ export const themes: SiteTheme[] = [
         id: "base16-catppuccin-macchiato",
         label: "Catppuccin Macchiato",
         variant: "dark",
+        markdownTheme: "catppuccin-macchiato",
         palette: {
             background: "#24273a",
             backgroundSubtle: "#1e2030",
@@ -222,6 +232,7 @@ export const themes: SiteTheme[] = [
         id: "base16-catppuccin-mocha",
         label: "Catppuccin Mocha",
         variant: "dark",
+        markdownTheme: "catppuccin-mocha",
         palette: {
             background: "#1e1e2e",
             backgroundSubtle: "#181825",
@@ -241,9 +252,13 @@ export const themes: SiteTheme[] = [
             shadow: "rgba(0, 0, 0, 0.34)",
         },
     },
-];
+] as const satisfies readonly SiteTheme[];
 
 export const themeIds = themes.map((theme) => theme.id);
+
+export const markdownThemes = Object.fromEntries(
+    themes.map(({ id, markdownTheme }) => [id, markdownTheme]),
+);
 
 export function getThemeStyles() {
     const themeRules = themes
@@ -258,8 +273,19 @@ ${paletteVars}
 }`;
         })
         .join("\n\n");
+    const syntaxRules = Object.keys(markdownThemes)
+        .map(
+            (themeId) => `:root[data-theme="${themeId}"] .astro-code,
+:root[data-theme="${themeId}"] .astro-code span {
+    color: var(--shiki-${themeId});
+    background-color: var(--shiki-${themeId}-bg);
+}`,
+        )
+        .join("\n\n");
 
     return `${themeRules}
+
+${syntaxRules}
 
 html {
     background: var(--background);

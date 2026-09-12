@@ -607,6 +607,11 @@ select {
 }
 
 .article-page {
+    width: min(100%, var(--page-max-width));
+    margin: 0 auto;
+}
+
+.article-layout {
     width: min(100%, var(--reading-width));
     margin: 0 auto;
 }
@@ -727,10 +732,27 @@ select {
 
 .article-body {
     min-width: 0;
-    padding: clamp(1.5rem, 5vw, 4rem);
+    padding: clamp(1.25rem, 3vw, 2.5rem);
     border: 1px solid var(--surfaceBorder);
     background: color-mix(in srgb, var(--backgroundSubtle) 88%, transparent);
     box-shadow: 0 1.5rem 5rem var(--shadow);
+}
+
+.article-body > :first-child {
+    margin-top: 0;
+}
+
+.article-body > :last-child {
+    margin-bottom: 0;
+}
+
+.article-body :where(p, ul, ol, blockquote, table) {
+    margin-block: 0.75rem;
+}
+
+.article-body :where(h1, h2, h3, h4, h5, h6) {
+    margin-block: 1.4rem 0.55rem;
+    scroll-margin-top: 5rem;
 }
 
 .article-body img {
@@ -739,9 +761,104 @@ select {
     height: auto;
 }
 
+.article-body > p {
+    text-indent: 2em;
+}
+
+.article-body > p:has(img) {
+    text-indent: 0;
+}
+
 .article-body pre {
     max-width: 100%;
     overflow-x: auto;
+}
+
+.article-body pre.astro-code {
+    position: relative;
+    margin-block: 0.625rem;
+    padding: 1.65rem 0.25rem 0.25rem;
+    border: 1px solid var(--surfaceBorder);
+    counter-reset: code-line;
+}
+
+.article-body pre.astro-code::before {
+    position: absolute;
+    inset: 0 0 auto;
+    display: block;
+    min-height: 1.4rem;
+    padding: 0.15rem 0.4rem;
+    color: var(--textSoft);
+    border-bottom: 1px solid var(--surfaceBorder);
+    background: var(--backgroundElevated);
+    content: attr(data-language);
+    font-size: 0.65rem;
+    line-height: 1rem;
+    text-transform: lowercase;
+}
+
+.article-body pre.astro-code code {
+    display: flex;
+    min-width: max-content;
+    flex-direction: column;
+    line-height: 1.25;
+}
+
+.article-body pre.astro-code .line {
+    position: relative;
+    display: block;
+    min-height: 1.25em;
+    padding-inline-start: 2.5rem;
+    counter-increment: code-line;
+}
+
+.article-body pre.astro-code .line::before {
+    position: absolute;
+    left: 0.25rem;
+    width: 1.65rem;
+    color: var(--textSoft);
+    content: counter(code-line);
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+}
+
+.article-body table {
+    display: table;
+    width: 100%;
+    margin-block: 1rem;
+    border: 1px solid var(--surfaceBorderStrong);
+    border-collapse: collapse;
+    font-size: 0.88rem;
+}
+
+.article-body th,
+.article-body td {
+    padding: 0.5rem 0.65rem;
+    border: 1px solid var(--surfaceBorderStrong);
+    overflow-wrap: anywhere;
+    text-align: start;
+    vertical-align: top;
+}
+
+.article-body th {
+    color: var(--textStrong);
+    background: var(--backgroundElevated);
+    font-weight: 650;
+    text-align: center;
+}
+
+.article-body tbody tr:nth-child(even) {
+    background: color-mix(in srgb, var(--backgroundElevated) 55%, transparent);
+}
+
+.article-body tbody tr:hover {
+    background: var(--backgroundElevated);
+}
+
+.article-body caption {
+    padding: 0.5rem;
+    color: var(--textSoft);
+    text-align: start;
 }
 
 .article-body a {
@@ -1020,7 +1137,7 @@ select {
     }
 
     .article-body {
-        padding: 1.25rem;
+        padding: 1rem;
     }
 
     .post-pagination {

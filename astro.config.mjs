@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig, fontProviders } from "astro/config";
 import sitemap from "@astrojs/sitemap";
+import { markdownThemes } from "./src/data/themes.ts";
 import { shouldIncludeSitemapPage } from "./src/i18n/sitemap.ts";
 import imgAttr from "satteri-imgattr";
 import { satteri } from "@astrojs/markdown-satteri";
@@ -45,6 +46,10 @@ export default defineConfig({
         }),
     ],
     markdown: {
+        shikiConfig: {
+            themes: markdownThemes,
+            defaultColor: false,
+        },
         processor: satteri({
             mdastPlugins: [
                 mermaidMdast({

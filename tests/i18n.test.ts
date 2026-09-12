@@ -23,7 +23,7 @@ import {
     sharedSiteTargets,
 } from "../src/data/contact.ts";
 import { getDictionary } from "../src/i18n/dictionary.ts";
-import { getThemeStyles, themes } from "../src/data/themes.ts";
+import { getThemeStyles, markdownThemes, themes } from "../src/data/themes.ts";
 
 test("default locale stays on the root path", () => {
     assert.equal(defaultLocale, "zh-CN");
@@ -146,7 +146,9 @@ test("theme styles include every configured theme palette", () => {
     const styles = getThemeStyles();
 
     for (const theme of themes) {
+        assert.equal(markdownThemes[theme.id], theme.markdownTheme);
         assert.ok(styles.includes(`data-theme="${theme.id}"`));
+        assert.ok(styles.includes(`--shiki-${theme.id}`));
         for (const [key, value] of Object.entries(theme.palette)) {
             assert.ok(styles.includes(`--${key}: ${value};`));
         }
