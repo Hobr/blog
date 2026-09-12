@@ -566,6 +566,7 @@ select {
 
 .article-layout {
     width: min(100%, var(--reading-width));
+    min-width: 0;
     margin: 0 auto;
 }
 
