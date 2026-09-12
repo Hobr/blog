@@ -362,6 +362,7 @@ select {
     color: var(--textMain);
     font-family: var(--font-reading), sans-serif;
     line-height: 1.85;
+    white-space: pre-line;
 }
 
 .command-list,
