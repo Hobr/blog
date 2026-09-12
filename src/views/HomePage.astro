@@ -3,8 +3,8 @@ import Layout from "../layouts/Layout.astro";
 import PostList from "../components/PostList.astro";
 import ProfilePanel from "../components/ProfilePanel.astro";
 import SitesCommandPanel from "../components/SitesCommandPanel.astro";
+import type { ContactSiteGroups } from "../data/contact";
 import type { ProfileData } from "../data/profile";
-import type { LocalizedSiteCommand } from "../data/sites";
 import type { AlternateLink, Locale } from "../i18n/config";
 import { toLocalePath } from "../i18n/config";
 import type { SiteDictionary } from "../i18n/dictionary";
@@ -15,12 +15,18 @@ interface Props {
     dictionary: SiteDictionary;
     latestPosts: BlogPost[];
     profile: ProfileData;
-    sites: LocalizedSiteCommand[];
+    contactGroups: ContactSiteGroups;
     alternateLinks: AlternateLink[];
 }
 
-const { locale, dictionary, latestPosts, profile, sites, alternateLinks } =
-    Astro.props;
+const {
+    locale,
+    dictionary,
+    latestPosts,
+    profile,
+    contactGroups,
+    alternateLinks,
+} = Astro.props;
 ---
 
 <Layout
@@ -30,25 +36,12 @@ const { locale, dictionary, latestPosts, profile, sites, alternateLinks } =
     alternateLinks={alternateLinks}
 >
     <main class="page-shell" id="main-content">
-        <section class="home-grid">
-            <section class="terminal-panel terminal-panel--profile">
-                <p class="terminal-prompt">
-                    <span aria-hidden="true">$</span>
-                    {dictionary.home.profileSubtitle}
-                </p>
-                <ProfilePanel profile={profile} />
-            </section>
-
-            <section class="terminal-panel terminal-panel--commands">
-                <p class="terminal-prompt">
-                    <span aria-hidden="true">$</span>
-                    {dictionary.home.sitesSubtitle}
-                </p>
-                <SitesCommandPanel
-                    sites={sites}
-                    label={dictionary.home.sitesSubtitle}
-                />
-            </section>
+        <section class="terminal-panel terminal-panel--profile">
+            <p class="terminal-prompt">
+                <span aria-hidden="true">$</span>
+                {dictionary.home.profileSubtitle}
+            </p>
+            <ProfilePanel profile={profile} />
         </section>
 
         <section class="terminal-panel latest-panel">
@@ -68,5 +61,29 @@ const { locale, dictionary, latestPosts, profile, sites, alternateLinks } =
                 emptyMessage={dictionary.common.noPosts}
             />
         </section>
+
+        <div class="contact-grid">
+            <section class="terminal-panel">
+                <p class="terminal-prompt">
+                    <span aria-hidden="true">$</span>
+                    {dictionary.contact.imSubtitle}
+                </p>
+                <SitesCommandPanel
+                    sites={contactGroups.im}
+                    label={dictionary.contact.imSubtitle}
+                />
+            </section>
+
+            <section class="terminal-panel">
+                <p class="terminal-prompt">
+                    <span aria-hidden="true">$</span>
+                    {dictionary.contact.socialSubtitle}
+                </p>
+                <SitesCommandPanel
+                    sites={contactGroups.social}
+                    label={dictionary.contact.socialSubtitle}
+                />
+            </section>
+        </div>
     </main>
 </Layout>
