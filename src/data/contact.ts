@@ -42,14 +42,6 @@ export const sharedSiteTargets = {
         command: "./Zhihu",
         href: "https://www.zhihu.com/people/hobr",
     },
-    linuxdo: {
-        command: "./Linuxdo",
-        href: "https://linux.do/u/hobr",
-    },
-    weibo: {
-        command: "./Weibo",
-        href: "https://weibo.com/u/2235490514",
-    },
 } as const;
 
 type SharedSiteTargetKey = keyof typeof sharedSiteTargets;
@@ -66,8 +58,6 @@ const contactSiteNames: Record<Locale, Record<SharedSiteTargetKey, string>> = {
         bilibili: "哔哩哔哩",
         rednote: "小红书",
         zhihu: "知乎",
-        linuxdo: "Linux.do",
-        weibo: "微博",
     },
     en: {
         email: "Email",
@@ -80,14 +70,12 @@ const contactSiteNames: Record<Locale, Record<SharedSiteTargetKey, string>> = {
         bilibili: "Bilibili",
         rednote: "RedNote",
         zhihu: "Zhihu",
-        linuxdo: "Linux.do",
-        weibo: "Weibo",
     },
 };
 
 const contactGroupKeys = {
     im: ["email", "telegram", "qq", "matrix", "discord"],
-    social: ["github", "x", "bilibili", "rednote", "zhihu", "linuxdo", "weibo"],
+    social: ["github", "x", "bilibili", "rednote", "zhihu"],
 } as const satisfies Record<string, readonly SharedSiteTargetKey[]>;
 
 export type ContactSiteGroups = {

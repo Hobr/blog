@@ -132,9 +132,8 @@ test("contact sites expose every shared target", () => {
 
     assert.equal(contactSites.length, Object.keys(sharedSiteTargets).length);
     assert.equal(contactSites[0].href, sharedSiteTargets.email.href);
-    assert.equal(contactSites.at(-1)?.href, sharedSiteTargets.weibo.href);
     assert.equal(contactGroups.im.length, 5);
-    assert.equal(contactGroups.social.length, 7);
+    assert.equal(contactGroups.social.length, 5);
     assert.equal(contactGroups.im[0].href, sharedSiteTargets.email.href);
     assert.equal(contactGroups.social[0].href, sharedSiteTargets.github.href);
 });
