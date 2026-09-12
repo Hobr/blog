@@ -302,8 +302,8 @@ select {
 
 .profile-panel__portrait {
     position: relative;
-    align-self: start;
-    aspect-ratio: 1;
+    align-self: stretch;
+    min-height: 0;
     padding: 0.55rem;
     border: 1px solid var(--surfaceBorderStrong);
     background: var(--codeBackground);
@@ -911,6 +911,8 @@ select {
     }
 
     .profile-panel__portrait {
+        align-self: start;
+        aspect-ratio: 1;
         width: 5.5rem;
     }
 
