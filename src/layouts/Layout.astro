@@ -98,7 +98,9 @@ const themeBootstrapScript = `
             >
                 <p class="site-footer__copyright">
                     <span aria-hidden="true">$</span>
-                    <span>{`printf "© ${currentYear} ${dictionary.brand.name}"`}</span>
+                    <a href="https://github.com/Hobr/blog">
+                        <span>{`printf "© ${currentYear} ${dictionary.brand.name}"`}</span>
+                    </a>
                 </p>
                 <div class="site-footer__controls">
                     <ThemeSwitcher label={dictionary.brand.themeLabel} />
