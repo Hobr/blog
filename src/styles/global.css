@@ -719,6 +719,25 @@ select {
     text-indent: 0;
 }
 
+.article-body .mermaid {
+    max-width: 100%;
+    margin-block: 0.75rem;
+    overflow-x: auto;
+}
+
+.article-body .mermaid svg {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    max-height: min(70vh, 48rem);
+    height: auto;
+    margin-inline: auto;
+}
+
+.article-body .mermaid svg > rect:first-child {
+    fill: transparent;
+}
+
 .article-body pre {
     max-width: 100%;
     overflow-x: auto;

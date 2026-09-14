@@ -65,6 +65,10 @@ export default defineConfig({
                 mermaidHast({
                     theme: "modern",
                     font: "JetBrains Mono, monospace",
+                    responsive: false,
+                    fontSize: 12,
+                    nodeSpacing: 16,
+                    rankSpacing: 24,
                 }),
             ],
         }),
