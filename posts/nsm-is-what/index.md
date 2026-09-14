@@ -9,9 +9,7 @@ tags:
 
 传统计算机里的"计算", 通常意味着一段程序从入口开始执行, 经过一系列指令, 最终返回结果.
 
-这种定义非常成功.
-
-它塑造了函数/进程/线程/系统调用, 也塑造了我们今天绝大多数软件.
+这种定义非常成功, 它塑造了函数/进程/线程/系统调用, 也塑造了我们今天绝大多数软件.
 
 但当人工智能开始成为能够长期行动/使用工具/等待外部事件/修改自身策略并与其他智能体协作的实践主体时, 这种计算模型开始显得过于狭窄.
 
@@ -25,12 +23,9 @@ tags:
 
 传统程序中的计算通常具有非常明确的形态：
 
-```text
-input
-  ↓
-program
-  ↓
-output
+```mermaid
+flowchart TD
+    input["input"] --> program["program"] --> output["output"]
 ```
 
 即使内部包含并发, I/O 或异步操作, 程序仍然通常围绕一次执行生命周期组织.
@@ -39,36 +34,27 @@ output
 
 设想一个研究任务：
 
-```text
-提出问题
-  ↓
-搜索资料
-  ↓
-形成假设
-  ↓
-执行实验
-  ↓
-等待两天
-  ↓
-得到实验结果
-  ↓
-推翻原假设
-  ↓
-启动新的调查
-  ↓
-等待人工确认
-  ↓
-继续执行
-  ↓
-形成最终结论
+```mermaid
+flowchart TD
+    ask["提出问题"] --> search["搜索资料"]
+    search --> hypothesize["形成假设"]
+    hypothesize --> experiment["执行实验"]
+    experiment --> waitTwoDays["等待两天"]
+    waitTwoDays --> result["得到实验结果"]
+    result --> reject["推翻原假设"]
+    reject --> investigate["启动新的调查"]
+    investigate --> waitHuman["等待人工确认"]
+    waitHuman --> continue["继续执行"]
+    continue --> conclusion["形成最终结论"]
 ```
 
 这显然是一条连续的"计算".
 
 但它无法自然地表示成：
 
-```text
-call → return
+```mermaid
+flowchart LR
+    call["call"] --> return["return"]
 ```
 
 它跨越了时间/进程/机器, 甚至可能跨越程序版本.
@@ -97,8 +83,9 @@ call → return
 
 可以把一条计算抽象为：
 
-```text
-C₀ → C₁ → C₂ → ... → Cₙ
+```mermaid
+flowchart LR
+    c0["C₀"] --> c1["C₁"] --> c2["C₂"] --> dots["..."] --> cn["Cₙ"]
 ```
 
 其中每个状态不仅包含程序局部变量, 还可能包含：
@@ -117,13 +104,13 @@ C₀ → C₁ → C₂ → ... → Cₙ
 
 因此一个计算状态更接近：
 
-```text
-Computation State =
-    Local State
-  + Epistemic State
-  + Control State
-  + Effect State
-  + Provenance
+```mermaid
+flowchart TD
+    state["Computation State"] --> local["Local State"]
+    state --> epistemic["Epistemic State"]
+    state --> control["Control State"]
+    state --> effect["Effect State"]
+    state --> provenance["Provenance"]
 ```
 
 这与传统 continuation 有相似之处, 但范围更大.
@@ -148,14 +135,9 @@ Neuro-Symbolic Machine 中的 continuation 还需要回答：
 
 在很多 Agent 系统中, LLM 被放在整个系统的中心：
 
-```text
-LLM
- ↓
-Tool
- ↓
-Observation
- ↓
-LLM
+```mermaid
+flowchart TD
+    llm["LLM"] --> tool["Tool"] --> observation["Observation"] --> llm
 ```
 
 这种设计非常接近 ReAct, 也足以构造许多有用的 Agent.
@@ -192,20 +174,14 @@ waiting
 
 例如：
 
-```text
-Computation
-   │
-   ├── query symbolic world
-   │
-   ├── invoke neural model
-   │
-   ├── execute program
-   │
-   ├── verify constraint
-   │
-   ├── perform effect
-   │
-   └── await event
+```mermaid
+flowchart TD
+    computation["Computation"] --> query["query symbolic world"]
+    computation --> invoke["invoke neural model"]
+    computation --> execute["execute program"]
+    computation --> verify["verify constraint"]
+    computation --> effect["perform effect"]
+    computation --> awaitEvent["await event"]
 ```
 
 Neural 与 Symbolic 因此不再是两个彼此连接的"模块".
@@ -246,11 +222,12 @@ run-symbolic-solver()
 
 于是：
 
-```text
-LLM sees task-42
-Human sees task-42
-Program reads task-42
-Runtime executes effects on task-42
+```mermaid
+flowchart TD
+    task["task-42"] --- llm["LLM"]
+    task --- human["Human"]
+    task --- program["Program"]
+    task --- runtime["Runtime"]
 ```
 
 它们引用的是同一个逻辑实体.
@@ -298,16 +275,9 @@ Effect
 
 计算可以：
 
-```text
-提出假设
-  ↓
-查询世界
-  ↓
-收集证据
-  ↓
-执行验证
-  ↓
-接受 / 拒绝 / 保留
+```mermaid
+flowchart TD
+    propose["提出假设"] --> query["查询世界"] --> collect["收集证据"] --> verify["执行验证"] --> decide["接受 / 拒绝 / 保留"]
 ```
 
 因此"思考"不再只是模型内部不可见的 token 过程.
@@ -335,16 +305,12 @@ Effect
 
 可以把整个系统理解为：
 
-```text
-          Neural Cognition
-                 ↕
-        Cognitive Workspace
-                 ↕
-          Semantic World
-                 ↕
-          Effect Runtime
-                 ↕
-               Reality
+```mermaid
+flowchart TD
+    neural["Neural Cognition"] <--> workspace["Cognitive Workspace"]
+    workspace <--> semantic["Semantic World"]
+    semantic <--> runtime["Effect Runtime"]
+    runtime <--> reality["Reality"]
 ```
 
 Neural Cognition 可以自由地产生模糊和不确定的结构.
@@ -353,14 +319,9 @@ Neural Cognition 可以自由地产生模糊和不确定的结构.
 
 这种关系有些类似数据库事务：
 
-```text
-propose
-  ↓
-evaluate
-  ↓
-verify
-  ↓
-commit
+```mermaid
+flowchart TD
+    propose["propose"] --> evaluate["evaluate"] --> verify["verify"] --> commit["commit"]
 ```
 
 只是这里被提交的不是普通数据, 而是对世界的认识.
@@ -505,26 +466,17 @@ node migration
 
 例如：
 
-```text
-Running
-   ↓
-Awaiting
-   ↓
-Persisted
-   ↓
-Machine restart
-   ↓
-Restored
-   ↓
-Running
+```mermaid
+flowchart TD
+    running1["Running"] --> awaiting["Awaiting"] --> persisted["Persisted"]
+    persisted --> restart["Machine restart"] --> restored["Restored"] --> running2["Running"]
 ```
 
 甚至：
 
-```text
-Node A
- ↓ migrate
-Node B
+```mermaid
+flowchart TD
+    nodeA["Node A"] -->|migrate| nodeB["Node B"]
 ```
 
 计算的逻辑身份都不改变.
@@ -558,38 +510,38 @@ Agent 与 Computation 不应该是同一个概念.
 
 一个 Agent 可以同时拥有多条计算：
 
-```text
-Agent A
- ├── Investigation #1   running
- ├── Investigation #2   waiting-human
- ├── Report #3          suspended
- └── Monitoring #4      recurring
+```mermaid
+flowchart TD
+    agent["Agent A"] --> investigation1["Investigation #1<br/>running"]
+    agent --> investigation2["Investigation #2<br/>waiting-human"]
+    agent --> report["Report #3<br/>suspended"]
+    agent --> monitoring["Monitoring #4<br/>recurring"]
 ```
 
 这些计算可以共享某些长期知识和策略, 但各自拥有独立的局部状态.
 
 所以可以把 Agent 理解成：
 
-```text
-Agent =
-    Identity
-  + Context
-  + Memory
-  + Policy
-  + Capabilities
-  + Computations
+```mermaid
+flowchart TD
+    agent["Agent"] --> identity["Identity"]
+    agent --> context["Context"]
+    agent --> memory["Memory"]
+    agent --> policy["Policy"]
+    agent --> capabilities["Capabilities"]
+    agent --> computations["Computations"]
 ```
 
 而一条 Computation 是：
 
-```text
-Computation =
-    Goal
-  + Local State
-  + Cognitive State
-  + Control State
-  + Effect History
-  + Continuation
+```mermaid
+flowchart TD
+    computation["Computation"] --> goal["Goal"]
+    computation --> localState["Local State"]
+    computation --> cognitive["Cognitive State"]
+    computation --> controlState["Control State"]
+    computation --> history["Effect History"]
+    computation --> continuation["Continuation"]
 ```
 
 这一区分非常重要.
@@ -608,12 +560,11 @@ one conversation
 
 当模型发现问题可以拆分时, 它可以产生：
 
-```text
-parent computation
-      │
-      ├── child A
-      ├── child B
-      └── child C
+```mermaid
+flowchart TD
+    parent["parent computation"] --> childA["child A"]
+    parent --> childB["child B"]
+    parent --> childC["child C"]
 ```
 
 这些子计算可能：
@@ -629,11 +580,11 @@ parent computation
 
 例如：
 
-```text
-research
- ├── literature-review
- ├── reproduce-experiment
- └── compare-results
+```mermaid
+flowchart TD
+    research["research"] --> literature["literature-review"]
+    research --> reproduce["reproduce-experiment"]
+    research --> compare["compare-results"]
 ```
 
 其中任意节点都可能继续展开.
@@ -650,8 +601,9 @@ research
 
 传统观念中：
 
-```text
-Program → Execution
+```mermaid
+flowchart LR
+    program["Program"] --> execution["Execution"]
 ```
 
 程序在前, 执行在后.
@@ -660,12 +612,9 @@ Neuro-Symbolic Machine 中, 两者关系可能更动态.
 
 模型第一次遇到一个问题时, 可能进行：
 
-```text
-探索
-→ 查询
-→ 尝试
-→ 修订
-→ 成功
+```mermaid
+flowchart TD
+    explore["探索"] --> query["查询"] --> try["尝试"] --> revise["修订"] --> success["成功"]
 ```
 
 经过多次类似经验后, 系统发现：
@@ -683,10 +632,9 @@ Neuro-Symbolic Machine 中, 两者关系可能更动态.
 
 也就是说：
 
-```text
-Computation History
-       ↓
-Reusable Program
+```mermaid
+flowchart TD
+    history["Computation History"] --> program["Reusable Program"]
 ```
 
 程序可以被理解成：
@@ -701,18 +649,13 @@ Reusable Program
 
 > **Symbolic Crystallization**
 
-```text
-Neural exploration
-       ↓
-successful trajectory
-       ↓
-pattern discovery
-       ↓
-symbolic hypothesis
-       ↓
-evaluation
-       ↓
-reusable skill / rule / program
+```mermaid
+flowchart TD
+    exploration["Neural exploration"] --> trajectory["successful trajectory"]
+    trajectory --> pattern["pattern discovery"]
+    pattern --> hypothesis["symbolic hypothesis"]
+    hypothesis --> evaluation["evaluation"]
+    evaluation --> reusable["reusable skill / rule / program"]
 ```
 
 于是第一次解决问题时：
@@ -761,13 +704,10 @@ reinforcement learning
 
 因此：
 
-```text
-        crystallization
-Neural ───────────────→ Symbolic
-   ▲                       │
-   │                       │
-   └───────────────────────┘
-          neuralization
+```mermaid
+flowchart LR
+    neural["Neural"] -->|crystallization| symbolic["Symbolic"]
+    symbolic -->|neuralization| neural
 ```
 
 两者之间形成双向流动.
@@ -786,14 +726,11 @@ LLM + Symbolic Solver
 
 从这个角度看, "学习"至少有三种完全不同的形式.
 
-```text
-Experience
-   │
-   ├──→ Memory
-   │
-   ├──→ Skill / Program
-   │
-   └──→ Neural Weights
+```mermaid
+flowchart TD
+    experience["Experience"] --> memory["Memory"]
+    experience --> skill["Skill / Program"]
+    experience --> weights["Neural Weights"]
 ```
 
 它们分别对应：
@@ -870,15 +807,14 @@ Effect History
 
 它本身就是计算的组成部分.
 
-```text
-C₀
- ├── Observation O₁
- ├── Hypothesis H₁
- ├── Query Q₁
- ├── Effect E₁
- └── Result R₁
-      ↓
-C₁
+```mermaid
+flowchart TD
+    c0["C₀"] --> observation["Observation O₁"]
+    c0 --> hypothesis["Hypothesis H₁"]
+    c0 --> query["Query Q₁"]
+    c0 --> effect["Effect E₁"]
+    c0 --> result["Result R₁"]
+    result --> c1["C₁"]
 ```
 
 这使系统能够：
