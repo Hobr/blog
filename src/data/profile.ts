@@ -30,7 +30,7 @@ const profiles: Record<Locale, ProfileData> = {
         A total computer geek. Following the Open-Source community and tech developments, love trying out all kinds of new tech, and like to think I have a good tech taste. Seeking for work and technology that I truly love.
         Japanese major by background, with a bit of a humanities mindset and Japanese language skills. During school I got involved in a lot of social practice, volunteer work, and school clubs, so I have strong communication and team-leadership skills.
         ACGN Otaku nerd, and also a radical idol otaku. Mainly favor in: Kyoto Animation / Key / BanG Dream.
-        Now following: Neuro-Symbolic AI / Agentic OS / AI Agent / RISC-V.
+        Now following: World Model / Neuro-Symbolic AI / Agentic OS / AI Agent / RISC-V.
         `,
     },
 };
