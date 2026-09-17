@@ -22,7 +22,7 @@
         "@astrojs/markdown-satteri": "^0.4.1",
         "@astrojs/sitemap": "^3.7.4",
         "@xingwangzhe/satteri-mermaid": "^0.7.8",
-        "astro": "^7.3.2",
+        "astro": "^7.3.3",
         "satteri-imgattr": "^0.1.1",
         "sharp": "^0.35.4"
     },
@@ -38,8 +38,8 @@
         "globals": "^17.12.0",
         "jiti": "^2.7.0",
         "lint-staged": "^17.5.1",
-        "prettier": "^3.9.6",
-        "prettier-plugin-astro": "1.0.0",
+        "prettier": "^3.9.7",
+        "prettier-plugin-astro": "1.0.1",
         "typescript": "npm:@typescript/typescript6@^6.0.2",
         "typescript-eslint": "^8.70.0"
     },
