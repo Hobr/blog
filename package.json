@@ -21,7 +21,7 @@
         "@astrojs/check": "^0.9.10",
         "@astrojs/markdown-satteri": "^0.4.2",
         "@astrojs/sitemap": "^3.7.4",
-        "@xingwangzhe/satteri-mermaid": "^0.7.8",
+        "@xingwangzhe/satteri-mermaid": "^0.7.9",
         "astro": "^7.3.4",
         "satteri-imgattr": "^0.1.1",
         "sharp": "^0.35.4"
@@ -38,7 +38,7 @@
         "globals": "^17.12.0",
         "jiti": "^2.7.0",
         "lint-staged": "^17.5.1",
-        "prettier": "^3.9.8",
+        "prettier": "^3.9.9",
         "prettier-plugin-astro": "1.0.1",
         "typescript": "npm:@typescript/typescript6@^6.0.2",
         "typescript-eslint": "^8.70.1"
