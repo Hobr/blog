@@ -39,21 +39,14 @@ const links = [
     },
 ];
 
-const activeSection =
-    pathnameWithoutLocale === "/"
-        ? "home"
-        : pathnameWithoutLocale === "/blog" ||
-            pathnameWithoutLocale.startsWith("/blog/")
-          ? "blog"
-          : pathnameWithoutLocale === "/tags" ||
-              pathnameWithoutLocale.startsWith("/tags/")
-            ? "tags"
-            : pathnameWithoutLocale === "/archive" ||
-                pathnameWithoutLocale.startsWith("/archive/")
-              ? "archive"
-              : pathnameWithoutLocale === "/friends"
-                ? "friends"
-                : null;
+const sectionPath = pathnameWithoutLocale.replace(/\/$/, "") || "/";
+const activeSection = links.find((link) => {
+    const path = stripLocaleFromPathname(link.href).pathnameWithoutLocale;
+    return (
+        sectionPath === path ||
+        (path !== "/" && sectionPath.startsWith(`${path}/`))
+    );
+})?.key;
 ---
 
 <header

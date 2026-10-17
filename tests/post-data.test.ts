@@ -131,6 +131,39 @@ test("createAdjacentPostMap wires previous and next slugs", () => {
     assert.equal(adjacency.get("older")?.next, undefined);
 });
 
+test("grouping retains every post in a shared tag and month in input order", () => {
+    const posts = [
+        normalizePostRecord(
+            createRawPost({ slug: "later", date: "2026-04-30" }),
+        ),
+        normalizePostRecord(
+            createRawPost({ slug: "earlier", date: "2026-04-01" }),
+        ),
+    ];
+
+    assert.deepEqual(groupPostsByTag(posts).get("astro"), posts);
+    assert.deepEqual(groupPostsByMonth(posts), [["2026-04", posts]]);
+    assert.deepEqual(groupPostsByYear(posts), [["2026", posts]]);
+});
+
+test("empty collections produce empty navigation views", () => {
+    assert.deepEqual(sortPostsByDateDesc([]), []);
+    assert.equal(groupPostsByTag([]).size, 0);
+    assert.deepEqual(groupPostsByMonth([]), []);
+    assert.deepEqual(groupPostsByYear([]), []);
+    assert.equal(createAdjacentPostMap([]).size, 0);
+    assert.doesNotThrow(() => assertUniqueSlugs([]));
+});
+
+test("a single post has no adjacent posts", () => {
+    const post = normalizePostRecord(rawPosts[0]);
+
+    assert.deepEqual(createAdjacentPostMap([post]).get(post.slug), {
+        previous: undefined,
+        next: undefined,
+    });
+});
+
 test("assertUniqueSlugs rejects duplicate slugs", () => {
     assert.throws(
         () =>
