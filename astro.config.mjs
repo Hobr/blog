@@ -35,6 +35,32 @@ export default defineConfig({
     ],
     vite: {
         cacheDir: ".astro/vite-cache",
+        plugins: [
+            {
+                name: "astro-virtual-modules-before-filesystem",
+                configResolved(config) {
+                    // NTFS with ADS treats `astro:*` paths as the `astro` directory.
+                    // Let Astro resolve its virtual modules before Vite checks disk.
+                    for (const plugin of config.plugins) {
+                        if (
+                            !plugin.name.startsWith("astro:") ||
+                            !plugin.resolveId
+                        ) {
+                            continue;
+                        }
+                        const hook = plugin.resolveId;
+                        plugin.resolveId =
+                            typeof hook === "function"
+                                ? { order: "pre", handler: hook }
+                                : { ...hook, order: "pre" };
+                    }
+                },
+            },
+        ],
+        optimizeDeps: {
+            // The dependency optimizer resolves imports separately from Astro's hooks.
+            exclude: ["astro:toolbar:internal"],
+        },
         server: {
             watch: {
                 ignored: ["**/.direnv/**"],
