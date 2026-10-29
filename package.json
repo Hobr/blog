@@ -18,11 +18,11 @@
     },
     "dependencies": {
         "@astrojs/check": "^0.9.12",
-        "@astrojs/markdown-satteri": "^0.4.5",
+        "@astrojs/markdown-satteri": "^0.4.6",
         "@astrojs/rss": "^4.0.19",
         "@astrojs/sitemap": "^3.7.4",
         "@xingwangzhe/satteri-mermaid": "^0.8.2",
-        "astro": "^7.4.2",
+        "astro": "^7.4.3",
         "giscus": "^1.6.0",
         "katex": "^0.19.1",
         "satteri-imgattr": "^0.1.1",
