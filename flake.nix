@@ -9,8 +9,8 @@
       inherit inputs;
       devShell.packages =
         pkgs: with pkgs; [
-          nodejs
-          corepack
+          nodejs_latest
+          pnpm
           typescript
           typescript-language-server
         ];
