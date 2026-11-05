@@ -1,12 +1,67 @@
-# Created by https://www.toptal.com/developers/gitignore/api/linux,direnv,visualstudiocode,node
-# Edit at https://www.toptal.com/developers/gitignore?templates=linux,direnv,visualstudiocode,node
+# Created by https://www.toptal.com/developers/gitignore/api/node,astro,emacs,linux,direnv,visualstudiocode
+# Edit at https://www.toptal.com/developers/gitignore?templates=node,astro,emacs,linux,direnv,visualstudiocode
+
+### Astro ###
+# Gitignore template for Astro projects
+# Ignore content collection generated files
+.astro
 
 ### direnv ###
 .direnv
 .envrc
 
-### Linux ###
+### Emacs ###
+# -*- mode: gitignore; -*-
 *~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# Org-mode
+.org-id-locations
+*_archive
+
+# flymake-mode
+*_flymake.*
+
+# eshell files
+/eshell/history
+/eshell/lastdir
+
+# elpa packages
+/elpa/
+
+# reftex files
+*.rel
+
+# AUCTeX auto folder
+/auto/
+
+# cask packages
+.cask/
+dist/
+
+# Flycheck
+flycheck_*.el
+
+# server auth directory
+/server/
+
+# projectiles files
+.projectile
+
+# directory configuration
+.dir-locals.el
+
+# network security
+/network-security.data
+
+
+### Linux ###
 
 # temporary files which can be created if a process still has a handle open of a deleted file
 .fuse_hidden*
@@ -179,31 +234,4 @@ dist
 .history
 .ionide
 
-# End of https://www.toptal.com/developers/gitignore/api/linux,direnv,visualstudiocode,node
-
-# build output
-dist/
-
-# generated types
-.astro/
-.superpowers/
-.worktrees/
-
-# dependencies
-node_modules/
-
-# logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-
-# environment variables
-.env
-.env.production
-
-# macOS-specific files
-.DS_Store
-
-# jetbrains setting folder
-.idea/
+# End of https://www.toptal.com/developers/gitignore/api/node,astro,emacs,linux,direnv,visualstudiocode
