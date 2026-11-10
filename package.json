@@ -22,7 +22,7 @@
         "@astrojs/rss": "^4.0.19",
         "@astrojs/sitemap": "^3.7.4",
         "@xingwangzhe/satteri-mermaid": "^0.8.2",
-        "astro": "^7.4.7",
+        "astro": "^7.4.8",
         "giscus": "^1.6.0",
         "katex": "^0.19.1",
         "satteri-imgattr": "^0.1.1",
@@ -43,7 +43,7 @@
         "prettier": "^3.9.10",
         "prettier-plugin-astro": "1.1.2",
         "typescript": "^7.0.2",
-        "typescript-eslint": "^8.72.1"
+        "typescript-eslint": "^8.72.2"
     },
     "lint-staged": {
         "**/*": "prettier --write --ignore-unknown"
