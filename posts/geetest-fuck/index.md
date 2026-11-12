@@ -493,11 +493,11 @@ $_CFCJr(1139) = "$_CEAR"
 i[$_CFFId(1139)] = p[$_CFFId(1190)](c[$_CFFJp(57)](r, i[$_CFFJp(1125)]()));
 
 //
-$_CFFId(1139) = "$_CEAR"
-$_CFFId(1190) = "$_HEv"
-$_CFFJp(57) = "encrypt"
-i[$_CFFJp(1125)]() = aeskey
-i["$_CEAR"] = P["$_HEv"]["encrypt"](r,asekey)
+$_CFFId(1139) = "$_CEAR";
+$_CFFId(1190) = "$_HEv";
+$_CFFJp(57) = "encrypt";
+i[$_CFFJp(1125)]() = aeskey;
+i["$_CEAR"] = P["$_HEv"]["encrypt"](r, asekey);
 ```
 
 `i["$_CEAR"] = P["$_HEv"]["encrypt"](r,asekey)` 这就是我们的i的算法了, 先aes再js算法, 所以我们只需要关注r里的一些东西即可
