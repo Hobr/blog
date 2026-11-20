@@ -8,6 +8,23 @@ import { satteri } from "@astrojs/markdown-satteri";
 import { mermaidMdast, mermaidHast } from "@xingwangzhe/satteri-mermaid";
 import { satteriKatex } from "satteri-katex";
 
+/** @param {unknown} idFilter */
+function matchesAstroVirtualModuleFilter(idFilter) {
+    if (idFilter instanceof RegExp) {
+        return /(?:^\^|\(\?:|\(|\|)astro:/.test(idFilter.source);
+    }
+    if (typeof idFilter === "string") {
+        return idFilter.startsWith("astro:");
+    }
+    if (Array.isArray(idFilter)) {
+        return idFilter.some(matchesAstroVirtualModuleFilter);
+    }
+    if (idFilter && typeof idFilter === "object" && "include" in idFilter) {
+        return matchesAstroVirtualModuleFilter(idFilter.include);
+    }
+    return false;
+}
+
 // https://astro.build/config
 export default defineConfig({
     site: "https://hobr.site",
@@ -38,21 +55,32 @@ export default defineConfig({
         plugins: [
             {
                 name: "astro-virtual-modules-before-filesystem",
+                configEnvironment(_name, options) {
+                    if (options.resolve?.noExternal === true) {
+                        return;
+                    }
+                    return {
+                        resolve: {
+                            noExternal: [/^astro:/],
+                        },
+                    };
+                },
                 configResolved(config) {
-                    // NTFS with ADS treats `astro:*` paths as the `astro` directory.
-                    // Let Astro resolve its virtual modules before Vite checks disk.
                     for (const plugin of config.plugins) {
-                        if (
-                            !plugin.name.startsWith("astro:") ||
-                            !plugin.resolveId
-                        ) {
+                        if (plugin.enforce != null || !plugin.resolveId) {
                             continue;
                         }
                         const hook = plugin.resolveId;
-                        plugin.resolveId =
-                            typeof hook === "function"
-                                ? { order: "pre", handler: hook }
-                                : { ...hook, order: "pre" };
+                        if (
+                            typeof hook !== "object" ||
+                            !hook.filter ||
+                            typeof hook.filter !== "object" ||
+                            !("id" in hook.filter) ||
+                            !matchesAstroVirtualModuleFilter(hook.filter.id)
+                        ) {
+                            continue;
+                        }
+                        plugin.resolveId = { ...hook, order: "pre" };
                     }
                 },
             },
