@@ -112,19 +112,6 @@ export function groupPostsByTag<T extends NormalizedPost>(
     return grouped;
 }
 
-export function groupPostsByYear<T extends NormalizedPost>(
-    posts: T[],
-): Array<[string, T[]]> {
-    const grouped = new Map<string, T[]>();
-
-    for (const post of posts) {
-        const year = String(post.publishedAt.getUTCFullYear());
-        appendGroupItem(grouped, year, post);
-    }
-
-    return [...grouped.entries()];
-}
-
 export function groupPostsByMonth<T extends NormalizedPost>(
     posts: T[],
 ): Array<[string, T[]]> {

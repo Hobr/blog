@@ -4,28 +4,33 @@ import BlogPostPage from "../../../views/BlogPostPage.astro";
 import { buildAlternateLinks, secondaryLocales } from "../../../i18n/config";
 import { getDictionary } from "../../../i18n/dictionary";
 import { assertSecondaryLocale } from "../../../i18n/static-paths";
-import {
-    getAdjacentPosts,
-    getAllPosts,
-    type BlogPost,
-} from "../../../lib/posts";
+import { createAdjacentPostMap } from "../../../lib/post-data";
+import { getAllPosts, type BlogPost } from "../../../lib/posts";
 
 export async function getStaticPaths() {
     const posts = await getAllPosts();
+    const adjacentPosts = createAdjacentPostMap(posts);
 
     return secondaryLocales.flatMap((locale) =>
-        posts.map((post) => ({
-            params: { locale, slug: post.slug },
-            props: { locale, post },
-        })),
+        posts.map((post) => {
+            const { previous, next } = adjacentPosts.get(post.slug) ?? {};
+            return {
+                params: { locale, slug: post.slug },
+                props: { locale, post, previous, next },
+            };
+        }),
     );
 }
 
-const { locale, post } = Astro.props as { locale: string; post: BlogPost };
+const { locale, post, previous, next } = Astro.props as {
+    locale: string;
+    post: BlogPost;
+    previous?: BlogPost;
+    next?: BlogPost;
+};
 const secondaryLocale = assertSecondaryLocale(locale);
 const dictionary = getDictionary(secondaryLocale);
 const { Content } = await render(post.entry);
-const { previous, next } = await getAdjacentPosts(post.slug);
 const alternateLinks = buildAlternateLinks(Astro.url.pathname);
 ---
 

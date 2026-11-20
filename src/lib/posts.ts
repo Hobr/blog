@@ -2,7 +2,6 @@ import { getCollection, type CollectionEntry } from "astro:content";
 
 import {
     assertUniqueSlugs,
-    createAdjacentPostMap,
     groupPostsByMonth,
     groupPostsByTag,
     normalizePostRecord,
@@ -39,7 +38,7 @@ function getPostTitle(entry: CollectionEntry<"posts">): string {
     return title;
 }
 
-async function collectPosts(): Promise<BlogPost[]> {
+async function loadPosts(): Promise<BlogPost[]> {
     const entries = await getCollection("posts");
     const posts = sortPostsByDateDesc(
         entries.map((entry) => ({
@@ -60,6 +59,29 @@ async function collectPosts(): Promise<BlogPost[]> {
     return posts;
 }
 
+let cachedPostsPromise: Promise<BlogPost[]> | undefined;
+let cachedPostsByTagPromise: Promise<Map<string, BlogPost[]>> | undefined;
+
+async function collectPosts(): Promise<BlogPost[]> {
+    if (!import.meta.env.PROD) {
+        return loadPosts();
+    }
+
+    cachedPostsPromise ??= loadPosts();
+    return cachedPostsPromise;
+}
+
+async function collectPostsByTag(): Promise<Map<string, BlogPost[]>> {
+    if (!import.meta.env.PROD) {
+        return groupPostsByTag(await collectPosts());
+    }
+
+    cachedPostsByTagPromise ??= collectPosts().then((posts) =>
+        groupPostsByTag(posts),
+    );
+    return cachedPostsByTagPromise;
+}
+
 export async function getAllPosts() {
     return collectPosts();
 }
@@ -68,27 +90,14 @@ export async function getLatestPosts(limit = 5) {
     return (await collectPosts()).slice(0, limit);
 }
 
-export async function getPostBySlug(slug: string) {
-    return (await collectPosts()).find((post) => post.slug === slug);
-}
-
 export async function getAllTags() {
-    return [...groupPostsByTag(await collectPosts()).keys()].sort();
+    return [...(await collectPostsByTag()).keys()].sort();
 }
 
 export async function getPostsByTag(tag: string) {
-    return groupPostsByTag(await collectPosts()).get(tag) ?? [];
+    return (await collectPostsByTag()).get(tag) ?? [];
 }
 
 export async function getArchiveGroups() {
     return groupPostsByMonth(await collectPosts());
-}
-
-export async function getAdjacentPosts(slug: string) {
-    return (
-        createAdjacentPostMap(await collectPosts()).get(slug) ?? {
-            previous: undefined,
-            next: undefined,
-        }
-    );
 }

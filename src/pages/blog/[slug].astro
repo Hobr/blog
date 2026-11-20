@@ -3,22 +3,30 @@ import { render } from "astro:content";
 import BlogPostPage from "../../views/BlogPostPage.astro";
 import { buildAlternateLinks, defaultLocale } from "../../i18n/config";
 import { getDictionary } from "../../i18n/dictionary";
-import { getAdjacentPosts, getAllPosts, type BlogPost } from "../../lib/posts";
+import { createAdjacentPostMap } from "../../lib/post-data";
+import { getAllPosts, type BlogPost } from "../../lib/posts";
 
 export async function getStaticPaths() {
     const posts = await getAllPosts();
+    const adjacentPosts = createAdjacentPostMap(posts);
 
-    return posts.map((post) => ({
-        params: { slug: post.slug },
-        props: { post },
-    }));
+    return posts.map((post) => {
+        const { previous, next } = adjacentPosts.get(post.slug) ?? {};
+        return {
+            params: { slug: post.slug },
+            props: { post, previous, next },
+        };
+    });
 }
 
 const locale = defaultLocale;
 const dictionary = getDictionary(locale);
-const { post } = Astro.props as { post: BlogPost };
+const { post, previous, next } = Astro.props as {
+    post: BlogPost;
+    previous?: BlogPost;
+    next?: BlogPost;
+};
 const { Content } = await render(post.entry);
-const { previous, next } = await getAdjacentPosts(post.slug);
 const alternateLinks = buildAlternateLinks(Astro.url.pathname);
 ---
 

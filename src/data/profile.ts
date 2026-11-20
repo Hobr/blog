@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { defaultLocale, type Locale } from "../i18n/config.ts";
+import type { Locale } from "../i18n/config.ts";
 
 export type ProfileData = {
     name: string;
@@ -43,5 +43,3 @@ const profiles: Record<Locale, ProfileData> = {
 export function getProfile(locale: Locale): ProfileData {
     return profiles[locale];
 }
-
-export const profile = getProfile(defaultLocale);

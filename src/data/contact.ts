@@ -139,10 +139,6 @@ function getContactSitesByGroup(
     );
 }
 
-export function getContactSites(locale: Locale): LocalizedSiteCommand[] {
-    return localizeContactSites(locale, sharedSiteTargetKeys);
-}
-
 export function getContactSiteGroups(locale: Locale): ContactSiteGroups {
     return {
         im: getContactSitesByGroup(locale, "im"),

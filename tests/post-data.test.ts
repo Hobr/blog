@@ -6,7 +6,6 @@ import {
     createAdjacentPostMap,
     groupPostsByMonth,
     groupPostsByTag,
-    groupPostsByYear,
     normalizePostRecord,
     parsePostDate,
     sortPostsByDateDesc,
@@ -102,7 +101,7 @@ test("sortPostsByDateDesc orders newest first", () => {
     );
 });
 
-test("groupPostsByTag and groupPostsByYear derive navigation views", () => {
+test("groupPostsByTag and groupPostsByMonth derive navigation views", () => {
     const sorted = sortPostsByDateDesc(rawPosts.map(normalizePostRecord));
 
     assert.deepEqual(
@@ -110,10 +109,6 @@ test("groupPostsByTag and groupPostsByYear derive navigation views", () => {
             .get("astro")
             ?.map((post) => post.slug),
         ["older"],
-    );
-    assert.deepEqual(
-        groupPostsByYear(sorted).map(([year]) => year),
-        ["2026", "2025"],
     );
     assert.deepEqual(
         groupPostsByMonth(sorted).map(([month]) => month),
@@ -143,14 +138,12 @@ test("grouping retains every post in a shared tag and month in input order", () 
 
     assert.deepEqual(groupPostsByTag(posts).get("astro"), posts);
     assert.deepEqual(groupPostsByMonth(posts), [["2026-04", posts]]);
-    assert.deepEqual(groupPostsByYear(posts), [["2026", posts]]);
 });
 
 test("empty collections produce empty navigation views", () => {
     assert.deepEqual(sortPostsByDateDesc([]), []);
     assert.equal(groupPostsByTag([]).size, 0);
     assert.deepEqual(groupPostsByMonth([]), []);
-    assert.deepEqual(groupPostsByYear([]), []);
     assert.equal(createAdjacentPostMap([]).size, 0);
     assert.doesNotThrow(() => assertUniqueSlugs([]));
 });

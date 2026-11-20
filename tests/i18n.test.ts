@@ -17,10 +17,8 @@ import {
     getSecondaryLocaleStaticPaths,
 } from "../src/i18n/static-paths.ts";
 import { shouldIncludeSitemapPage } from "../src/i18n/sitemap.ts";
-import { getProfile, profile } from "../src/data/profile.ts";
 import {
     getContactSiteGroups,
-    getContactSites,
     sharedSiteTargets,
 } from "../src/data/contact.ts";
 import { getDictionary } from "../src/i18n/dictionary.ts";
@@ -153,7 +151,6 @@ test("contact sites partition every shared target with localized names", () => {
     const targets = Object.values(sharedSiteTargets);
 
     for (const locale of locales) {
-        const contactSites = getContactSites(locale);
         const contactGroups = getContactSiteGroups(locale);
         const groupedSites = [
             ...contactGroups.im,
@@ -161,7 +158,6 @@ test("contact sites partition every shared target with localized names", () => {
             ...contactGroups.social,
         ];
 
-        assert.equal(contactSites.length, targets.length);
         assert.equal(groupedSites.length, targets.length);
 
         for (const target of targets) {
@@ -172,10 +168,6 @@ test("contact sites partition every shared target with localized names", () => {
                 name: target.i18n[locale],
             };
             assert.deepEqual(
-                contactSites.find((site) => site.command === target.command),
-                expected,
-            );
-            assert.deepEqual(
                 contactGroups[target.group].find(
                     (site) => site.command === target.command,
                 ),
@@ -183,10 +175,6 @@ test("contact sites partition every shared target with localized names", () => {
             );
         }
     }
-});
-
-test("profile keeps its default-locale compatibility export", () => {
-    assert.deepEqual(profile, getProfile(defaultLocale));
 });
 
 test("theme styles include every configured theme palette", () => {
