@@ -9,7 +9,6 @@ export type SiteTheme = {
 };
 
 export const THEME_STORAGE_KEY = "hobr.theme";
-export const defaultThemeId = "base16-rose-pine";
 
 export const themes = [
     {
@@ -254,7 +253,49 @@ export const themes = [
     },
 ] as const satisfies readonly SiteTheme[];
 
-export const themeIds = themes.map((theme) => theme.id);
+export type ThemeId = (typeof themes)[number]["id"];
+
+export const defaultThemeId: ThemeId = "base16-rose-pine";
+export const defaultLightThemeId: ThemeId = "base16-cupcake";
+
+export const themeIds: readonly ThemeId[] = themes.map((theme) => theme.id);
+const knownThemeIdSet = new Set<string>(themeIds);
+
+export function isKnownThemeId(value: string): value is ThemeId {
+    return knownThemeIdSet.has(value);
+}
+
+export function resolveThemeId(
+    storedTheme: string | null | undefined,
+    prefersLight = false,
+): ThemeId {
+    if (storedTheme && isKnownThemeId(storedTheme)) {
+        return storedTheme;
+    }
+
+    return prefersLight ? defaultLightThemeId : defaultThemeId;
+}
+
+export function getThemeBootstrapScript(): string {
+    return `(() => {
+    const storageKey = ${JSON.stringify(THEME_STORAGE_KEY)};
+    const fallbackTheme = ${JSON.stringify(defaultThemeId)};
+    const lightTheme = ${JSON.stringify(defaultLightThemeId)};
+    const knownThemes = new Set(${JSON.stringify(themeIds)});
+    let nextTheme = window.matchMedia?.("(prefers-color-scheme: light)").matches
+        ? lightTheme
+        : fallbackTheme;
+
+    try {
+        const storedTheme = window.localStorage.getItem(storageKey);
+        if (storedTheme && knownThemes.has(storedTheme)) {
+            nextTheme = storedTheme;
+        }
+    } catch {}
+
+    document.documentElement.dataset.theme = nextTheme;
+})();`;
+}
 
 export const markdownThemes = Object.fromEntries(
     themes.map(({ id, markdownTheme }) => [id, markdownTheme]),

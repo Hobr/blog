@@ -25,13 +25,10 @@ const { label } = Astro.props;
 </label>
 
 <script>
-    import {
-        THEME_STORAGE_KEY,
-        defaultThemeId,
-        themeIds,
-    } from "../data/themes";
+    import { THEME_STORAGE_KEY, resolveThemeId } from "../data/themes";
 
-    const knownThemes = new Set<string>(themeIds);
+    const prefersLightScheme = (): boolean =>
+        Boolean(window.matchMedia?.("(prefers-color-scheme: light)").matches);
 
     const applyTheme = (themeId: string) => {
         document.documentElement.dataset.theme = themeId;
@@ -43,16 +40,12 @@ const { label } = Astro.props;
     };
 
     const readTheme = (): string => {
+        let stored: string | null = null;
         try {
-            const stored = window.localStorage.getItem(THEME_STORAGE_KEY);
-            return stored && knownThemes.has(stored)
-                ? stored
-                : window.matchMedia?.("(prefers-color-scheme: light)").matches
-                  ? "base16-cupcake"
-                  : defaultThemeId;
-        } catch {
-            return defaultThemeId;
-        }
+            stored = window.localStorage.getItem(THEME_STORAGE_KEY);
+        } catch {}
+
+        return resolveThemeId(stored, prefersLightScheme());
     };
 
     const syncTheme = () => {
@@ -93,9 +86,7 @@ const { label } = Astro.props;
             return;
         }
 
-        const nextTheme = knownThemes.has(target.value)
-            ? target.value
-            : defaultThemeId;
+        const nextTheme = resolveThemeId(target.value, prefersLightScheme());
 
         applyTheme(nextTheme);
 

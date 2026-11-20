@@ -6,10 +6,9 @@ import SiteHeader from "../components/SiteHeader.astro";
 import ThemeSwitcher from "../components/ThemeSwitcher.astro";
 import { avatarUrl, siteDescription } from "../data/profile";
 import {
-    THEME_STORAGE_KEY,
     defaultThemeId,
+    getThemeBootstrapScript,
     getThemeStyles,
-    themeIds,
 } from "../data/themes";
 import type { AlternateLink, Locale } from "../i18n/config";
 import type { SiteDictionary } from "../i18n/dictionary";
@@ -38,25 +37,7 @@ const siteBase = Astro.site ?? Astro.url;
 const canonical = new URL(canonicalPath, siteBase).href;
 const currentYear = new Date().getFullYear();
 const themeStyles = getThemeStyles();
-const themeBootstrapScript = `
-(() => {
-    const storageKey = ${JSON.stringify(THEME_STORAGE_KEY)};
-    const fallbackTheme = ${JSON.stringify(defaultThemeId)};
-    const knownThemes = new Set(${JSON.stringify(themeIds)});
-    let nextTheme = window.matchMedia?.("(prefers-color-scheme: light)").matches
-        ? "base16-cupcake"
-        : fallbackTheme;
-
-    try {
-        const storedTheme = window.localStorage.getItem(storageKey);
-        if (storedTheme && knownThemes.has(storedTheme)) {
-            nextTheme = storedTheme;
-        }
-    } catch {}
-
-    document.documentElement.dataset.theme = nextTheme;
-})();
-`;
+const themeBootstrapScript = getThemeBootstrapScript();
 ---
 
 <!doctype html>
