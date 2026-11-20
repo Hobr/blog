@@ -1,10 +1,5 @@
 ---
-import {
-    THEME_STORAGE_KEY,
-    defaultThemeId,
-    themes,
-    themeIds,
-} from "../data/themes";
+import { defaultThemeId, themes } from "../data/themes";
 
 interface Props {
     label: string;
@@ -29,15 +24,16 @@ const { label } = Astro.props;
     </select>
 </label>
 
-<script
-    is:inline
-    define:vars={{
-        storageKey: THEME_STORAGE_KEY,
-        fallbackTheme: defaultThemeId,
-        knownThemes: themeIds,
-    }}
->
-    const applyTheme = (themeId) => {
+<script>
+    import {
+        THEME_STORAGE_KEY,
+        defaultThemeId,
+        themeIds,
+    } from "../data/themes";
+
+    const knownThemes = new Set<string>(themeIds);
+
+    const applyTheme = (themeId: string) => {
         document.documentElement.dataset.theme = themeId;
         document.querySelectorAll("[data-theme-select]").forEach((select) => {
             if (select instanceof HTMLSelectElement) {
@@ -46,16 +42,16 @@ const { label } = Astro.props;
         });
     };
 
-    const readTheme = () => {
+    const readTheme = (): string => {
         try {
-            const stored = window.localStorage.getItem(storageKey);
-            return stored && knownThemes.includes(stored)
+            const stored = window.localStorage.getItem(THEME_STORAGE_KEY);
+            return stored && knownThemes.has(stored)
                 ? stored
                 : window.matchMedia?.("(prefers-color-scheme: light)").matches
                   ? "base16-cupcake"
-                  : fallbackTheme;
+                  : defaultThemeId;
         } catch {
-            return fallbackTheme;
+            return defaultThemeId;
         }
     };
 
@@ -77,26 +73,34 @@ const { label } = Astro.props;
     });
 
     document.addEventListener("astro:after-swap", syncTheme);
-    document.addEventListener("astro:page-load", syncTheme);
+
+    window.addEventListener("storage", (event) => {
+        if (event.key === null || event.key === THEME_STORAGE_KEY) {
+            syncTheme();
+        }
+    });
+
+    window
+        .matchMedia?.("(prefers-color-scheme: light)")
+        .addEventListener("change", syncTheme);
 
     document.addEventListener("change", (event) => {
         const target = event.target;
-        if (!(target instanceof HTMLSelectElement)) {
+        if (
+            !(target instanceof HTMLSelectElement) ||
+            !target.matches("[data-theme-select]")
+        ) {
             return;
         }
 
-        if (!target.matches("[data-theme-select]")) {
-            return;
-        }
-
-        const nextTheme = knownThemes.includes(target.value)
+        const nextTheme = knownThemes.has(target.value)
             ? target.value
-            : fallbackTheme;
+            : defaultThemeId;
 
         applyTheme(nextTheme);
 
         try {
-            window.localStorage.setItem(storageKey, nextTheme);
+            window.localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
         } catch {}
     });
 </script>
