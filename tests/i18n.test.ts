@@ -7,6 +7,7 @@ import {
     isLocale,
     isSecondaryLocale,
     localeDisplayNames,
+    locales,
     secondaryLocales,
     stripLocaleFromPathname,
     toLocalePath,
@@ -126,21 +127,40 @@ test("dictionaries resolve translated shell copy", () => {
     assert.equal(getDictionary("en").nav.blog, "Blog");
 });
 
-test("contact sites expose every shared target", () => {
-    const contactSites = getContactSites("zh-CN");
-    const contactGroups = getContactSiteGroups("zh-CN");
+test("contact sites partition every shared target with localized names", () => {
+    const targets = Object.values(sharedSiteTargets);
 
-    assert.equal(contactSites.length, Object.keys(sharedSiteTargets).length);
-    assert.equal(contactSites[0].href, sharedSiteTargets.email.href);
-    assert.equal(contactGroups.im.length, 5);
-    assert.equal(contactGroups.development.length, 5);
-    assert.equal(contactGroups.social.length, 5);
-    assert.equal(contactGroups.im[0].href, sharedSiteTargets.email.href);
-    assert.equal(
-        contactGroups.development[0].href,
-        sharedSiteTargets.github.href,
-    );
-    assert.equal(contactGroups.social[0].href, sharedSiteTargets.bilibili.href);
+    for (const locale of locales) {
+        const contactSites = getContactSites(locale);
+        const contactGroups = getContactSiteGroups(locale);
+        const groupedSites = [
+            ...contactGroups.im,
+            ...contactGroups.development,
+            ...contactGroups.social,
+        ];
+
+        assert.equal(contactSites.length, targets.length);
+        assert.equal(groupedSites.length, targets.length);
+
+        for (const target of targets) {
+            const expected = {
+                command: target.command,
+                href: target.href,
+                group: target.group,
+                name: target.i18n[locale],
+            };
+            assert.deepEqual(
+                contactSites.find((site) => site.command === target.command),
+                expected,
+            );
+            assert.deepEqual(
+                contactGroups[target.group].find(
+                    (site) => site.command === target.command,
+                ),
+                expected,
+            );
+        }
+    }
 });
 
 test("profile keeps its default-locale compatibility export", () => {
