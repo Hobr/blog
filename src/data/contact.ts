@@ -1,6 +1,21 @@
 import type { Locale } from "../i18n/config.ts";
 import type { LocalizedSiteCommand } from "./sites.ts";
 
+export type ContactSiteGroups = {
+    im: LocalizedSiteCommand[];
+    development: LocalizedSiteCommand[];
+    social: LocalizedSiteCommand[];
+};
+
+type ContactGroup = keyof ContactSiteGroups;
+
+type SharedSiteTarget = {
+    command: string;
+    href: string;
+    i18n: Record<Locale, string>;
+    group: ContactGroup;
+};
+
 export const sharedSiteTargets = {
     email: {
         command: "./mail@hobr.site",
@@ -94,15 +109,13 @@ export const sharedSiteTargets = {
         i18n: { "zh-CN": "Gitee", en: "Gitee" },
         group: "development",
     },
-} as const;
+} as const satisfies Record<string, SharedSiteTarget>;
 
 type SharedSiteTargetKey = keyof typeof sharedSiteTargets;
 
-export type ContactSiteGroups = {
-    im: LocalizedSiteCommand[];
-    development: LocalizedSiteCommand[];
-    social: LocalizedSiteCommand[];
-};
+const sharedSiteTargetKeys = Object.keys(
+    sharedSiteTargets,
+) as SharedSiteTargetKey[];
 
 function localizeContactSites(
     locale: Locale,
@@ -114,29 +127,26 @@ function localizeContactSites(
     });
 }
 
-export function getContactSites(locale: Locale): LocalizedSiteCommand[] {
+function getContactSitesByGroup(
+    locale: Locale,
+    group: ContactGroup,
+): LocalizedSiteCommand[] {
     return localizeContactSites(
         locale,
-        Object.keys(sharedSiteTargets) as SharedSiteTargetKey[],
+        sharedSiteTargetKeys.filter(
+            (key) => sharedSiteTargets[key].group === group,
+        ),
     );
 }
 
+export function getContactSites(locale: Locale): LocalizedSiteCommand[] {
+    return localizeContactSites(locale, sharedSiteTargetKeys);
+}
+
 export function getContactSiteGroups(locale: Locale): ContactSiteGroups {
-    const keys = Object.keys(sharedSiteTargets) as SharedSiteTargetKey[];
     return {
-        im: localizeContactSites(
-            locale,
-            keys.filter((key) => sharedSiteTargets[key].group === "im"),
-        ),
-        development: localizeContactSites(
-            locale,
-            keys.filter(
-                (key) => sharedSiteTargets[key].group === "development",
-            ),
-        ),
-        social: localizeContactSites(
-            locale,
-            keys.filter((key) => sharedSiteTargets[key].group === "social"),
-        ),
+        im: getContactSitesByGroup(locale, "im"),
+        development: getContactSitesByGroup(locale, "development"),
+        social: getContactSitesByGroup(locale, "social"),
     };
 }
