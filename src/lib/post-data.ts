@@ -17,6 +17,37 @@ export type NormalizedPost = {
     dateLabel: string;
 };
 
+export type RenderedPostHeading = {
+    depth: number;
+    text: string;
+};
+
+export function extractPostSlug(id: string): string {
+    const path = id.replace(/\.md$/, "");
+    const slug = path.endsWith("/index")
+        ? path.slice(0, -"/index".length)
+        : path;
+
+    if (!slug) {
+        throw new Error(`Post slug is required: ${id}`);
+    }
+
+    return slug;
+}
+
+export function extractPostTitle(
+    id: string,
+    headings: readonly RenderedPostHeading[] | undefined,
+): string {
+    const title = headings?.find((heading) => heading.depth === 1)?.text.trim();
+
+    if (!title) {
+        throw new Error(`Post title is required: ${id}`);
+    }
+
+    return title;
+}
+
 export function parsePostDate(input: string): Date {
     const normalized = input.trim();
     const match = /^(\d{4})-(\d{1,2})-(\d{1,2})$/.exec(normalized);
