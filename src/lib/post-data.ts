@@ -89,6 +89,15 @@ export function sortPostsByDateDesc<T extends NormalizedPost>(posts: T[]): T[] {
     );
 }
 
+function appendGroupItem<T>(grouped: Map<string, T[]>, key: string, item: T) {
+    const bucket = grouped.get(key);
+    if (bucket) {
+        bucket.push(item);
+    } else {
+        grouped.set(key, [item]);
+    }
+}
+
 export function groupPostsByTag<T extends NormalizedPost>(
     posts: T[],
 ): Map<string, T[]> {
@@ -96,7 +105,7 @@ export function groupPostsByTag<T extends NormalizedPost>(
 
     for (const post of posts) {
         for (const tag of post.tags) {
-            grouped.set(tag, [...(grouped.get(tag) ?? []), post]);
+            appendGroupItem(grouped, tag, post);
         }
     }
 
@@ -110,7 +119,7 @@ export function groupPostsByYear<T extends NormalizedPost>(
 
     for (const post of posts) {
         const year = String(post.publishedAt.getUTCFullYear());
-        grouped.set(year, [...(grouped.get(year) ?? []), post]);
+        appendGroupItem(grouped, year, post);
     }
 
     return [...grouped.entries()];
@@ -123,7 +132,7 @@ export function groupPostsByMonth<T extends NormalizedPost>(
 
     for (const post of posts) {
         const month = post.publishedAt.toISOString().slice(0, 7);
-        grouped.set(month, [...(grouped.get(month) ?? []), post]);
+        appendGroupItem(grouped, month, post);
     }
 
     return [...grouped.entries()];
