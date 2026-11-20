@@ -82,6 +82,10 @@ test("locale guard helpers describe supported locales and nothing else", () => {
 
 test("secondary roots and exact-match stripping behave as expected", () => {
     assert.equal(toLocalePath("en", "/"), "/en/");
+    assert.deepEqual(stripLocaleFromPathname(""), {
+        locale: "zh-CN",
+        pathnameWithoutLocale: "/",
+    });
     assert.deepEqual(stripLocaleFromPathname("/en"), {
         locale: "en",
         pathnameWithoutLocale: "/",
@@ -89,6 +93,10 @@ test("secondary roots and exact-match stripping behave as expected", () => {
     assert.deepEqual(stripLocaleFromPathname("/en/"), {
         locale: "en",
         pathnameWithoutLocale: "/",
+    });
+    assert.deepEqual(stripLocaleFromPathname("/engineering"), {
+        locale: "zh-CN",
+        pathnameWithoutLocale: "/engineering",
     });
 });
 
@@ -104,6 +112,11 @@ test("sitemap keeps localized shells but excludes non-canonical localized articl
         shouldIncludeSitemapPage("https://hobr.site/en/blog/hello-terminal/"),
         false,
     );
+    assert.equal(
+        shouldIncludeSitemapPage("https://hobr.site/en/blog/hello-terminal"),
+        false,
+    );
+    assert.equal(shouldIncludeSitemapPage("/en/blog/hello-terminal"), false);
     assert.equal(shouldIncludeSitemapPage("https://hobr.site/en/blog/"), true);
     assert.equal(
         shouldIncludeSitemapPage("https://hobr.site/en/archive/"),
@@ -122,9 +135,18 @@ test("toLocalePath rejects pathnames without a leading slash", () => {
     );
 });
 
-test("dictionaries resolve translated shell copy", () => {
-    assert.equal(getDictionary("zh-CN").nav.blog, "博客");
-    assert.equal(getDictionary("en").nav.blog, "Blog");
+test("dictionaries resolve translated shell copy and dynamic formatters", () => {
+    const zh = getDictionary("zh-CN");
+    const en = getDictionary("en");
+
+    assert.equal(zh.nav.blog, "博客");
+    assert.equal(en.nav.blog, "Blog");
+    assert.equal(zh.blogIndex.openTag("astro"), "./tags/astro");
+    assert.equal(en.blogIndex.openTag("astro"), "./tags/astro");
+    assert.equal(zh.tagPage.metaTitle("astro"), "Hobr.Site | #astro");
+    assert.equal(en.tagPage.metaTitle("astro"), "Hobr.Site | #astro");
+    assert.equal(zh.articlePage.metaTitle("Hello"), "Hobr.Site | Hello");
+    assert.equal(en.articlePage.metaTitle("Hello"), "Hobr.Site | Hello");
 });
 
 test("contact sites partition every shared target with localized names", () => {
