@@ -9,7 +9,7 @@
         Consolas,
         monospace
     );
-    --font-reading: var(--font-body, system-ui, sans-serif);
+    --font-reading: system-ui, sans-serif;
     --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 

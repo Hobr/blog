@@ -40,15 +40,6 @@ export default defineConfig({
             subsets: ["latin", "latin-ext"],
             fallbacks: ["monospace"],
         },
-        {
-            name: "Noto Sans SC",
-            cssVariable: "--font-body",
-            provider: fontProviders.fontsource(),
-            weights: [400, 500, 600, 700],
-            styles: ["normal"],
-            subsets: ["chinese-simplified", "latin"],
-            fallbacks: ["sans-serif"],
-        },
     ],
     vite: {
         cacheDir: ".astro/vite-cache",
