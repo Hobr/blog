@@ -34,7 +34,7 @@
         "@eslint/css": "^2.0.1",
         "@eslint/js": "^10.0.1",
         "@eslint/json": "^2.1.1",
-        "@types/node": "^26.6.6",
+        "@types/node": "^26.6.7",
         "eslint": "^10.15.0",
         "eslint-config-prettier": "^10.1.8",
         "globals": "^17.14.0",
