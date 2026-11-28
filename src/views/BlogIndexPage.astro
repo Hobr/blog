@@ -9,56 +9,56 @@ import type { SiteDictionary } from "../i18n/dictionary";
 import type { BlogPost } from "../lib/posts";
 
 interface Props {
-    locale: Locale;
-    dictionary: SiteDictionary;
-    posts: BlogPost[];
-    tags: string[];
-    alternateLinks: AlternateLink[];
+  locale: Locale;
+  dictionary: SiteDictionary;
+  posts: BlogPost[];
+  tags: string[];
+  alternateLinks: AlternateLink[];
 }
 
 const { locale, dictionary, posts, tags, alternateLinks } = Astro.props;
 const browseCommands: LocalizedSiteCommand[] = [
-    {
-        command: dictionary.blogIndex.openArchive,
-        name: dictionary.nav.archive,
-        href: toLocalePath(locale, "/archive"),
-    },
-    ...tags.map((tag) => ({
-        command: dictionary.blogIndex.openTag(tag),
-        name: `#${tag}`,
-        href: toLocalePath(locale, `/tags/${encodeURIComponent(tag)}`),
-    })),
+  {
+    command: dictionary.blogIndex.openArchive,
+    name: dictionary.nav.archive,
+    href: toLocalePath(locale, "/archive"),
+  },
+  ...tags.map((tag) => ({
+    command: dictionary.blogIndex.openTag(tag),
+    name: `#${tag}`,
+    href: toLocalePath(locale, `/tags/${encodeURIComponent(tag)}`),
+  })),
 ];
 ---
 
 <Layout
-    title={dictionary.blogIndex.metaTitle}
-    locale={locale}
-    dictionary={dictionary}
-    alternateLinks={alternateLinks}
+  title={dictionary.blogIndex.metaTitle}
+  locale={locale}
+  dictionary={dictionary}
+  alternateLinks={alternateLinks}
 >
-    <main class="page-shell index-page" id="main-content">
-        <section class="terminal-panel post-index-panel">
-            <p class="terminal-prompt">
-                <span aria-hidden="true">$</span>
-                {dictionary.blogIndex.listSubtitle}
-            </p>
-            <PostList
-                posts={posts}
-                locale={locale}
-                emptyMessage={dictionary.common.noPosts}
-            />
-        </section>
+  <main class="page-shell index-page" id="main-content">
+    <section class="terminal-panel post-index-panel">
+      <p class="terminal-prompt">
+        <span aria-hidden="true">$</span>
+        {dictionary.blogIndex.listSubtitle}
+      </p>
+      <PostList
+        posts={posts}
+        locale={locale}
+        emptyMessage={dictionary.common.noPosts}
+      />
+    </section>
 
-        <aside class="terminal-panel browse-panel">
-            <p class="terminal-prompt">
-                <span aria-hidden="true">$</span>
-                {dictionary.blogIndex.navSubtitle}
-            </p>
-            <SitesCommandPanel
-                sites={browseCommands}
-                label={dictionary.blogIndex.navSubtitle}
-            />
-        </aside>
-    </main>
+    <aside class="terminal-panel browse-panel">
+      <p class="terminal-prompt">
+        <span aria-hidden="true">$</span>
+        {dictionary.blogIndex.navSubtitle}
+      </p>
+      <SitesCommandPanel
+        sites={browseCommands}
+        label={dictionary.blogIndex.navSubtitle}
+      />
+    </aside>
+  </main>
 </Layout>

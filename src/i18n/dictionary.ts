@@ -5,87 +5,87 @@ import { zhCN } from "./locales/zh-CN.ts";
 type StringFormatter = typeof zhCN.blogIndex.openTag;
 
 export type SiteDictionary = {
-    brand: {
-        name: string;
-        switcherLabel: string;
-        themeLabel: string;
-    };
-    nav: {
-        home: string;
-        blog: string;
-        tags: string;
-        archive: string;
-        friends: string;
-    };
-    common: {
-        noPosts: string;
-        tagsLabel: string;
-    };
-    error: {
-        metaTitle: string;
-        command: string;
-        title: string;
-        message: string;
-        homeAction: string;
-    };
-    serverError: {
-        metaTitle: string;
-        title: string;
-        message: string;
-    };
-    home: {
-        metaTitle: string;
-        profileSubtitle: string;
-        latestSubtitle: string;
-        viewAll: string;
-    };
-    blogIndex: {
-        metaTitle: string;
-        listSubtitle: string;
-        navSubtitle: string;
-        openArchive: string;
-        openTag: StringFormatter;
-    };
-    tagsPage: {
-        metaTitle: string;
-        title: string;
-        panelSubtitle: string;
-    };
-    archive: {
-        metaTitle: string;
-        panelSubtitle: string;
-    };
-    friendsPage: {
-        metaTitle: string;
-        panelSubtitle: string;
-        empty: string;
-    };
-    contact: {
-        imSubtitle: string;
-        developmentSubtitle: string;
-        socialSubtitle: string;
-    };
-    tagPage: {
-        metaTitle: StringFormatter;
-        panelSubtitle: StringFormatter;
-        empty: string;
-    };
-    articlePage: {
-        metaTitle: StringFormatter;
-        tableOfContents: string;
-        comments: string;
-        previous: string;
-        next: string;
-        startOfLog: string;
-        latestEntry: string;
-    };
+  brand: {
+    name: string;
+    switcherLabel: string;
+    themeLabel: string;
+  };
+  nav: {
+    home: string;
+    blog: string;
+    tags: string;
+    archive: string;
+    friends: string;
+  };
+  common: {
+    noPosts: string;
+    tagsLabel: string;
+  };
+  error: {
+    metaTitle: string;
+    command: string;
+    title: string;
+    message: string;
+    homeAction: string;
+  };
+  serverError: {
+    metaTitle: string;
+    title: string;
+    message: string;
+  };
+  home: {
+    metaTitle: string;
+    profileSubtitle: string;
+    latestSubtitle: string;
+    viewAll: string;
+  };
+  blogIndex: {
+    metaTitle: string;
+    listSubtitle: string;
+    navSubtitle: string;
+    openArchive: string;
+    openTag: StringFormatter;
+  };
+  tagsPage: {
+    metaTitle: string;
+    title: string;
+    panelSubtitle: string;
+  };
+  archive: {
+    metaTitle: string;
+    panelSubtitle: string;
+  };
+  friendsPage: {
+    metaTitle: string;
+    panelSubtitle: string;
+    empty: string;
+  };
+  contact: {
+    imSubtitle: string;
+    developmentSubtitle: string;
+    socialSubtitle: string;
+  };
+  tagPage: {
+    metaTitle: StringFormatter;
+    panelSubtitle: StringFormatter;
+    empty: string;
+  };
+  articlePage: {
+    metaTitle: StringFormatter;
+    tableOfContents: string;
+    comments: string;
+    previous: string;
+    next: string;
+    startOfLog: string;
+    latestEntry: string;
+  };
 };
 
 const dictionaries = {
-    "zh-CN": zhCN,
-    en,
+  "zh-CN": zhCN,
+  en,
 } satisfies Record<Locale, SiteDictionary>;
 
 export function getDictionary(locale: Locale): SiteDictionary {
-    return dictionaries[locale];
+  return dictionaries[locale];
 }

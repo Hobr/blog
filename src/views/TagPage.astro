@@ -6,33 +6,33 @@ import Layout from "../layouts/Layout.astro";
 import type { BlogPost } from "../lib/posts";
 
 interface Props {
-    locale: Locale;
-    dictionary: SiteDictionary;
-    tag: string;
-    posts: BlogPost[];
-    alternateLinks: AlternateLink[];
+  locale: Locale;
+  dictionary: SiteDictionary;
+  tag: string;
+  posts: BlogPost[];
+  alternateLinks: AlternateLink[];
 }
 
 const { locale, dictionary, tag, posts, alternateLinks } = Astro.props;
 ---
 
 <Layout
-    title={dictionary.tagPage.metaTitle(tag)}
-    locale={locale}
-    dictionary={dictionary}
-    alternateLinks={alternateLinks}
+  title={dictionary.tagPage.metaTitle(tag)}
+  locale={locale}
+  dictionary={dictionary}
+  alternateLinks={alternateLinks}
 >
-    <main class="page-shell" id="main-content">
-        <section class="terminal-panel tag-results-panel">
-            <p class="terminal-prompt">
-                <span aria-hidden="true">$</span>
-                {dictionary.tagPage.panelSubtitle(tag)}
-            </p>
-            <PostList
-                posts={posts}
-                locale={locale}
-                emptyMessage={dictionary.tagPage.empty}
-            />
-        </section>
-    </main>
+  <main class="page-shell" id="main-content">
+    <section class="terminal-panel tag-results-panel">
+      <p class="terminal-prompt">
+        <span aria-hidden="true">$</span>
+        {dictionary.tagPage.panelSubtitle(tag)}
+      </p>
+      <PostList
+        posts={posts}
+        locale={locale}
+        emptyMessage={dictionary.tagPage.empty}
+      />
+    </section>
+  </main>
 </Layout>

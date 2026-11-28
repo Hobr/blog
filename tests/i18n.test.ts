@@ -2,201 +2,198 @@ import assert from "node:assert/strict";
 import test from "node:test";
 
 import {
-    buildAlternateLinks,
-    defaultLocale,
-    isLocale,
-    isSecondaryLocale,
-    localeDisplayNames,
-    locales,
-    secondaryLocales,
-    stripLocaleFromPathname,
-    toLocalePath,
+  buildAlternateLinks,
+  defaultLocale,
+  isLocale,
+  isSecondaryLocale,
+  localeDisplayNames,
+  locales,
+  secondaryLocales,
+  stripLocaleFromPathname,
+  toLocalePath,
 } from "../src/i18n/config.ts";
 import {
-    assertSecondaryLocale,
-    getSecondaryLocaleStaticPaths,
+  assertSecondaryLocale,
+  getSecondaryLocaleStaticPaths,
 } from "../src/i18n/static-paths.ts";
 import { shouldIncludeSitemapPage } from "../src/i18n/sitemap.ts";
 import {
-    getContactSiteGroups,
-    sharedSiteTargets,
+  getContactSiteGroups,
+  sharedSiteTargets,
 } from "../src/data/contact.ts";
 import { getDictionary } from "../src/i18n/dictionary.ts";
 import { getThemeStyles, markdownThemes, themes } from "../src/data/themes.ts";
 
 test("default locale stays on the root path", () => {
-    assert.equal(defaultLocale, "zh-CN");
-    assert.equal(toLocalePath("zh-CN", "/blog"), "/blog");
+  assert.equal(defaultLocale, "zh-CN");
+  assert.equal(toLocalePath("zh-CN", "/blog"), "/blog");
 });
 
 test("secondary locales add the correct prefix", () => {
-    assert.equal(
-        toLocalePath("en", "/blog/hello-terminal"),
-        "/en/blog/hello-terminal",
-    );
+  assert.equal(
+    toLocalePath("en", "/blog/hello-terminal"),
+    "/en/blog/hello-terminal",
+  );
 });
 
 test("stripLocaleFromPathname removes locale prefixes and keeps default locale on root", () => {
-    assert.deepEqual(stripLocaleFromPathname("/"), {
-        locale: "zh-CN",
-        pathnameWithoutLocale: "/",
-    });
-    assert.deepEqual(stripLocaleFromPathname("/en/blog/hello-terminal"), {
-        locale: "en",
-        pathnameWithoutLocale: "/blog/hello-terminal",
-    });
+  assert.deepEqual(stripLocaleFromPathname("/"), {
+    locale: "zh-CN",
+    pathnameWithoutLocale: "/",
+  });
+  assert.deepEqual(stripLocaleFromPathname("/en/blog/hello-terminal"), {
+    locale: "en",
+    pathnameWithoutLocale: "/blog/hello-terminal",
+  });
 });
 
 test("buildAlternateLinks returns zh-CN and en siblings for the same page", () => {
-    assert.deepEqual(buildAlternateLinks("/en/blog/hello-terminal"), [
-        {
-            locale: "zh-CN",
-            href: "/blog/hello-terminal",
-            label: "中文",
-            lang: "zh-CN",
-        },
-        {
-            locale: "en",
-            href: "/en/blog/hello-terminal",
-            label: "English",
-            lang: "en",
-        },
-    ]);
+  assert.deepEqual(buildAlternateLinks("/en/blog/hello-terminal"), [
+    {
+      locale: "zh-CN",
+      href: "/blog/hello-terminal",
+      label: "中文",
+      lang: "zh-CN",
+    },
+    {
+      locale: "en",
+      href: "/en/blog/hello-terminal",
+      label: "English",
+      lang: "en",
+    },
+  ]);
 });
 
 test("secondaryLocales and localeDisplayNames expose the supported non-default locales", () => {
-    assert.deepEqual(secondaryLocales, ["en"]);
-    assert.equal(localeDisplayNames["zh-CN"], "中文");
-    assert.equal(localeDisplayNames.en, "English");
+  assert.deepEqual(secondaryLocales, ["en"]);
+  assert.equal(localeDisplayNames["zh-CN"], "中文");
+  assert.equal(localeDisplayNames.en, "English");
 });
 
 test("locale guard helpers describe supported locales and nothing else", () => {
-    assert.ok(isLocale("zh-CN"));
-    assert.ok(isLocale("en"));
-    assert.equal(isLocale("fr"), false);
-    assert.ok(isSecondaryLocale("en"));
-    assert.equal(isSecondaryLocale("zh-CN"), false);
+  assert.ok(isLocale("zh-CN"));
+  assert.ok(isLocale("en"));
+  assert.equal(isLocale("fr"), false);
+  assert.ok(isSecondaryLocale("en"));
+  assert.equal(isSecondaryLocale("zh-CN"), false);
 });
 
 test("secondary roots and exact-match stripping behave as expected", () => {
-    assert.equal(toLocalePath("en", "/"), "/en/");
-    assert.deepEqual(stripLocaleFromPathname(""), {
-        locale: "zh-CN",
-        pathnameWithoutLocale: "/",
-    });
-    assert.deepEqual(stripLocaleFromPathname("/en"), {
-        locale: "en",
-        pathnameWithoutLocale: "/",
-    });
-    assert.deepEqual(stripLocaleFromPathname("/en/"), {
-        locale: "en",
-        pathnameWithoutLocale: "/",
-    });
-    assert.deepEqual(stripLocaleFromPathname("/engineering"), {
-        locale: "zh-CN",
-        pathnameWithoutLocale: "/engineering",
-    });
+  assert.equal(toLocalePath("en", "/"), "/en/");
+  assert.deepEqual(stripLocaleFromPathname(""), {
+    locale: "zh-CN",
+    pathnameWithoutLocale: "/",
+  });
+  assert.deepEqual(stripLocaleFromPathname("/en"), {
+    locale: "en",
+    pathnameWithoutLocale: "/",
+  });
+  assert.deepEqual(stripLocaleFromPathname("/en/"), {
+    locale: "en",
+    pathnameWithoutLocale: "/",
+  });
+  assert.deepEqual(stripLocaleFromPathname("/engineering"), {
+    locale: "zh-CN",
+    pathnameWithoutLocale: "/engineering",
+  });
 });
 
 test("buildAlternateLinks normalizes locale root trailing slashes", () => {
-    assert.deepEqual(buildAlternateLinks("/en/"), [
-        { locale: "zh-CN", href: "/", label: "中文", lang: "zh-CN" },
-        { locale: "en", href: "/en/", label: "English", lang: "en" },
-    ]);
+  assert.deepEqual(buildAlternateLinks("/en/"), [
+    { locale: "zh-CN", href: "/", label: "中文", lang: "zh-CN" },
+    { locale: "en", href: "/en/", label: "English", lang: "en" },
+  ]);
 });
 
 test("sitemap keeps localized shells but excludes non-canonical localized article pages", () => {
-    assert.equal(
-        shouldIncludeSitemapPage("https://hobr.site/en/blog/hello-terminal/"),
-        false,
-    );
-    assert.equal(
-        shouldIncludeSitemapPage("https://hobr.site/en/blog/hello-terminal"),
-        false,
-    );
-    assert.equal(shouldIncludeSitemapPage("/en/blog/hello-terminal"), false);
-    assert.equal(shouldIncludeSitemapPage("https://hobr.site/en/blog/"), true);
-    assert.equal(
-        shouldIncludeSitemapPage("https://hobr.site/en/archive/"),
-        true,
-    );
-    assert.equal(
-        shouldIncludeSitemapPage("https://hobr.site/blog/hello-terminal/"),
-        true,
-    );
+  assert.equal(
+    shouldIncludeSitemapPage("https://hobr.site/en/blog/hello-terminal/"),
+    false,
+  );
+  assert.equal(
+    shouldIncludeSitemapPage("https://hobr.site/en/blog/hello-terminal"),
+    false,
+  );
+  assert.equal(shouldIncludeSitemapPage("/en/blog/hello-terminal"), false);
+  assert.equal(shouldIncludeSitemapPage("https://hobr.site/en/blog/"), true);
+  assert.equal(shouldIncludeSitemapPage("https://hobr.site/en/archive/"), true);
+  assert.equal(
+    shouldIncludeSitemapPage("https://hobr.site/blog/hello-terminal/"),
+    true,
+  );
 });
 
 test("toLocalePath rejects pathnames without a leading slash", () => {
-    assert.throws(
-        () => toLocalePath("en", "blog/hello-terminal"),
-        /pathname must start with/,
-    );
+  assert.throws(
+    () => toLocalePath("en", "blog/hello-terminal"),
+    /pathname must start with/,
+  );
 });
 
 test("dictionaries resolve translated shell copy and dynamic formatters", () => {
-    const zh = getDictionary("zh-CN");
-    const en = getDictionary("en");
+  const zh = getDictionary("zh-CN");
+  const en = getDictionary("en");
 
-    assert.equal(zh.nav.blog, "博客");
-    assert.equal(en.nav.blog, "Blog");
-    assert.equal(zh.blogIndex.openTag("astro"), "./tags/astro");
-    assert.equal(en.blogIndex.openTag("astro"), "./tags/astro");
-    assert.equal(zh.tagPage.metaTitle("astro"), "Hobr.Site | #astro");
-    assert.equal(en.tagPage.metaTitle("astro"), "Hobr.Site | #astro");
-    assert.equal(zh.articlePage.metaTitle("Hello"), "Hobr.Site | Hello");
-    assert.equal(en.articlePage.metaTitle("Hello"), "Hobr.Site | Hello");
+  assert.equal(zh.nav.blog, "博客");
+  assert.equal(en.nav.blog, "Blog");
+  assert.equal(zh.blogIndex.openTag("astro"), "./tags/astro");
+  assert.equal(en.blogIndex.openTag("astro"), "./tags/astro");
+  assert.equal(zh.tagPage.metaTitle("astro"), "Hobr.Site | #astro");
+  assert.equal(en.tagPage.metaTitle("astro"), "Hobr.Site | #astro");
+  assert.equal(zh.articlePage.metaTitle("Hello"), "Hobr.Site | Hello");
+  assert.equal(en.articlePage.metaTitle("Hello"), "Hobr.Site | Hello");
 });
 
 test("contact sites partition every shared target with localized names", () => {
-    const targets = Object.values(sharedSiteTargets);
+  const targets = Object.values(sharedSiteTargets);
 
-    for (const locale of locales) {
-        const contactGroups = getContactSiteGroups(locale);
-        const groupedSites = [
-            ...contactGroups.im,
-            ...contactGroups.development,
-            ...contactGroups.social,
-        ];
+  for (const locale of locales) {
+    const contactGroups = getContactSiteGroups(locale);
+    const groupedSites = [
+      ...contactGroups.im,
+      ...contactGroups.development,
+      ...contactGroups.social,
+    ];
 
-        assert.equal(groupedSites.length, targets.length);
+    assert.equal(groupedSites.length, targets.length);
 
-        for (const target of targets) {
-            const expected = {
-                command: target.command,
-                href: target.href,
-                group: target.group,
-                name: target.i18n[locale],
-            };
-            assert.deepEqual(
-                contactGroups[target.group].find(
-                    (site) => site.command === target.command,
-                ),
-                expected,
-            );
-        }
+    for (const target of targets) {
+      const expected = {
+        command: target.command,
+        href: target.href,
+        group: target.group,
+        name: target.i18n[locale],
+      };
+      assert.deepEqual(
+        contactGroups[target.group].find(
+          (site) => site.command === target.command,
+        ),
+        expected,
+      );
     }
+  }
 });
 
 test("theme styles include every configured theme palette", () => {
-    const styles = getThemeStyles();
+  const styles = getThemeStyles();
 
-    for (const theme of themes) {
-        assert.equal(markdownThemes[theme.id], theme.markdownTheme);
-        assert.ok(styles.includes(`data-theme="${theme.id}"`));
-        assert.ok(styles.includes(`--shiki-${theme.id}`));
-        for (const [key, value] of Object.entries(theme.palette)) {
-            assert.ok(styles.includes(`--${key}: ${value};`));
-        }
+  for (const theme of themes) {
+    assert.equal(markdownThemes[theme.id], theme.markdownTheme);
+    assert.ok(styles.includes(`data-theme="${theme.id}"`));
+    assert.ok(styles.includes(`--shiki-${theme.id}`));
+    for (const [key, value] of Object.entries(theme.palette)) {
+      assert.ok(styles.includes(`--${key}: ${value};`));
     }
+  }
 });
 
 test("secondary locale route helpers only expose en", () => {
-    assert.deepEqual(getSecondaryLocaleStaticPaths(), [
-        { params: { locale: "en" }, props: { locale: "en" } },
-    ]);
-    assert.equal(assertSecondaryLocale("en"), "en");
-    assert.throws(
-        () => assertSecondaryLocale("zh-CN"),
-        /Unsupported secondary locale/,
-    );
+  assert.deepEqual(getSecondaryLocaleStaticPaths(), [
+    { params: { locale: "en" }, props: { locale: "en" } },
+  ]);
+  assert.equal(assertSecondaryLocale("en"), "en");
+  assert.throws(
+    () => assertSecondaryLocale("zh-CN"),
+    /Unsupported secondary locale/,
+  );
 });

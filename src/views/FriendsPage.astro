@@ -5,65 +5,53 @@ import type { AlternateLink, Locale } from "../i18n/config";
 import type { SiteDictionary } from "../i18n/dictionary";
 
 interface Props {
-    locale: Locale;
-    dictionary: SiteDictionary;
-    friends: FriendLink[];
-    alternateLinks: AlternateLink[];
+  locale: Locale;
+  dictionary: SiteDictionary;
+  friends: FriendLink[];
+  alternateLinks: AlternateLink[];
 }
 
 const { locale, dictionary, friends, alternateLinks } = Astro.props;
 ---
 
 <Layout
-    title={dictionary.friendsPage.metaTitle}
-    locale={locale}
-    dictionary={dictionary}
-    alternateLinks={alternateLinks}
+  title={dictionary.friendsPage.metaTitle}
+  locale={locale}
+  dictionary={dictionary}
+  alternateLinks={alternateLinks}
 >
-    <main class="page-shell" id="main-content">
-        <section class="terminal-panel" aria-label={dictionary.nav.friends}>
-            <p class="terminal-prompt">
-                <span aria-hidden="true">$</span>
-                {dictionary.friendsPage.panelSubtitle}
-            </p>
-            {friends.length > 0 ? (
-                <ol
-                    class="post-list friends-list"
-                    aria-label={dictionary.nav.friends}
-                >
-                    {friends.map((friend) => (
-                        <li>
-                            <a
-                                href={friend.href}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                <span class="post-list__title">
-                                    <img
-                                        src={friend.avatar}
-                                        alt=""
-                                        width="48"
-                                        height="48"
-                                        loading="lazy"
-                                    />
-                                    {friend.name}
-                                </span>
-                                <span class="post-list__address">
-                                    {friend.href}
-                                </span>
-                                <span
-                                    class="post-list__arrow"
-                                    aria-hidden="true"
-                                >
-                                    -&gt;
-                                </span>
-                            </a>
-                        </li>
-                    ))}
-                </ol>
-            ) : (
-                <p class="empty-state">{dictionary.friendsPage.empty}</p>
-            )}
-        </section>
-    </main>
+  <main class="page-shell" id="main-content">
+    <section class="terminal-panel" aria-label={dictionary.nav.friends}>
+      <p class="terminal-prompt">
+        <span aria-hidden="true">$</span>
+        {dictionary.friendsPage.panelSubtitle}
+      </p>
+      {friends.length > 0 ? (
+        <ol class="post-list friends-list" aria-label={dictionary.nav.friends}>
+          {friends.map((friend) => (
+            <li>
+              <a href={friend.href} target="_blank" rel="noopener noreferrer">
+                <span class="post-list__title">
+                  <img
+                    src={friend.avatar}
+                    alt=""
+                    width="48"
+                    height="48"
+                    loading="lazy"
+                  />
+                  {friend.name}
+                </span>
+                <span class="post-list__address">{friend.href}</span>
+                <span class="post-list__arrow" aria-hidden="true">
+                  -&gt;
+                </span>
+              </a>
+            </li>
+          ))}
+        </ol>
+      ) : (
+        <p class="empty-state">{dictionary.friendsPage.empty}</p>
+      )}
+    </section>
+  </main>
 </Layout>

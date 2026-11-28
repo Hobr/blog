@@ -6,9 +6,9 @@ import SiteHeader from "../components/SiteHeader.astro";
 import ThemeSwitcher from "../components/ThemeSwitcher.astro";
 import { avatarUrl, siteDescription } from "../data/profile";
 import {
-    defaultThemeId,
-    getThemeBootstrapScript,
-    getThemeStyles,
+  defaultThemeId,
+  getThemeBootstrapScript,
+  getThemeStyles,
 } from "../data/themes";
 import type { AlternateLink, Locale } from "../i18n/config";
 import type { SiteDictionary } from "../i18n/dictionary";
@@ -16,21 +16,21 @@ import "../styles/global.css";
 import "katex/dist/katex.min.css";
 
 interface Props {
-    title: string;
-    locale: Locale;
-    documentLang?: string;
-    dictionary: SiteDictionary;
-    alternateLinks: AlternateLink[];
-    canonicalPath?: string;
+  title: string;
+  locale: Locale;
+  documentLang?: string;
+  dictionary: SiteDictionary;
+  alternateLinks: AlternateLink[];
+  canonicalPath?: string;
 }
 
 const {
-    title,
-    locale,
-    documentLang = locale,
-    dictionary,
-    alternateLinks,
-    canonicalPath = Astro.url.pathname,
+  title,
+  locale,
+  documentLang = locale,
+  dictionary,
+  alternateLinks,
+  canonicalPath = Astro.url.pathname,
 } = Astro.props;
 
 const siteBase = Astro.site ?? Astro.url;
@@ -42,61 +42,61 @@ const themeBootstrapScript = getThemeBootstrapScript();
 
 <!doctype html>
 <html lang={documentLang} data-theme={defaultThemeId}>
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width" />
-        <meta name="theme-color" content="#191724" />
-        <link rel="icon" type="image/png" href={avatarUrl} />
-        <link rel="sitemap" href="/sitemap-index.xml" />
-        <link
-            rel="alternate"
-            type="application/rss+xml"
-            title={dictionary.brand.name}
-            href={new URL("rss.xml", siteBase)}
-        />
-        <link rel="canonical" href={canonical} />
-        {alternateLinks.map((link) => (
-            <link
-                rel="alternate"
-                hreflang={link.lang}
-                href={new URL(link.href, siteBase).href}
-            />
-        ))}
-        <meta name="generator" content={Astro.generator} />
-        <meta name="description" content={siteDescription} />
-        <style is:inline set:html={themeStyles}></style>
-        <Font cssVariable="--font-terminal" />
-        <script is:inline set:html={themeBootstrapScript}></script>
-        <ClientRouter />
-        <title>{title}</title>
-    </head>
-    <body>
-        <div class="site-shell">
-            <SiteHeader locale={locale} dictionary={dictionary} />
-            <div class="page-transition-shell" transition:animate="slide">
-                <slot />
-            </div>
-            <footer
-                class="site-footer"
-                lang={locale}
-                transition:name="site-footer"
-                transition:animate="none"
-            >
-                <p class="site-footer__copyright">
-                    <span aria-hidden="true">$</span>
-                    <a href="https://github.com/Hobr/blog">
-                        <span>{`printf "© ${currentYear} ${dictionary.brand.name}"`}</span>
-                    </a>
-                </p>
-                <div class="site-footer__controls">
-                    <ThemeSwitcher label={dictionary.brand.themeLabel} />
-                    <LanguageSwitcher
-                        currentLocale={locale}
-                        shortLabel={dictionary.brand.switcherLabel}
-                        alternateLinks={alternateLinks}
-                    />
-                </div>
-            </footer>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="theme-color" content="#191724" />
+    <link rel="icon" type="image/png" href={avatarUrl} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title={dictionary.brand.name}
+      href={new URL("rss.xml", siteBase)}
+    />
+    <link rel="canonical" href={canonical} />
+    {alternateLinks.map((link) => (
+      <link
+        rel="alternate"
+        hreflang={link.lang}
+        href={new URL(link.href, siteBase).href}
+      />
+    ))}
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={siteDescription} />
+    <style is:inline set:html={themeStyles}></style>
+    <Font cssVariable="--font-terminal" />
+    <script is:inline set:html={themeBootstrapScript}></script>
+    <ClientRouter />
+    <title>{title}</title>
+  </head>
+  <body>
+    <div class="site-shell">
+      <SiteHeader locale={locale} dictionary={dictionary} />
+      <div class="page-transition-shell" transition:animate="slide">
+        <slot />
+      </div>
+      <footer
+        class="site-footer"
+        lang={locale}
+        transition:name="site-footer"
+        transition:animate="none"
+      >
+        <p class="site-footer__copyright">
+          <span aria-hidden="true">$</span>
+          <a href="https://github.com/Hobr/blog">
+            <span>{`printf "© ${currentYear} ${dictionary.brand.name}"`}</span>
+          </a>
+        </p>
+        <div class="site-footer__controls">
+          <ThemeSwitcher label={dictionary.brand.themeLabel} />
+          <LanguageSwitcher
+            currentLocale={locale}
+            shortLabel={dictionary.brand.switcherLabel}
+            alternateLinks={alternateLinks}
+          />
         </div>
-    </body>
+      </footer>
+    </div>
+  </body>
 </html>

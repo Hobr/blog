@@ -5,10 +5,10 @@ import { getDictionary } from "../../i18n/dictionary";
 import { getAllTags, getPostsByTag } from "../../lib/posts";
 
 export async function getStaticPaths() {
-    return (await getAllTags()).map((tag) => ({
-        params: { tag },
-        props: { tag },
-    }));
+  return (await getAllTags()).map((tag) => ({
+    params: { tag },
+    props: { tag },
+  }));
 }
 
 const locale = defaultLocale;
@@ -19,9 +19,9 @@ const alternateLinks = buildAlternateLinks(Astro.url.pathname);
 ---
 
 <TagPage
-    locale={locale}
-    dictionary={dictionary}
-    tag={tag}
-    posts={posts}
-    alternateLinks={alternateLinks}
+  locale={locale}
+  dictionary={dictionary}
+  tag={tag}
+  posts={posts}
+  alternateLinks={alternateLinks}
 />

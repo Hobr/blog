@@ -7,39 +7,39 @@ import { toLocalePath } from "../i18n/config";
 import type { SiteDictionary } from "../i18n/dictionary";
 
 interface Props {
-    locale: Locale;
-    dictionary: SiteDictionary;
-    tags: string[];
-    alternateLinks: AlternateLink[];
+  locale: Locale;
+  dictionary: SiteDictionary;
+  tags: string[];
+  alternateLinks: AlternateLink[];
 }
 
 const { locale, dictionary, tags, alternateLinks } = Astro.props;
 const tagCommands: LocalizedSiteCommand[] = tags.map((tag) => ({
-    command: dictionary.blogIndex.openTag(tag),
-    name: `#${tag}`,
-    href: toLocalePath(locale, `/tags/${encodeURIComponent(tag)}`),
+  command: dictionary.blogIndex.openTag(tag),
+  name: `#${tag}`,
+  href: toLocalePath(locale, `/tags/${encodeURIComponent(tag)}`),
 }));
 ---
 
 <Layout
-    title={dictionary.tagsPage.metaTitle}
-    locale={locale}
-    dictionary={dictionary}
-    alternateLinks={alternateLinks}
+  title={dictionary.tagsPage.metaTitle}
+  locale={locale}
+  dictionary={dictionary}
+  alternateLinks={alternateLinks}
 >
-    <main class="page-shell" id="main-content">
-        <section
-            class="terminal-panel tag-results-panel"
-            aria-label={dictionary.tagsPage.title}
-        >
-            <p class="terminal-prompt">
-                <span aria-hidden="true">$</span>
-                {dictionary.tagsPage.panelSubtitle}
-            </p>
-            <SitesCommandPanel
-                sites={tagCommands}
-                label={dictionary.common.tagsLabel}
-            />
-        </section>
-    </main>
+  <main class="page-shell" id="main-content">
+    <section
+      class="terminal-panel tag-results-panel"
+      aria-label={dictionary.tagsPage.title}
+    >
+      <p class="terminal-prompt">
+        <span aria-hidden="true">$</span>
+        {dictionary.tagsPage.panelSubtitle}
+      </p>
+      <SitesCommandPanel
+        sites={tagCommands}
+        label={dictionary.common.tagsLabel}
+      />
+    </section>
+  </main>
 </Layout>

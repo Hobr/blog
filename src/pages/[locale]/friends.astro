@@ -4,12 +4,12 @@ import { friends } from "../../data/friends";
 import { buildAlternateLinks } from "../../i18n/config";
 import { getDictionary } from "../../i18n/dictionary";
 import {
-    assertSecondaryLocale,
-    getSecondaryLocaleStaticPaths,
+  assertSecondaryLocale,
+  getSecondaryLocaleStaticPaths,
 } from "../../i18n/static-paths";
 
 export function getStaticPaths() {
-    return getSecondaryLocaleStaticPaths();
+  return getSecondaryLocaleStaticPaths();
 }
 
 const { locale } = Astro.props as { locale: string };
@@ -19,8 +19,8 @@ const alternateLinks = buildAlternateLinks(Astro.url.pathname);
 ---
 
 <FriendsPage
-    locale={secondaryLocale}
-    dictionary={dictionary}
-    friends={friends}
-    alternateLinks={alternateLinks}
+  locale={secondaryLocale}
+  dictionary={dictionary}
+  friends={friends}
+  alternateLinks={alternateLinks}
 />

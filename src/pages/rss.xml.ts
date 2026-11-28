@@ -5,18 +5,18 @@ import { siteDescription } from "../data/profile";
 import { getAllPosts } from "../lib/posts";
 
 export async function GET(context: { site: URL }) {
-    const posts = await getAllPosts();
-    const brandName = getDictionary(defaultLocale).brand.name;
+  const posts = await getAllPosts();
+  const brandName = getDictionary(defaultLocale).brand.name;
 
-    return rss({
-        title: brandName,
-        description: siteDescription,
-        site: context.site,
-        customData: "<language>zh-CN</language>",
-        items: posts.map((post) => ({
-            title: post.title,
-            pubDate: post.publishedAt,
-            link: `/blog/${post.slug}/`,
-        })),
-    });
+  return rss({
+    title: brandName,
+    description: siteDescription,
+    site: context.site,
+    customData: "<language>zh-CN</language>",
+    items: posts.map((post) => ({
+      title: post.title,
+      pubDate: post.publishedAt,
+      link: `/blog/${post.slug}/`,
+    })),
+  });
 }

@@ -2,56 +2,56 @@
 import type { Locale } from "../i18n/config";
 
 interface Props {
-    locale: Locale;
-    label: string;
-    slug: string;
+  locale: Locale;
+  label: string;
+  slug: string;
 }
 
 const { locale, label, slug } = Astro.props;
 ---
 
 <section
-    class="post-comments"
-    aria-labelledby="post-comments-title"
-    lang={locale}
+  class="post-comments"
+  aria-labelledby="post-comments-title"
+  lang={locale}
 >
-    <h2 id="post-comments-title">{label}</h2>
-    <giscus-widget
-        id="comments"
-        repo="Hobr/blog"
-        repoid="R_kgDOMWV6Hw"
-        category="Comment"
-        categoryid="DIC_kwDOMWV6H84DG4aJ"
-        mapping="specific"
-        term={slug}
-        strict="0"
-        reactionsenabled="1"
-        emitmetadata="0"
-        inputposition="top"
-        theme="preferred_color_scheme"
-        lang={locale}
-        loading="lazy"
-    ></giscus-widget>
+  <h2 id="post-comments-title">{label}</h2>
+  <giscus-widget
+    id="comments"
+    repo="Hobr/blog"
+    repoid="R_kgDOMWV6Hw"
+    category="Comment"
+    categoryid="DIC_kwDOMWV6H84DG4aJ"
+    mapping="specific"
+    term={slug}
+    strict="0"
+    reactionsenabled="1"
+    emitmetadata="0"
+    inputposition="top"
+    theme="preferred_color_scheme"
+    lang={locale}
+    loading="lazy"
+  ></giscus-widget>
 </section>
 
 <script>
-    import "giscus";
+  import "giscus";
 </script>
 
 <style>
-    .post-comments {
-        margin-top: 2rem;
-        padding-top: 1rem;
-        border-top: 1px solid var(--surfaceBorder);
-    }
+  .post-comments {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--surfaceBorder);
+  }
 
-    h2 {
-        margin: 0 0 1rem;
-        font-size: 1.25rem;
-    }
+  h2 {
+    margin: 0 0 1rem;
+    font-size: 1.25rem;
+  }
 
-    giscus-widget {
-        display: block;
-        width: 100%;
-    }
+  giscus-widget {
+    display: block;
+    width: 100%;
+  }
 </style>

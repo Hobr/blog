@@ -1,51 +1,51 @@
 {
-    "name": "hobrlog",
-    "type": "module",
-    "version": "1.0.0",
-    "packageManager": "pnpm@12.8.1+sha512.f64ba907507f5ceafe06c8d38e6052d0179444580ec1279ddd5bfc11cb48aa8a2644b66598e07e761da84872a9fc57d5f902b87fa49d024198d558612aabbe45",
-    "engines": {
-        "node": ">=24.0.0"
-    },
-    "scripts": {
-        "dev": "astro dev",
-        "build": "astro build",
-        "preview": "astro preview",
-        "astro": "astro",
-        "test": "node --test --experimental-strip-types tests/*.test.ts",
-        "typecheck": "tsc --noEmit",
-        "lint": "prettier --check . && eslint .",
-        "format": "prettier --write ."
-    },
-    "dependencies": {
-        "@astrojs/check": "^0.9.12",
-        "@astrojs/markdown-satteri": "^0.4.10",
-        "@astrojs/rss": "^4.0.19",
-        "@astrojs/sitemap": "^3.7.6",
-        "@xingwangzhe/satteri-mermaid": "^0.8.5",
-        "astro": "^7.4.13",
-        "giscus": "^1.6.0",
-        "katex": "^0.19.1",
-        "satteri-imgattr": "^0.1.1",
-        "satteri-katex": "^0.3.0",
-        "sharp": "^0.35.5"
-    },
-    "devDependencies": {
-        "@eslint/compat": "^2.1.1",
-        "@eslint/css": "^2.0.1",
-        "@eslint/js": "^10.0.1",
-        "@eslint/json": "^2.1.1",
-        "@types/node": "^26.6.11",
-        "eslint": "^10.15.0",
-        "eslint-config-prettier": "^10.1.9",
-        "globals": "^17.14.0",
-        "jiti": "^2.7.0",
-        "lint-staged": "^17.6.2",
-        "prettier": "^3.10.1",
-        "prettier-plugin-astro": "1.1.2",
-        "typescript": "^7.0.2",
-        "typescript-eslint": "^8.74.0"
-    },
-    "lint-staged": {
-        "**/*": "prettier --write --ignore-unknown"
-    }
+  "name": "hobrlog",
+  "type": "module",
+  "version": "1.0.0",
+  "packageManager": "pnpm@12.8.1+sha512.f64ba907507f5ceafe06c8d38e6052d0179444580ec1279ddd5bfc11cb48aa8a2644b66598e07e761da84872a9fc57d5f902b87fa49d024198d558612aabbe45",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "test": "node --test --experimental-strip-types tests/*.test.ts",
+    "typecheck": "tsc --noEmit",
+    "lint": "prettier --check . && eslint .",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.12",
+    "@astrojs/markdown-satteri": "^0.4.10",
+    "@astrojs/rss": "^4.0.19",
+    "@astrojs/sitemap": "^3.7.6",
+    "@xingwangzhe/satteri-mermaid": "^0.8.5",
+    "astro": "^7.4.13",
+    "giscus": "^1.6.0",
+    "katex": "^0.19.1",
+    "satteri-imgattr": "^0.1.1",
+    "satteri-katex": "^0.3.0",
+    "sharp": "^0.35.5"
+  },
+  "devDependencies": {
+    "@eslint/compat": "^2.1.1",
+    "@eslint/css": "^2.0.1",
+    "@eslint/js": "^10.0.1",
+    "@eslint/json": "^2.1.1",
+    "@types/node": "^26.6.11",
+    "eslint": "^10.15.0",
+    "eslint-config-prettier": "^10.1.9",
+    "globals": "^17.14.0",
+    "jiti": "^2.7.0",
+    "lint-staged": "^17.6.2",
+    "prettier": "^3.10.1",
+    "prettier-plugin-astro": "1.1.2",
+    "typescript": "^7.0.2",
+    "typescript-eslint": "^8.74.0"
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
+  }
 }

@@ -7,35 +7,35 @@ import { createAdjacentPostMap } from "../../lib/post-data";
 import { getAllPosts, type BlogPost } from "../../lib/posts";
 
 export async function getStaticPaths() {
-    const posts = await getAllPosts();
-    const adjacentPosts = createAdjacentPostMap(posts);
+  const posts = await getAllPosts();
+  const adjacentPosts = createAdjacentPostMap(posts);
 
-    return posts.map((post) => {
-        const { previous, next } = adjacentPosts.get(post.slug) ?? {};
-        return {
-            params: { slug: post.slug },
-            props: { post, previous, next },
-        };
-    });
+  return posts.map((post) => {
+    const { previous, next } = adjacentPosts.get(post.slug) ?? {};
+    return {
+      params: { slug: post.slug },
+      props: { post, previous, next },
+    };
+  });
 }
 
 const locale = defaultLocale;
 const dictionary = getDictionary(locale);
 const { post, previous, next } = Astro.props as {
-    post: BlogPost;
-    previous?: BlogPost;
-    next?: BlogPost;
+  post: BlogPost;
+  previous?: BlogPost;
+  next?: BlogPost;
 };
 const { Content } = await render(post.entry);
 const alternateLinks = buildAlternateLinks(Astro.url.pathname);
 ---
 
 <BlogPostPage
-    locale={locale}
-    dictionary={dictionary}
-    post={post}
-    previous={previous}
-    next={next}
-    Content={Content}
-    alternateLinks={alternateLinks}
+  locale={locale}
+  dictionary={dictionary}
+  post={post}
+  previous={previous}
+  next={next}
+  Content={Content}
+  alternateLinks={alternateLinks}
 />

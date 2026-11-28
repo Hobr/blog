@@ -4,83 +4,78 @@ import type { SiteDictionary } from "../i18n/dictionary";
 import { stripLocaleFromPathname, toLocalePath } from "../i18n/config";
 
 interface Props {
-    locale: Locale;
-    dictionary: SiteDictionary;
+  locale: Locale;
+  dictionary: SiteDictionary;
 }
 
 const { locale, dictionary } = Astro.props;
 const { pathnameWithoutLocale } = stripLocaleFromPathname(Astro.url.pathname);
 
 const links = [
-    {
-        href: toLocalePath(locale, "/"),
-        label: dictionary.nav.home,
-        key: "home",
-    },
-    {
-        href: toLocalePath(locale, "/blog"),
-        label: dictionary.nav.blog,
-        key: "blog",
-    },
-    {
-        href: toLocalePath(locale, "/archive"),
-        label: dictionary.nav.archive,
-        key: "archive",
-    },
-    {
-        href: toLocalePath(locale, "/tags"),
-        label: dictionary.nav.tags,
-        key: "tags",
-    },
-    {
-        href: toLocalePath(locale, "/friends"),
-        label: dictionary.nav.friends,
-        key: "friends",
-    },
+  {
+    href: toLocalePath(locale, "/"),
+    label: dictionary.nav.home,
+    key: "home",
+  },
+  {
+    href: toLocalePath(locale, "/blog"),
+    label: dictionary.nav.blog,
+    key: "blog",
+  },
+  {
+    href: toLocalePath(locale, "/archive"),
+    label: dictionary.nav.archive,
+    key: "archive",
+  },
+  {
+    href: toLocalePath(locale, "/tags"),
+    label: dictionary.nav.tags,
+    key: "tags",
+  },
+  {
+    href: toLocalePath(locale, "/friends"),
+    label: dictionary.nav.friends,
+    key: "friends",
+  },
 ];
 
 const sectionPath = pathnameWithoutLocale.replace(/\/$/, "") || "/";
 const activeSection = links.find((link) => {
-    const path = stripLocaleFromPathname(link.href).pathnameWithoutLocale;
-    return (
-        sectionPath === path ||
-        (path !== "/" && sectionPath.startsWith(`${path}/`))
-    );
+  const path = stripLocaleFromPathname(link.href).pathnameWithoutLocale;
+  return (
+    sectionPath === path || (path !== "/" && sectionPath.startsWith(`${path}/`))
+  );
 })?.key;
 ---
 
 <header
-    class="site-header"
-    lang={locale}
-    transition:name="site-header"
-    transition:animate="none"
+  class="site-header"
+  lang={locale}
+  transition:name="site-header"
+  transition:animate="none"
 >
-    <div class="site-header__inner">
-        <a class="site-brand" href={toLocalePath(locale, "/")}>
-            <span class="site-brand__identity">
-                <strong>{dictionary.brand.name}</strong>
-                <span aria-hidden="true">/root</span>
-            </span>
-        </a>
-        <nav class="site-nav">
-            <ul>
-                {links.map((link) => (
-                    <li>
-                        <a
-                            class:list={[
-                                { active: activeSection === link.key },
-                            ]}
-                            href={link.href}
-                            aria-current={
-                                activeSection === link.key ? "page" : undefined
-                            }
-                        >
-                            <span aria-hidden="true">~/</span>
-                            {link.label}
-                        </a>
-                    </li>
-                ))}
-            </ul>
-        </nav>
-    </div>
+  <div class="site-header__inner">
+    <a class="site-brand" href={toLocalePath(locale, "/")}>
+      <span class="site-brand__identity">
+        <strong>{dictionary.brand.name}</strong>
+        <span aria-hidden="true">/root</span>
+      </span>
+    </a>
+    <nav class="site-nav">
+      <ul>
+        {links.map((link) => (
+          <li>
+            <a
+              class:list={[{ active: activeSection === link.key }]}
+              href={link.href}
+              aria-current={activeSection === link.key ? "page" : undefined}
+            >
+              <span aria-hidden="true">~/</span>
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
 </header>

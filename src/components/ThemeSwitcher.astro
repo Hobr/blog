@@ -2,96 +2,93 @@
 import { defaultThemeId, themes } from "../data/themes";
 
 interface Props {
-    label: string;
+  label: string;
 }
 
 const { label } = Astro.props;
 ---
 
 <label class="theme-switcher">
-    <span class="theme-switcher__label">{label}</span>
-    <select
-        class="theme-switcher__select"
-        name="theme"
-        aria-label={label}
-        data-theme-select
-    >
-        {themes.map((theme) => (
-            <option value={theme.id} selected={theme.id === defaultThemeId}>
-                {theme.label}
-            </option>
-        ))}
-    </select>
+  <span class="theme-switcher__label">{label}</span>
+  <select
+    class="theme-switcher__select"
+    name="theme"
+    aria-label={label}
+    data-theme-select
+  >
+    {themes.map((theme) => (
+      <option value={theme.id} selected={theme.id === defaultThemeId}>
+        {theme.label}
+      </option>
+    ))}
+  </select>
 </label>
 
 <script>
-    import { THEME_STORAGE_KEY, resolveThemeId } from "../data/themes";
+  import { THEME_STORAGE_KEY, resolveThemeId } from "../data/themes";
 
-    const prefersLightScheme = (): boolean =>
-        Boolean(window.matchMedia?.("(prefers-color-scheme: light)").matches);
+  const prefersLightScheme = (): boolean =>
+    Boolean(window.matchMedia?.("(prefers-color-scheme: light)").matches);
 
-    const applyTheme = (themeId: string) => {
-        document.documentElement.dataset.theme = themeId;
-        document.querySelectorAll("[data-theme-select]").forEach((select) => {
-            if (select instanceof HTMLSelectElement) {
-                select.value = themeId;
-            }
-        });
-    };
-
-    const readTheme = (): string => {
-        let stored: string | null = null;
-        try {
-            stored = window.localStorage.getItem(THEME_STORAGE_KEY);
-        } catch {}
-
-        return resolveThemeId(stored, prefersLightScheme());
-    };
-
-    const syncTheme = () => {
-        applyTheme(readTheme());
-    };
-
-    syncTheme();
-
-    document.addEventListener("astro:before-swap", (event) => {
-        if (
-            !("newDocument" in event) ||
-            !(event.newDocument instanceof Document)
-        ) {
-            return;
-        }
-
-        event.newDocument.documentElement.dataset.theme = readTheme();
+  const applyTheme = (themeId: string) => {
+    document.documentElement.dataset.theme = themeId;
+    document.querySelectorAll("[data-theme-select]").forEach((select) => {
+      if (select instanceof HTMLSelectElement) {
+        select.value = themeId;
+      }
     });
+  };
 
-    document.addEventListener("astro:after-swap", syncTheme);
+  const readTheme = (): string => {
+    let stored: string | null = null;
+    try {
+      stored = window.localStorage.getItem(THEME_STORAGE_KEY);
+    } catch {}
 
-    window.addEventListener("storage", (event) => {
-        if (event.key === null || event.key === THEME_STORAGE_KEY) {
-            syncTheme();
-        }
-    });
+    return resolveThemeId(stored, prefersLightScheme());
+  };
 
-    window
-        .matchMedia?.("(prefers-color-scheme: light)")
-        .addEventListener("change", syncTheme);
+  const syncTheme = () => {
+    applyTheme(readTheme());
+  };
 
-    document.addEventListener("change", (event) => {
-        const target = event.target;
-        if (
-            !(target instanceof HTMLSelectElement) ||
-            !target.matches("[data-theme-select]")
-        ) {
-            return;
-        }
+  syncTheme();
 
-        const nextTheme = resolveThemeId(target.value, prefersLightScheme());
+  document.addEventListener("astro:before-swap", (event) => {
+    if (!("newDocument" in event) || !(event.newDocument instanceof Document)) {
+      return;
+    }
 
-        applyTheme(nextTheme);
+    event.newDocument.documentElement.dataset.theme = readTheme();
+  });
 
-        try {
-            window.localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
-        } catch {}
-    });
+  document.addEventListener("astro:after-swap", syncTheme);
+
+  window.addEventListener("storage", (event) => {
+    if (event.key === null || event.key === THEME_STORAGE_KEY) {
+      syncTheme();
+    }
+  });
+
+  window
+    .matchMedia?.("(prefers-color-scheme: light)")
+    .addEventListener("change", syncTheme);
+
+  document.addEventListener("change", (event) => {
+    const target = event.target;
+    if (
+      !(target instanceof HTMLSelectElement) ||
+      !target.matches("[data-theme-select]")
+    ) {
+      return;
+    }
+
+    const nextTheme = resolveThemeId(target.value, prefersLightScheme());
+
+    applyTheme(nextTheme);
+
+    try {
+      window.localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
+    } catch {}
+  });
 </script>

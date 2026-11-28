@@ -5,13 +5,13 @@ import { getProfile } from "../../data/profile";
 import { buildAlternateLinks } from "../../i18n/config";
 import { getDictionary } from "../../i18n/dictionary";
 import {
-    assertSecondaryLocale,
-    getSecondaryLocaleStaticPaths,
+  assertSecondaryLocale,
+  getSecondaryLocaleStaticPaths,
 } from "../../i18n/static-paths";
 import { getLatestPosts } from "../../lib/posts";
 
 export function getStaticPaths() {
-    return getSecondaryLocaleStaticPaths();
+  return getSecondaryLocaleStaticPaths();
 }
 
 const { locale } = Astro.props as { locale: string };
@@ -24,10 +24,10 @@ const alternateLinks = buildAlternateLinks(Astro.url.pathname);
 ---
 
 <HomePage
-    locale={secondaryLocale}
-    dictionary={dictionary}
-    latestPosts={latestPosts}
-    profile={profile}
-    contactGroups={contactGroups}
-    alternateLinks={alternateLinks}
+  locale={secondaryLocale}
+  dictionary={dictionary}
+  latestPosts={latestPosts}
+  profile={profile}
+  contactGroups={contactGroups}
+  alternateLinks={alternateLinks}
 />

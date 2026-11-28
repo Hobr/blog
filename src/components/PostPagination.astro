@@ -4,53 +4,53 @@ import { toLocalePath } from "../i18n/config";
 import type { BlogPost } from "../lib/posts";
 
 interface Props {
-    locale: Locale;
-    previous?: BlogPost;
-    next?: BlogPost;
-    previousLabel: string;
-    nextLabel: string;
-    emptyPreviousLabel: string;
-    emptyNextLabel: string;
+  locale: Locale;
+  previous?: BlogPost;
+  next?: BlogPost;
+  previousLabel: string;
+  nextLabel: string;
+  emptyPreviousLabel: string;
+  emptyNextLabel: string;
 }
 
 const {
-    locale,
-    previous,
-    next,
-    previousLabel,
-    nextLabel,
-    emptyPreviousLabel,
-    emptyNextLabel,
+  locale,
+  previous,
+  next,
+  previousLabel,
+  nextLabel,
+  emptyPreviousLabel,
+  emptyNextLabel,
 } = Astro.props;
 ---
 
 <div class="post-pagination">
-    {previous ? (
-        <a
-            class="post-pagination__item"
-            href={toLocalePath(locale, `/blog/${previous.slug}`)}
-        >
-            <small>{previousLabel}</small>
-            <strong>{previous.title}</strong>
-        </a>
-    ) : (
-        <div class="post-pagination__item is-disabled">
-            <small>{previousLabel}</small>
-            <span>{emptyPreviousLabel}</span>
-        </div>
-    )}
-    {next ? (
-        <a
-            class="post-pagination__item post-pagination__item--next"
-            href={toLocalePath(locale, `/blog/${next.slug}`)}
-        >
-            <small>{nextLabel}</small>
-            <strong>{next.title}</strong>
-        </a>
-    ) : (
-        <div class="post-pagination__item post-pagination__item--next is-disabled">
-            <small>{nextLabel}</small>
-            <span>{emptyNextLabel}</span>
-        </div>
-    )}
+  {previous ? (
+    <a
+      class="post-pagination__item"
+      href={toLocalePath(locale, `/blog/${previous.slug}`)}
+    >
+      <small>{previousLabel}</small>
+      <strong>{previous.title}</strong>
+    </a>
+  ) : (
+    <div class="post-pagination__item is-disabled">
+      <small>{previousLabel}</small>
+      <span>{emptyPreviousLabel}</span>
+    </div>
+  )}
+  {next ? (
+    <a
+      class="post-pagination__item post-pagination__item--next"
+      href={toLocalePath(locale, `/blog/${next.slug}`)}
+    >
+      <small>{nextLabel}</small>
+      <strong>{next.title}</strong>
+    </a>
+  ) : (
+    <div class="post-pagination__item post-pagination__item--next is-disabled">
+      <small>{nextLabel}</small>
+      <span>{emptyNextLabel}</span>
+    </div>
+  )}
 </div>

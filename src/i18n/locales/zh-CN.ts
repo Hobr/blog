@@ -1,77 +1,77 @@
 export const zhCN = {
-    brand: {
-        name: "Hobr.Site",
-        switcherLabel: "语言",
-        themeLabel: "主题",
-    },
-    nav: {
-        home: "首页",
-        blog: "博客",
-        tags: "标签",
-        archive: "归档",
-        friends: "友情链接",
-    },
-    common: {
-        noPosts: "暂无文章",
-        tagsLabel: "标签",
-    },
-    error: {
-        metaTitle: "Hobr.Site | 页面未找到",
-        command: "cd /requested/path && ls",
-        title: "页面未找到",
-        message: "啊嘞, 怎么回事呢",
-        homeAction: "返回首页",
-    },
-    serverError: {
-        metaTitle: "Hobr.Site | 服务器错误",
-        title: "服务器内部错误",
-        message: "服务器遇到了意外错误, 请稍后再试。",
-    },
-    home: {
-        metaTitle: "Hobr.Site | 首页",
-        profileSubtitle: "whoami && cat ~/个人资料.txt",
-        latestSubtitle: "tail -n 5 ~/博客.log",
-        viewAll: "ls ~/博客",
-    },
-    blogIndex: {
-        metaTitle: "Hobr.Site | 博客",
-        listSubtitle: "ls -lt ~/博客",
-        navSubtitle: "ls ~/导航 && open ~/导航/<目标>",
-        openArchive: "./archive",
-        openTag: (tag: string) => `./tags/${tag}`,
-    },
-    tagsPage: {
-        metaTitle: "Hobr.Site | 标签",
-        title: "所有标签",
-        panelSubtitle: "find ~/博客 -type f | xargs grep '^tags:' | sort -u",
-    },
-    archive: {
-        metaTitle: "Hobr.Site | 归档",
-        panelSubtitle:
-            "find ~/博客 -type f | xargs stat -c %y | cut -d- -f1,2 | sort -ur",
-    },
-    friendsPage: {
-        metaTitle: "Hobr.Site | 友情链接",
-        panelSubtitle: "cat ~/links/friends.txt",
-        empty: "友情链接正在整理中",
-    },
-    contact: {
-        imSubtitle: "ls ~/联系/即时通讯 && open ~/联系/即时通讯/<方式>",
-        developmentSubtitle: "ls ~/开发 && open ~/开发/<平台>",
-        socialSubtitle: "ls ~/联系/社交媒体 && open ~/联系/社交媒体/<平台>",
-    },
-    tagPage: {
-        metaTitle: (tag: string) => `Hobr.Site | #${tag}`,
-        panelSubtitle: (tag: string) => `grep -r ${tag} ~/博客`,
-        empty: "这个标签下还没有文章",
-    },
-    articlePage: {
-        metaTitle: (title: string) => `Hobr.Site | ${title}`,
-        tableOfContents: "目录",
-        comments: "评论",
-        previous: "上一篇",
-        next: "下一篇",
-        startOfLog: "这是最早的一篇",
-        latestEntry: "已经到达最新一篇",
-    },
+  brand: {
+    name: "Hobr.Site",
+    switcherLabel: "语言",
+    themeLabel: "主题",
+  },
+  nav: {
+    home: "首页",
+    blog: "博客",
+    tags: "标签",
+    archive: "归档",
+    friends: "友情链接",
+  },
+  common: {
+    noPosts: "暂无文章",
+    tagsLabel: "标签",
+  },
+  error: {
+    metaTitle: "Hobr.Site | 页面未找到",
+    command: "cd /requested/path && ls",
+    title: "页面未找到",
+    message: "啊嘞, 怎么回事呢",
+    homeAction: "返回首页",
+  },
+  serverError: {
+    metaTitle: "Hobr.Site | 服务器错误",
+    title: "服务器内部错误",
+    message: "服务器遇到了意外错误, 请稍后再试。",
+  },
+  home: {
+    metaTitle: "Hobr.Site | 首页",
+    profileSubtitle: "whoami && cat ~/个人资料.txt",
+    latestSubtitle: "tail -n 5 ~/博客.log",
+    viewAll: "ls ~/博客",
+  },
+  blogIndex: {
+    metaTitle: "Hobr.Site | 博客",
+    listSubtitle: "ls -lt ~/博客",
+    navSubtitle: "ls ~/导航 && open ~/导航/<目标>",
+    openArchive: "./archive",
+    openTag: (tag: string) => `./tags/${tag}`,
+  },
+  tagsPage: {
+    metaTitle: "Hobr.Site | 标签",
+    title: "所有标签",
+    panelSubtitle: "find ~/博客 -type f | xargs grep '^tags:' | sort -u",
+  },
+  archive: {
+    metaTitle: "Hobr.Site | 归档",
+    panelSubtitle:
+      "find ~/博客 -type f | xargs stat -c %y | cut -d- -f1,2 | sort -ur",
+  },
+  friendsPage: {
+    metaTitle: "Hobr.Site | 友情链接",
+    panelSubtitle: "cat ~/links/friends.txt",
+    empty: "友情链接正在整理中",
+  },
+  contact: {
+    imSubtitle: "ls ~/联系/即时通讯 && open ~/联系/即时通讯/<方式>",
+    developmentSubtitle: "ls ~/开发 && open ~/开发/<平台>",
+    socialSubtitle: "ls ~/联系/社交媒体 && open ~/联系/社交媒体/<平台>",
+  },
+  tagPage: {
+    metaTitle: (tag: string) => `Hobr.Site | #${tag}`,
+    panelSubtitle: (tag: string) => `grep -r ${tag} ~/博客`,
+    empty: "这个标签下还没有文章",
+  },
+  articlePage: {
+    metaTitle: (title: string) => `Hobr.Site | ${title}`,
+    tableOfContents: "目录",
+    comments: "评论",
+    previous: "上一篇",
+    next: "下一篇",
+    startOfLog: "这是最早的一篇",
+    latestEntry: "已经到达最新一篇",
+  },
 } as const;

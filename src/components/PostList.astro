@@ -4,30 +4,30 @@ import { toLocalePath } from "../i18n/config";
 import type { BlogPost } from "../lib/posts";
 
 interface Props {
-    posts: BlogPost[];
-    locale: Locale;
-    emptyMessage?: string;
+  posts: BlogPost[];
+  locale: Locale;
+  emptyMessage?: string;
 }
 
 const { posts, locale, emptyMessage = "No posts found." } = Astro.props;
 ---
 
 {posts.length > 0 ? (
-    <ol class="post-list">
-        {posts.map((post) => (
-            <li>
-                <a href={toLocalePath(locale, `/blog/${post.slug}`)}>
-                    <span class="post-list__title">{post.title}</span>
-                    <time datetime={post.publishedAt.toISOString()}>
-                        {post.dateLabel}
-                    </time>
-                    <span class="post-list__arrow" aria-hidden="true">
-                        -&gt;
-                    </span>
-                </a>
-            </li>
-        ))}
-    </ol>
+  <ol class="post-list">
+    {posts.map((post) => (
+      <li>
+        <a href={toLocalePath(locale, `/blog/${post.slug}`)}>
+          <span class="post-list__title">{post.title}</span>
+          <time datetime={post.publishedAt.toISOString()}>
+            {post.dateLabel}
+          </time>
+          <span class="post-list__arrow" aria-hidden="true">
+            -&gt;
+          </span>
+        </a>
+      </li>
+    ))}
+  </ol>
 ) : (
-    <p class="empty-state">{emptyMessage}</p>
+  <p class="empty-state">{emptyMessage}</p>
 )}

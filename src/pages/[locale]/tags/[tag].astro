@@ -6,14 +6,14 @@ import { assertSecondaryLocale } from "../../../i18n/static-paths";
 import { getAllTags, getPostsByTag } from "../../../lib/posts";
 
 export async function getStaticPaths() {
-    const tags = await getAllTags();
+  const tags = await getAllTags();
 
-    return secondaryLocales.flatMap((locale) =>
-        tags.map((tag) => ({
-            params: { locale, tag },
-            props: { locale, tag },
-        })),
-    );
+  return secondaryLocales.flatMap((locale) =>
+    tags.map((tag) => ({
+      params: { locale, tag },
+      props: { locale, tag },
+    })),
+  );
 }
 
 const { locale, tag } = Astro.props as { locale: string; tag: string };
@@ -24,9 +24,9 @@ const alternateLinks = buildAlternateLinks(Astro.url.pathname);
 ---
 
 <TagPage
-    locale={secondaryLocale}
-    dictionary={dictionary}
-    tag={tag}
-    posts={posts}
-    alternateLinks={alternateLinks}
+  locale={secondaryLocale}
+  dictionary={dictionary}
+  tag={tag}
+  posts={posts}
+  alternateLinks={alternateLinks}
 />

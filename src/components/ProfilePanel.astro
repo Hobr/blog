@@ -2,23 +2,23 @@
 import { avatarUrl, type ProfileData } from "../data/profile";
 
 interface Props {
-    profile: ProfileData;
+  profile: ProfileData;
 }
 
 const { profile } = Astro.props;
 ---
 
 <div class="profile-panel">
-    <img
-        class="profile-panel__portrait"
-        src={avatarUrl}
-        alt={profile.name}
-        width="160"
-        height="160"
-        decoding="async"
-        referrerpolicy="no-referrer"
-    />
-    <h1>{profile.name}</h1>
-    <p class="profile-panel__role">{profile.role}</p>
-    <p class="profile-panel__bio">{profile.bio}</p>
+  <img
+    class="profile-panel__portrait"
+    src={avatarUrl}
+    alt={profile.name}
+    width="160"
+    height="160"
+    decoding="async"
+    referrerpolicy="no-referrer"
+  />
+  <h1>{profile.name}</h1>
+  <p class="profile-panel__role">{profile.role}</p>
+  <p class="profile-panel__bio">{profile.bio}</p>
 </div>
